@@ -1,19 +1,20 @@
 <?php
 /**
-* Tusuario
-* Usuarios del sistema
+* TConsultorio
+* Consultorio
 * @package aplicacion
 * @autor Hugo Santiago hugooluisss@gmail.com
 **/
 
-class TUsuario{
-	private $idUsuario;
-	private $idTipo;
-	private $app;
-	private $apm;
+class TConsultorio{
+	private $idConsultorio;
+	private $idTurno;
+	public $encargado;
+	private $clave;
 	private $nombre;
-	private $email;
-	private $pass;
+	private $estado;
+	private $ciudad;
+	private $cubiculos;
 	
 	/**
 	* Constructor de la clase
@@ -22,8 +23,8 @@ class TUsuario{
 	* @access public
 	* @param int $id identificador del objeto
 	*/
-	public function TUsuario($id = ''){
-		$this->setId($id);		
+	public function TConsultorio($id = ''){
+		$this->setId($id);
 		return true;
 	}
 	
@@ -39,11 +40,18 @@ class TUsuario{
 	public function setId($id = ''){
 		if ($id == '') return false;
 		
-		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from usuario where idReactivo = ".$id);
+		parent::setId($id);
 		
-		foreach($rs->fields as $field => $val)
-			$this->$field = $val;
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("select * from servicio where idTipo = ".$id);
+		
+		foreach($rs->fields as $field => $val){
+			switch($field){
+				case 'idEncargado': $this->encargado = new TUsuario($val); break;
+				default:
+					$this->$field = $val;
+			}
+		}
 		
 		return true;
 	}
@@ -55,55 +63,53 @@ class TUsuario{
 	* @access public
 	* @return integer identificador
 	*/
-	
 	public function getId(){
-		return $this->idUsuario;
+		return $this->idConsultorio;
 	}
 	
 	/**
-	* Establece el valor de tipo de usuario
+	* Establece el turno
 	*
 	* @autor Hugo
 	* @access public
-	* @param string $val Valor a asignar por default es 2 que hace referencia a doctor
+	* @param string $val Valor a asignar
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setTipo($val = 2){
-		$this->idTipo = $val;
+	public function setTurno($val = ''){
+		$this->idTurno = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna las el identificador del tipo de usuario
+	* Retorna el identificador del turno
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getIdTipo(){
-		return $this->idTipo;
+	public function getIdTurno(){
+		return $this->idTurno;
 	}
 	
 	/**
-	* Retorna el tipo
+	* Retorna el nombre del turno
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getTipo(){
-		if ($this->getIdTipo() == '') return false;
-		
+	public function getTurno(){
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select nombre from tipoUsuario where idTipo = ".$this->getIdTipo());
-		return $trs->fields['nombre'];
+		$rs = $db->Execute("select * from turno where idTurno = ".$val);
+
+		return $rs->fields['nombre'];
 	}
 	
 	/**
-	* Establece el apellido paterno
+	* Establece el usuario supervisor encargado
 	*
 	* @autor Hugo
 	* @access public
@@ -111,25 +117,13 @@ class TUsuario{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setApp($val = ''){
-		$this->app = $val;
+	public function setEncargado($val = ''){
+		$this->encargado = new TUsuario($val);
 		return true;
 	}
 	
 	/**
-	* Retorna el apellido paterno
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getApp(){
-		return $this->app;
-	}
-	
-	/**
-	* Establece el apellido materno
+	* Establece la clave
 	*
 	* @autor Hugo
 	* @access public
@@ -137,26 +131,25 @@ class TUsuario{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setApm($val = ''){
-		$this->apm = $val;
+	public function setClave($val = ''){
+		$this->clave = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna las instrucciones
+	* Retorna la clave
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getApm(){
-		return $this->apm;
+	public function getClave(){
+		return $this->clave;
 	}
 	
 	/**
 	* Establece el nombre
-	*
 	* @autor Hugo
 	* @access public
 	* @param string $val Valor a asignar
@@ -177,11 +170,11 @@ class TUsuario{
 	*/
 	
 	public function getNombre(){
-		return $this->instrucciones;
+		return $this->nombre;
 	}
 	
 	/**
-	* Establece el email
+	* Establece el estado
 	*
 	* @autor Hugo
 	* @access public
@@ -189,25 +182,25 @@ class TUsuario{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setEmail($val = ''){
-		$this->email = $val;
+	public function setEstado($val = ''){
+		$this->estado = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna el email
+	* Retorna el estado
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getEmail(){
-		return $this->email;
+	public function getEstado(){
+		return $this->estado;
 	}
 	
 	/**
-	* Establece el valor del password
+	* Establece la ciudad
 	*
 	* @autor Hugo
 	* @access public
@@ -215,21 +208,47 @@ class TUsuario{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setPass($val = ''){
-		$this->pass = $val;
+	public function setCiudad($val = ''){
+		$this->ciudad = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna el password
+	* Retorna la ciudad
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getPass(){
-		return $this->pass;
+	public function getCiudad(){
+		return $this->ciudad;
+	}
+	
+	/**
+	* Establece la cantidad de cubiculos
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCubiculos($val = ''){
+		$this->cubiculos = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna la descripcion
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getCubiculos(){
+		return $this->cubiculos;
 	}
 	
 	/**
@@ -241,28 +260,29 @@ class TUsuario{
 	*/
 	
 	public function guardar(){
-		if ($this->getIdTipo() == '') return false;
+		if ($this->tipo->getId() == '' or $this->getIdTurno() == '') return false;
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO usuario(idTipo)VALUES(".$this->getIdTipo().");");
+			$rs = $db->Execute("INSERT INTO consultorio(idTurno, idEncargado)VALUES(".$this->getIdTurno().", ".$this->encargado->getId().");");
 			if (!$rs) return false;
 				
-			$this->idUsuario = $db->Insert_ID();
+			$this->idConsultorio = $db->Insert_ID();
 		}		
 		
 		if ($this->getId() == '')
 			return false;
 			
-		$rs = $db->Execute("UPDATE usuario
+		$rs = $db->Execute("UPDATE consultorio
 			SET
-				idTipo = ".$this->getIdTipo().",
+				idTurno = ".$this->getIdTurno().",
+				idEncargado = ".$this->encargado->getId().",
+				clave = '".$this->getClave()."',
 				nombre = '".$this->getNombre()."',
-				app = '".$this->getApp()."',
-				apm = '".$this->getApm()."',
-				email = '".$this->getEmail()."',
-				pass = '".$this->getPass()."'
-			WHERE idUsuario = ".$this->getId());
+				estado = '".$this->getEstado()."',
+				ciudad = '".$this->getCiudad()."',
+				cubiculos = ".$this->getCubiculos()."
+			WHERE idConsultorio = ".$this->getId());
 			
 		return $rs?true:false;
 	}
@@ -279,7 +299,7 @@ class TUsuario{
 		if ($this->getId() == '') return false;
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("delete from usuario where idUsuario = ".$this->getId());
+		$rs = $db->Execute("delete from consultorio where idConsultorio = ".$this->getId());
 		
 		return $rs?true:false;
 	}
