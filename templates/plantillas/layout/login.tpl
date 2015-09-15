@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>.:: Consultorio::.</title>
+	<title>.:: {$PAGE.nombreAplicacion} ::.</title>
 	{if $PAGE.debug}
 		<link rel="stylesheet" href="{$PAGE.ruta}bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet/less" type="text/css" href="{$PAGE.ruta}build/less/AdminLTE.less" />
@@ -37,7 +37,10 @@
 				<a href="index.php"><b>Consultorio</b>onLine</a>
 			</div><!-- /.login-logo -->
 		<div class="login-box-body">
-			<p class="login-box-msg">Identificate para iniciar sesión</p>
+			<p class="login-box-msg">
+				<img src="{$PAGE.ruta}img/logo.jpg" class="img-rounded"/>
+				Identificate para iniciar sesión
+			</p>
 			<form action="#" id="frmLogin" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" placeholder="e-mail" id="txtUsuario" name="txtUsuario" autocomplete="no">

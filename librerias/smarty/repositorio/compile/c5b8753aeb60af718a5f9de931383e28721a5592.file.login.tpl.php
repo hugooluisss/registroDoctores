@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-10 11:59:11
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-14 17:41:35
          compiled from "templates/plantillas/layout/login.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:44077714855e5a55ba527b5-54558036%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c5b8753aeb60af718a5f9de931383e28721a5592' => 
     array (
       0 => 'templates/plantillas/layout/login.tpl',
-      1 => 1441904349,
+      1 => 1442270458,
       2 => 'file',
     ),
   ),
@@ -31,7 +31,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>.:: Consultorio::.</title>
+	<title>.:: <?php echo $_smarty_tpl->tpl_vars['PAGE']->value['nombreAplicacion'];?>
+ ::.</title>
 	<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['debug']){?>
 		<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
 bootstrap/css/bootstrap.min.css">
@@ -75,7 +76,11 @@ plugins/iCheck/square/blue.css">
 				<a href="index.php"><b>Consultorio</b>onLine</a>
 			</div><!-- /.login-logo -->
 		<div class="login-box-body">
-			<p class="login-box-msg">Identificate para iniciar sesión</p>
+			<p class="login-box-msg">
+				<img src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+img/logo.jpg" class="img-rounded"/>
+				Identificate para iniciar sesión
+			</p>
 			<form action="#" id="frmLogin" method="post">
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" placeholder="e-mail" id="txtUsuario" name="txtUsuario" autocomplete="no">

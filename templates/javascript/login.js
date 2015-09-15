@@ -10,8 +10,8 @@ $(document).ready(function(){
 		},
 		wrapper: 'span', 
 		messages: {
-			txtUsuario: "La CURP es necesaria",
-			txtPass: "Tu contraseña o NIP es necesario"
+			txtUsuario: "Este campo es necesario",
+			txtPass: "Este campo es necesario"
 		},
 		submitHandler: function(form){
 			var obj = new TUsuario;

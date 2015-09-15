@@ -1,5 +1,5 @@
 <?php
-define('SISTEMA', 'Diagnóstico General de Ingreso');
+define('SISTEMA', 'Consultas en Linea');
 define('VERSION', 'v 1.0');
 define('ALIAS', '');
 define('AUTOR', 'Hugo Luis Santiago Altamirano');
@@ -32,17 +32,9 @@ $conf['clogin'] = array(
 	'descripcion' => 'Inicio de sesion',
 	'seguridad' => false,
 	'capa' => LAYOUT_AJAX);
-	
-$conf['panel'] = array(
-	#'controlador' => 'index.php',
-	'vista' => 'usuarios/panel.tpl',
-	'descripcion' => 'Vista del panel',
-	'seguridad' => true,
-	'js' => array(),
-	'capa' => LAYOUT_DEFECTO);
 
 $conf['admonUsuarios'] = array(
-	#'controlador' => 'usuarios.php',
+	'controlador' => 'usuarios.php',
 	'vista' => 'usuarios/panel.tpl',
 	'descripcion' => 'Administración de usuarios',
 	'seguridad' => true,
@@ -62,87 +54,36 @@ $conf['cusuarios'] = array(
 	'descripcion' => 'Controlador de usuarios',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
-	
-/*Exámenes*/
-$conf['examenes'] = array(
-	#'controlador' => 'index.php',
-	'vista' => 'examenes/panel.tpl',
-	'descripcion' => 'Vista del panel',
+
+#Catálogo de servicios
+$conf['tipoServicios'] = array(
+	'vista' => 'tipoServicios/panel.tpl',
+	'descripcion' => 'Catálogo de tipo servicios',
 	'seguridad' => true,
-	'js' => array('examen.class.js'),
-	'jsTemplate' => array('panelExamenes.js'),
+	'js' => array('tipoServicio.class.js'),
+	'jsTemplate' => array('tipoServicio.js'),
 	'capa' => LAYOUT_DEFECTO);
-	
-$conf['listaExamenes'] = array(
-	'controlador' => 'examenes.php',
-	'vista' => 'examenes/lista.tpl',
-	'descripcion' => 'Lista de exámenes',
+
+$conf['ctipoServicio'] = array(
+	'controlador' => 'tipoServicios.php',
+	'descripcion' => 'Controlador del catálogo de tipos de servicio',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 
-$conf['cexamenes'] = array(
-	'controlador' => 'examenes.php',
-	'descripcion' => 'Controlador de exámenes',
+$conf['listaTipoServicios'] = array(
+	'controlador' => 'tipoServicios.php',
+	'vista' => 'tipoServicios/lista.tpl',
+	'descripcion' => 'Lista de tipo de servicios',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 	
-/* Medios */
-$conf['cmedios'] = array(
-	'controlador' => 'medios.php',
-	'descripcion' => 'Controlador de multimedia',
+#servicios
+$conf['servicios'] = array(
+	'controlador' => 'servicios.php',
+	'vista' => 'servicios/panel.tpl',
+	'descripcion' => 'Administración de servicios',
 	'seguridad' => true,
-	'capa' => LAYOUT_AJAX);
-	
-$conf['listaMedios'] = array(
-	'controlador' => 'medios.php',
-	'vista' => 'multimedia/lista.tpl',
-	'descripcion' => 'Lista de imagenes',
-	'seguridad' => true,
-	'capa' => LAYOUT_AJAX);
-	
-/* Reactivos */
-$conf['reactivos'] = array(
-	'controlador' => 'reactivos.php',
-	'vista' => 'reactivos/panel.tpl',
-	'descripcion' => 'Vista del panel',
-	'seguridad' => true,
-	'js' => array('reactivo.class.js', 'multimedia.class.js'),
-	'jsTemplate' => array('reactivos.js'),
+	'js' => array('usuario.class.js'),
+	'jsTemplate' => array('usuarios.js'),
 	'capa' => LAYOUT_DEFECTO);
-	
-$conf['creactivos'] = array(
-	'controlador' => 'reactivos.php',
-	'descripcion' => 'Controlador de reactivos',
-	'seguridad' => true,
-	'capa' => LAYOUT_AJAX);
-	
-$conf['listaReactivos'] = array(
-	'controlador' => 'reactivos.php',
-	'vista' => 'reactivos/lista.tpl',
-	'descripcion' => 'Lista de reactivos',
-	'seguridad' => true,
-	'capa' => LAYOUT_AJAX);
-	
-/* Reactivos */
-$conf['opciones'] = array(
-	'controlador' => 'opciones.php',
-	'vista' => 'opciones/panel.tpl',
-	'descripcion' => 'Vista del panel',
-	'seguridad' => true,
-	'js' => array('opcion.class.js'),
-	'jsTemplate' => array('opciones.js'),
-	'capa' => LAYOUT_DEFECTO);
-	
-$conf['copciones'] = array(
-	'controlador' => 'opciones.php',
-	'descripcion' => 'Controlador de opciones',
-	'seguridad' => true,
-	'capa' => LAYOUT_AJAX);
-	
-$conf['listaOpciones'] = array(
-	'controlador' => 'opciones.php',
-	'vista' => 'opciones/lista.tpl',
-	'descripcion' => 'Lista de opciones',
-	'seguridad' => true,
-	'capa' => LAYOUT_AJAX);
 ?>

@@ -1,46 +1,27 @@
 TUsuario = function(){
 	var self = this;
 	
-	this.add = function(num_personal, fn){
+	this.add = function(id,	nombre, app, apm, email, pass, cedula, universidad, especialidad, tipo, fn){
+		if (fn.before !== undefined) fn.before();
+		
 		$.post('?mod=cusuarios&action=add', {
-				"num_personal": num_personal,
+				"id": id,
+				"nombre": nombre,
+				"app": app, 
+				"apm": apm, 
+				"email": email, 
+				"pass": pass, 
+				"cedula": cedula, 
+				"universidad": universidad,
+				"especialidad": especialidad, 
+				"tipo": tipo
 			}, function(data){
 				if (data.band == 'false')
-					console.log("Upps. Ocurrió un error al agregar al usuario " + data.mensaje);
+					console.log(data.mensaje);
 					
-				if (fn.after != undefined)
+				if (fn.after !== undefined)
 					fn.after(data);
 			}, "json");
-	};
-	
-	this.setPass = function(usuario, pass, fn){
-		$.post('?mod=cusuarios&action=setPass', {
-			"usuario": usuario,
-			"pass": pass
-		}, function(data){
-			if (data.band == 'false'){
-				fn.error(data);
-			}else{
-				fn.ok(data);
-			}
-		}, "json");
-	};
-	
-	this.setPerfil = function(usuario, perfil, fn){
-		if (fn.before != undefined)
-			fn.before();
-			
-		$.post('?mod=cusuarios&action=setPerfil', {
-			"usuario": usuario,
-			"tipo": perfil
-		}, function(data){
-			if (fn.after != undefined)
-				fn.after(data);
-				
-			if (data.band == 'false')
-				alert("Ocurrió un error al modificar el perfil del usuario");
-				
-		}, "json");
 	};
 	
 	this.del = function(usuario, fn){
@@ -56,6 +37,9 @@ TUsuario = function(){
 	};
 	
 	this.login = function(usuario, pass, fn){
+		if (fn.before !== undefined)
+			fn.before();
+			
 		$.post('?mod=clogin&action=login', {
 			"usuario": usuario,
 			"pass": pass

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-07 11:30:52
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-14 22:47:44
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1441643447,
+      1 => 1442288863,
       2 => 'file',
     ),
   ),
@@ -31,7 +31,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<title>.:: DGI - IEBO ::.</title>
+	<title>.:: <?php echo $_smarty_tpl->tpl_vars['PAGE']->value['nombreAplicacion'];?>
+ ::.</title>
 	<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['debug']){?>
 		<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
 bootstrap/css/bootstrap.min.css">
@@ -76,9 +77,10 @@ plugins/upload/css/jquery.fileupload.css">
 			<!-- Logo -->
 			<a href="#" class="logo">
 				<!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>D</b>GI</span>
+				<span class="logo-mini"><b>C</b>onsultas</span>
 				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>Admin</b>DGI</span>
+				<span class="logo-lg"><img src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top" role="navigation">
@@ -145,17 +147,9 @@ plugins/upload/css/jquery.fileupload.css">
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
 					<li class="header">MENÚ PRINCIPAL</li>
-					<li class="active treeview">
-						<a href="#">
-							<i class="fa fa-cogs"></i> <span>Administración</span> <i class="fa fa-angle-left pull-right"></i>
-						</a>
-						<ul class="treeview-menu">
-							<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='admonUsuarios'){?>class="active"<?php }?>><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
-						</ul>
-						<a href="?mod=examenes">
-							<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='examenes'){?>class="active"<?php }?>><i class="fa fa-pencil-square-o"></i> Exámenes</li>
-						</a>
-					</li>
+					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='admonUsuarios'){?>class="active"<?php }?>><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
+					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='tipoServicios'){?>class="active"<?php }?>><a href="?mod=tipoServicios"><i class="fa fa-sticky-note"></i> Tipo de servicios</a></li>
+					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='servicios'){?>class="active"<?php }?>><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
@@ -186,7 +180,7 @@ plugins/upload/css/jquery.fileupload.css">
 
 			</div>
 			<strong>Copyright &copy; <?php echo date("Y");?>
- <a href="http://iebo.edu.mx">IEBO</a>.</strong> Todos los derechos reservados
+ <a href="http://consultaexterna.com.mx">Consulta externa</a>.</strong> Todos los derechos reservados
 		</footer>
 	</div>
     

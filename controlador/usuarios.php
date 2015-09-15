@@ -2,13 +2,28 @@
 global $objModulo;
 
 switch($objModulo->getId()){
+	case 'admonUsuarios':
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("select * from tipoUsuario");
+		
+		$datos = array();
+		while(!$rs->EOF){
+			$datos[$rs->fields['idTipoUsuario']] = $rs->fields['nombre'];
+			$rs->moveNext();
+		}
+		
+		$smarty->assign("tipos", $datos);
+	break;
 	case 'listaUsuarios':
 		$db = TBase::conectaDB();
 		
-		$rs = $db->Execute("select num_personal from usuario");
+		$rs = $db->Execute("select * from usuario left join doctor using(idUsuario)");
 		$datos = array();
 		while(!$rs->EOF){
-			array_push($datos, array("obj" => new TTrabajador($rs->fields['num_personal']), "user" => new TUsuario($rs->fields['num_personal'])));
+			$obj = new TUsuario($rs->fields['idUsuario']);
+			$rs->fields['tipo'] = $obj->getTipo();
+			$rs->fields['json'] = json_encode($rs->fields);
+			array_push($datos, $rs->fields);
 			$rs->moveNext();
 		}
 		$smarty->assign("lista", $datos);
@@ -23,45 +38,46 @@ switch($objModulo->getId()){
 	break;
 	case 'cusuarios':
 		switch($objModulo->getAction()){
-			case 'autocomplete':
-				$db = TBase::conectaDB("sip");
-				$rs = $db->Execute("select num_personal from ficha_personal 
-					where nombres like '%".$_GET['term']."%' 
-						or apellido_p like '%".$_GET['term']."%' 
-						or apellido_m like '%".$_GET['term']."%'
-						or concat(nombres, ' ', apellido_p, ' ', apellido_m) like '%".$_GET['term']."%'
-						or concat(apellido_p, ' ', apellido_m, ' ', nombres) like '%".$_GET['term']."%'
-				");
-				
-				$obj = new TTrabajador;
-				$datos = array();
-				while(!$rs->EOF){
-					$el = array();
-					
-					$obj->setId($rs->fields['num_personal']);
-					$el['id'] = $obj->getId();
-					$el['label'] = $obj->getNombreCompleto();
-					$el['nip'] = $obj->getPass() <> '';
-					$el['identificador'] = $obj->getId();
-					
-					array_push($datos, $el);
-					$rs->moveNext();
+			case 'add':
+				$db = TBase::conectaDB();
+				$obj = new TUsuario();
+				$rs = $db->Execute("select idUsuario from usuario where email = '".$_POST['email']."'");
+				if ($rs->fields["idUsuario"] <> $_POST['id']){
+
+					$obj->setId($rs->fields['idUsuario']);
+					echo json_encode(array("band" => false, "mensaje" => "El email ya se encuentra registrado con el usuario ".$obj->getNombreCompleto()));
+					exit(-1);
 				}
 				
-				echo json_encode($datos);
-			break;
-			case 'add':
-				$obj = new TUsuario($_POST['num_personal']);
+				if ($_POST['tipo'] == 3){#si es doctor
+					$rs = $db->Execute("select idUsuario from doctor where cedula = '".$rs->fields['cedula']."'");
+					if ($rs->fields['idUsuario'] <> $_POST['id']){
+						$obj->setId($rs->fields['idUsuario']);
+						echo json_encode(array("band" => false, "mensaje" => "El número de cédula se encuentra registrado con el doctor ".$obj->getNombreCompleto()));
+					}
+				}
 				
-				echo json_encode(array("band" => $obj->add()));
+				if ($_POST['tipo'] == 3){
+					$obj = new TDoctor();
+					$obj->setCedula($_POST['cedula']);
+					$obj->setUniversidad($_POST['universidad']);
+					$obj->setEspecialidad($_POST['especialidad']);
+				}else
+					$obj = new TUsuario();
+				
+				$obj->setId($_POST['id']);
+				$obj->setNombre($_POST['nombre']);
+				$obj->setApp($_POST['app']);
+				$obj->setApm($_POST['apm']);
+				$obj->setEmail($_POST['email']);
+				$obj->setPass($_POST['pass']);
+				$obj->setTipo($_POST['tipo']);
+				
+				echo json_encode(array("band" => $obj->guardar()));
 			break;
 			case 'del':
 				$obj = new TUsuario($_POST['usuario']);
-				echo json_encode(array("band" => $obj->del()));
-			break;
-			case 'setPerfil':
-				$obj = new TUsuario($_POST['usuario']);
-				echo json_encode(array("band" => $obj->setTipo($_POST["tipo"])));
+				echo json_encode(array("band" => $obj->eliminar()));
 			break;
 		}
 	break;

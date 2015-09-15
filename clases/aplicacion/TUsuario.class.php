@@ -40,7 +40,7 @@ class TUsuario{
 		if ($id == '') return false;
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from usuario where idReactivo = ".$id);
+		$rs = $db->Execute("select * from usuario where idUsuario = ".$id);
 		
 		foreach($rs->fields as $field => $val)
 			$this->$field = $val;
@@ -98,8 +98,8 @@ class TUsuario{
 		if ($this->getIdTipo() == '') return false;
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select nombre from tipoUsuario where idTipo = ".$this->getIdTipo());
-		return $trs->fields['nombre'];
+		$rs = $db->Execute("select nombre from tipoUsuario where idTipoUsuario = ".$this->getIdTipo());
+		return $rs->fields['nombre'];
 	}
 	
 	/**
@@ -177,7 +177,19 @@ class TUsuario{
 	*/
 	
 	public function getNombre(){
-		return $this->instrucciones;
+		return $this->nombre;
+	}
+	
+	/**
+	* Retorna el nombre completo iniciando por nombre
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getNombreCompleto(){
+		return $this->getNombre()." ".$this->getApp()." ".$this->getApm();
 	}
 	
 	/**

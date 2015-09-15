@@ -1,15 +1,17 @@
 <?php
 /**
-* TServicio
-* Clasificación de servicios
+* TReporte
+* Reportes que hacen los doctores
 * @package aplicacion
 * @autor Hugo Santiago hugooluisss@gmail.com
 **/
+include_once("clases/aplicacion/TUsuario.class.php");
 
-class TServicio{
-	private $idServicio;
-	public $tipo;
-	private $nombre;
+class TReporte{
+	private $idReporte;
+	public $doctor;
+	public $consultorio;
+	private $fecha;
 	
 	/**
 	* Constructor de la clase
@@ -18,8 +20,8 @@ class TServicio{
 	* @access public
 	* @param int $id identificador del objeto
 	*/
-	public function TServicio($id = ''){
-		$this->setId($id);
+	public function TReporte($id = ''){
+		$this->setId($id);		
 		return true;
 	}
 	
@@ -38,13 +40,16 @@ class TServicio{
 		parent::setId($id);
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from servicio where idTipo = ".$id);
+		$rs = $db->Execute("select * from reporte where idReporte = ".$id);
 		
 		foreach($rs->fields as $field => $val){
 			switch($field){
-				case 'idTipo': $this->tipo = new TTipoServicio($val); break;
-				default:
-					$this->$field = $val;
+				case 'idDoctor':
+					$this->setDoctor($val);
+				break;
+				case 'idConsultorio':
+					$this->setConsultorio($val);
+				break;
 			}
 		}
 		
@@ -58,48 +63,37 @@ class TServicio{
 	* @access public
 	* @return integer identificador
 	*/
+	
 	public function getId(){
-		return $this->idServicio;
+		return $this->idReporte;
 	}
 	
 	/**
-	* Establece el tipo de servicio
+	* Establece el objeto doctor
 	*
 	* @autor Hugo
 	* @access public
-	* @param string $val Valor a asignar
+	* @param string $val identificador del objeto
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setTipo($val = ''){
-		$this->tipo = new TTipoServicio($val);
+	public function setDoctor($val = ''){
+		$this->doctor = new TDoctor($val);
 		return true;
 	}
 	
 	/**
-	* Establece el nombre
+	* Establece el objeto consultorio
 	*
 	* @autor Hugo
 	* @access public
-	* @param string $val Valor a asignar
+	* @param string $val identificador del objeto
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setNombre($val = ''){
-		$this->nombre = $val;
+	public function setConsultorio($val = ''){
+		$this->consultorio = new TConsultorio($val);
 		return true;
-	}
-	
-	/**
-	* Retorna el nombre
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getNombre(){
-		return $this->nombre;
 	}
 	
 	/**
@@ -111,24 +105,24 @@ class TServicio{
 	*/
 	
 	public function guardar(){
-		if ($this->tipo->getId() == '') return false;
+		if ($this->doctor->getId() == '' or $this->consultorio->getId() == '') return false;
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO servicio(idTipo)VALUES(".$this->getIdTipo().");");
+			$rs = $db->Execute("INSERT INTO reporte(idDoctor, idConsultorio)VALUES(".$this->doctor->getId().", ".$this->consultorio->getId().");");
 			if (!$rs) return false;
 				
-			$this->idServicio = $db->Insert_ID();
+			$this->idReporte = $db->Insert_ID();
 		}		
 		
 		if ($this->getId() == '')
 			return false;
 			
-		$rs = $db->Execute("UPDATE servicio
+		$rs = $db->Execute("UPDATE reporte
 			SET
-				idTipo = ".$this->getId().",
-				nombre = '".$this->getNombre()."'
-			WHERE idServicio = ".$this->getId());
+				fecha = now(),
+				idConsultorio = '".$this->consultorio->getId()."'
+			WHERE idReporte = ".$this->getId());
 			
 		return $rs?true:false;
 	}
@@ -145,9 +139,8 @@ class TServicio{
 		if ($this->getId() == '') return false;
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("delete from servicio where idServicio = ".$this->getId());
+		$rs = $db->Execute("delete from reporte where idReporte = ".$this->getId());
 		
 		return $rs?true:false;
 	}
 }
-?>

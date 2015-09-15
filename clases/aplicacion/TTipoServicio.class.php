@@ -34,8 +34,6 @@ class TTipoServicio{
 	public function setId($id = ''){
 		if ($id == '') return false;
 		
-		parent::setId($id);
-		
 		$db = TBase::conectaDB();
 		$rs = $db->Execute("select * from tipoServicio where idTipo = ".$id);
 		
