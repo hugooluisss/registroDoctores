@@ -40,10 +40,8 @@ class TConsultorio{
 	public function setId($id = ''){
 		if ($id == '') return false;
 		
-		parent::setId($id);
-		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from servicio where idTipo = ".$id);
+		$rs = $db->Execute("select * from consultorio where idConsultorio = ".$id);
 		
 		foreach($rs->fields as $field => $val){
 			switch($field){
@@ -260,7 +258,7 @@ class TConsultorio{
 	*/
 	
 	public function guardar(){
-		if ($this->tipo->getId() == '' or $this->getIdTurno() == '') return false;
+		if ($this->encargado->getId() == '' or $this->getIdTurno() == '') return false;
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){

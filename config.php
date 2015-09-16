@@ -99,4 +99,28 @@ $conf['listaServicios'] = array(
 	'descripcion' => 'Lista de servicios',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
+	
+#servicios
+$conf['consultorios'] = array(
+	'controlador' => 'consultorios.php',
+	'vista' => 'consultorios/panel.tpl',
+	'descripcion' => 'Registro de consultorios',
+	'seguridad' => true,
+	'js' => array('consultorio.class.js'),
+	'jsTemplate' => array('consultorio.js'),
+	'capa' => LAYOUT_DEFECTO);
+	
+$conf['cconsultorio'] = array(
+	'controlador' => 'consultorios.php',
+	'descripcion' => 'Controlador del consultorios',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+	
+$conf['listaConsultorios'] = array(
+	'controlador' => 'consultorios.php',
+	'vista' => 'consultorios/lista.tpl',
+	'descripcion' => 'Lista de consultorios',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+
 ?>

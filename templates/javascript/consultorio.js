@@ -13,20 +13,35 @@ $(document).ready(function(){
 	$("#frmAdd").validate({
 		debug: true,
 		rules: {
-			selTipo: "required",
+			selTurno: "required",
+			selEncargado: "required",
+			txtClave: "required",
 			txtNombre: "required",
+			txtEstado: "required",
+			txtCiudad: "required",
+			selCubiculos: "required",
 		},
 		wrapper: 'span', 
 		messages: {
-			txtNombre: "Este campo es necesario",
-			selTipo: "Este campo es necesario",
+			selTurno: "Este campos es necesario",
+			selEncargado: "Este campos es necesario",
+			txtClave: "Este campos es necesario",
+			txtNombre: "Este campos es necesario",
+			txtEstado: "Este campos es necesario",
+			txtCiudad: "Este campos es necesario",
+			selCubiculos: "Este campos es necesario"
 		},
 		submitHandler: function(form){
-			var obj = new TServicio;
+			var obj = new TConsultorio;
 			obj.add(
 				$("#id").val(), 
-				$("#selTipo").val(),
+				$("#selTurno").val(),
+				$("#selEncargado").val(), 
+				$("#txtClave").val(), 
 				$("#txtNombre").val(), 
+				$("#txtEstado").val(), 
+				$("#txtCiudad").val(), 
+				$("#selCubiculos").val(), 
 				{
 					after: function(datos){
 						if (datos.band){
@@ -44,12 +59,12 @@ $(document).ready(function(){
     });
 		
 	function getLista(){
-		$.get("?mod=listaServicios", function( data ) {
+		$.get("?mod=listaConsultorios", function( data ) {
 			$("#dvLista").html(data);
 			
 			$("[action=eliminar]").click(function(){
 				if(confirm("¿Seguro?")){
-					var obj = new TServicio;
+					var obj = new TConsultorio;
 					obj.del($(this).attr("identificador"), {
 						after: function(data){
 							getLista();
@@ -60,15 +75,19 @@ $(document).ready(function(){
 			
 			$("[action=modificar]").click(function(){
 				var el = jQuery.parseJSON($(this).attr("datos"));
-				
-				$("#id").val(el.idServicio);
+				$("#id").val(el.idConsultorio);
+				$("#selTurno").val(el.idTurno);
+				$("#selEncargado").val(el.idEncargado);
+				$("#txtClave").val(el.clave);
 				$("#txtNombre").val(el.nombre);
-				$("#selTipo").val(el.idTipo);
+				$("#txtEstado").val(el.estado); 
+				$("#txtCiudad").val(el.ciudad); 
+				$("#selCubiculos").val(el.cubiculos);
 				
 				$('#panelTabs a[href="#add"]').tab('show');
 			});
 			
-			$("#tblServicios").DataTable({
+			$("#tblConsultorios").DataTable({
 				"responsive": true,
 				"language": espaniol,
 				"paging": true,
