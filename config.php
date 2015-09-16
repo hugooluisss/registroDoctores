@@ -83,7 +83,20 @@ $conf['servicios'] = array(
 	'vista' => 'servicios/panel.tpl',
 	'descripcion' => 'Administración de servicios',
 	'seguridad' => true,
-	'js' => array('usuario.class.js'),
-	'jsTemplate' => array('usuarios.js'),
+	'js' => array('servicio.class.js'),
+	'jsTemplate' => array('servicio.js'),
 	'capa' => LAYOUT_DEFECTO);
+
+$conf['cservicio'] = array(
+	'controlador' => 'servicios.php',
+	'descripcion' => 'Controlador del catálogo de servicio',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+
+$conf['listaServicios'] = array(
+	'controlador' => 'servicios.php',
+	'vista' => 'servicios/lista.tpl',
+	'descripcion' => 'Lista de servicios',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
 ?>

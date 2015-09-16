@@ -109,6 +109,7 @@
 					<li {if $PAGE.modulo eq 'admonUsuarios'}class="active"{/if}><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
 					<li {if $PAGE.modulo eq 'tipoServicios'}class="active"{/if}><a href="?mod=tipoServicios"><i class="fa fa-sticky-note"></i> Tipo de servicios</a></li>
 					<li {if $PAGE.modulo eq 'servicios'}class="active"{/if}><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
+					<li {if $PAGE.modulo eq 'consultorios'}class="active"{/if}><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->

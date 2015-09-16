@@ -34,11 +34,9 @@ class TServicio{
 	
 	public function setId($id = ''){
 		if ($id == '') return false;
-		
-		parent::setId($id);
-		
+				
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from servicio where idTipo = ".$id);
+		$rs = $db->Execute("select * from servicio where idServicio = ".$id);
 		
 		foreach($rs->fields as $field => $val){
 			switch($field){
@@ -115,7 +113,7 @@ class TServicio{
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO servicio(idTipo)VALUES(".$this->getIdTipo().");");
+			$rs = $db->Execute("INSERT INTO servicio(idTipo)VALUES(".$this->tipo->getId().");");
 			if (!$rs) return false;
 				
 			$this->idServicio = $db->Insert_ID();
@@ -126,7 +124,7 @@ class TServicio{
 			
 		$rs = $db->Execute("UPDATE servicio
 			SET
-				idTipo = ".$this->getId().",
+				idTipo = ".$this->tipo->getId().",
 				nombre = '".$this->getNombre()."'
 			WHERE idServicio = ".$this->getId());
 			

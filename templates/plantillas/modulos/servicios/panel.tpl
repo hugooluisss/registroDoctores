@@ -31,48 +31,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="txtNombre" class="col-lg-2">Nombre completo</label>
+						<label for="txtNombre" class="col-lg-2">Nombre</label>
 						<div class="col-lg-3">
 							<input class="form-control" id="txtNombre" name="txtNombre">
-							<span class="help-block">Nombre(s)</span>
-						</div>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtApp" name="txtApp">
-							<span class="help-block">Apellido paterno</span>
-						</div>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtApm" name="txtApm">
-							<span class="help-block">Apellido materno</span>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="txtEmail" class="col-lg-2">Correo electrónico</label>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtEmail" name="txtEmail" type="email">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="txtPass" class="col-lg-2">Contraseña</label>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtPass" name="txtPass" type="password">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="txtCedula" class="col-lg-2">Cédula</label>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtCedula" name="txtCedula" type="text">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="txtEspecialidad" class="col-lg-2">Especialidad</label>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtEspecialidad" name="txtEspecialidad" type="text">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="txtUniversidad" class="col-lg-2">Universidad</label>
-						<div class="col-lg-3">
-							<input class="form-control" id="txtUniversidad" name="txtUniversidad" type="text">
 						</div>
 					</div>
 				</div>

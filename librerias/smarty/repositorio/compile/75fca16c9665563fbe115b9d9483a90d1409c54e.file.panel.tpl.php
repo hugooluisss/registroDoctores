@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-14 20:56:37
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-16 09:43:40
          compiled from "templates/plantillas/modulos/usuarios/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:74554938055e4995c0237c7-71464976%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '75fca16c9665563fbe115b9d9483a90d1409c54e' => 
     array (
       0 => 'templates/plantillas/modulos/usuarios/panel.tpl',
-      1 => 1442281993,
+      1 => 1442285803,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tipos' => 0,
     'key' => 0,
     'item' => 0,
-    'reactivo' => 0,
-    'examen' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -34,7 +32,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </div>
 
 <ul id="panelTabs" class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#listas">Agregados</a></li>
+  <li class="active"><a data-toggle="tab" href="#listas">Lista</a></li>
   <li><a data-toggle="tab" href="#add">Agregar o Modificar</a></li>
 </ul>
 
@@ -121,9 +119,4 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 			</div>
 		</form>
 	</div>
-</div>
-
-<input type="hidden" id="reactivo" value="<?php echo $_smarty_tpl->tpl_vars['reactivo']->value;?>
-"/>
-<input type="hidden" id="examen" value="<?php echo $_smarty_tpl->tpl_vars['examen']->value;?>
-"/><?php }} ?>
+</div><?php }} ?>
