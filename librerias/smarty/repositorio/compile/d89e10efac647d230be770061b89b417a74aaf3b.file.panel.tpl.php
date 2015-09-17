@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-16 12:23:54
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-16 22:46:33
          compiled from "templates/plantillas/modulos/consultorios/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:121679590155f99d6e72b240-14258796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd89e10efac647d230be770061b89b417a74aaf3b' => 
     array (
       0 => 'templates/plantillas/modulos/consultorios/panel.tpl',
-      1 => 1442424173,
+      1 => 1442461591,
       2 => 'file',
     ),
   ),
@@ -116,7 +116,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['foo'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['foo']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['name'] = 'foo';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['start'] = (int)1;
-$_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['loop'] = is_array($_loop=20) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['loop'] = is_array($_loop=5) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['step'] = ((int)1) == 0 ? 1 : (int)1;
 $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['show'] = true;
 $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['loop'];

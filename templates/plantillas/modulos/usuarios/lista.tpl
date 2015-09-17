@@ -23,6 +23,9 @@
 						<td>{$row.apm}</td>
 						<td>{$row.tipo}</td>
 						<td style="text-align: right">
+							{if $row.idTipo eq 2}
+							<button type="button" class="btn btn-info btn-circle" action="encargados" title="Doctores encargados" usuario="{$row.idUsuario}"><i class="fa fa-user"></i></button>
+							{/if}
 							<button type="button" class="btn btn-success btn-circle" action="modificar" title="Modificar" datos='{$row.json}'><i class="fa fa-pencil"></i></button>
 							<button type="button" class="btn btn-danger btn-circle" action="eliminar" title="Eliminar" usuario="{$row.idUsuario}"><i class="fa fa-times"></i></button>
 						</td>

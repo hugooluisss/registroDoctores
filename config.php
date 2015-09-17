@@ -55,6 +55,25 @@ $conf['cusuarios'] = array(
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 
+#Doctores asignados
+$conf['doctoresAsignados'] = array(
+	'controlador' => 'usuarios.php',
+	'vista' => 'usuarios/asignados.tpl',
+	'descripcion' => 'Doctores que supervisa un supervisor',
+	'seguridad' => true,
+	'js' => array('usuario.class.js'),
+	'jsTemplate' => array('usuariosAsignados.js'),
+	'capa' => LAYOUT_DEFECTO);
+	
+$conf['listaAsignados'] = array(
+	'controlador' => 'usuarios.php',
+	'vista' => 'usuarios/listaAsignados.tpl',
+	'descripcion' => 'Lista de usuarios/doctores asignados',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+	
+
+	
 #Catálogo de servicios
 $conf['tipoServicios'] = array(
 	'vista' => 'tipoServicios/panel.tpl',

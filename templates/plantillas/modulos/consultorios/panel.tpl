@@ -69,7 +69,7 @@
 						<label for="selCubiculos" class="col-lg-2">Cubículos</label>
 						<div class="col-lg-1">
 							<select class="form-control" id="selCubiculos" name="selCubiculos">
-								{section name=foo start=1 loop=20 step=1}
+								{section name=foo start=1 loop=5 step=1}
 									<option value="{$smarty.section.foo.index}">{$smarty.section.foo.index}
 								{/section}
 							</select>

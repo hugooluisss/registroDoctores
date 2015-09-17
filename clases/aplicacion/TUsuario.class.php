@@ -295,5 +295,48 @@ class TUsuario{
 		
 		return $rs?true:false;
 	}
+	
+	/**
+	* Agregar a doctor a supervisor
+	*
+	* @autor Hugo
+	* @access public
+	* @param $id Identificador del usuario doctor
+	* @return boolean True si se realizó sin problemas
+	*/
+
+	public function addSupervisado($id = ''){
+		if ($id == '') return false;
+		
+		if ($this->getId() == '' or $this->getIdTipo <> 2) return false;
+		
+		$obj = new TUsuario($id);
+		if ($obj->getId() == '') return false;
+		
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("insert into encargados(idSupervisor, idUsuario) values (".$this->getId().", ".$id.")");
+		
+		return $rs?true:false;
+	}
+	
+	/**
+	* Eliminar a doctor a supervisor
+	*
+	* @autor Hugo
+	* @access public
+	* @param $id Identificador del usuario doctor
+	* @return boolean True si se realizó sin problemas
+	*/
+
+	public function addSupervisado($id = ''){
+		if ($id == '') return false;
+		
+		if ($this->getId() == '' or $this->getIdTipo <> 2) return false;
+		
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("delete from encargados where idSupervisor = ".$this->getId()." and idUsuario = ".$id.")");
+		
+		return $rs?true:false;
+	}
 }
 ?>

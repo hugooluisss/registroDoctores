@@ -102,6 +102,10 @@ $(document).ready(function(){
 				$('#panelTabs a[href="#add"]').tab('show');
 			});
 			
+			$("[action=encargados]").click(function(){
+				location.href = "?mod=doctoresAsignados&id=" + $(this).attr("usuario");
+			});
+			
 			$("#tblUsuarios").DataTable({
 				"responsive": true,
 				"language": espaniol,

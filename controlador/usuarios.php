@@ -14,6 +14,20 @@ switch($objModulo->getId()){
 		
 		$smarty->assign("tipos", $datos);
 	break;
+	case 'listaAsignados':
+		$db = TBase::conectaDB();
+		
+		$rs = $db->Execute("select * from encargados a join usuario using(idUsuario) join doctor using(idUsuario)");
+		$datos = array();
+		while(!$rs->EOF){
+			$obj = new TUsuario($rs->fields['idUsuario']);
+			$rs->fields['tipo'] = $obj->getTipo();
+			$rs->fields['json'] = json_encode($rs->fields);
+			array_push($datos, $rs->fields);
+			$rs->moveNext();
+		}
+		$smarty->assign("lista", $datos);
+	break;
 	case 'listaUsuarios':
 		$db = TBase::conectaDB();
 		
@@ -35,6 +49,10 @@ switch($objModulo->getId()){
 			$rs->moveNext();
 		}
 		$smarty->assign("tipoUsuario", $datos);
+	break;
+	case 'doctoresAsignados':
+		$supervisor = new TUsuario($_GET['id']);
+		$smarty->assign("supervisor", $supervisor);
 	break;
 	case 'cusuarios':
 		switch($objModulo->getAction()){
@@ -79,6 +97,27 @@ switch($objModulo->getId()){
 				$obj = new TUsuario($_POST['usuario']);
 				echo json_encode(array("band" => $obj->eliminar()));
 			break;
+			case 'autocomplete':
+				$db = TBase::conectaDB();
+				$rs = $db->Execute("select idUsuario from usuario a join doctor b using(idUsuario) where nombre like '%".$_GET['term']."%' or app like '%".$_GET['term']."%' or apm like '%".$_GET['term']."%' or concat(nombre, ' ', app, ' ', apm) like '%".$_GET['term']."%' or concat(app, ' ', apm, ' ', nombre) like '%".$_GET['term']."%'");
+				
+				$obj = new TDoctor;
+				$datos = array();
+				while(!$rs->EOF){
+					$el = array();
+					
+					$obj->setId($rs->fields['idUsuario']);
+					$el['id'] = $obj->getId();
+					$el['label'] = $obj->getNombreCompleto();
+					$el['identificador'] = $obj->getId();
+					
+					array_push($datos, $el);
+					$rs->moveNext();
+				}
+				
+				echo json_encode($datos);
+			break;
+
 		}
 	break;
 }
