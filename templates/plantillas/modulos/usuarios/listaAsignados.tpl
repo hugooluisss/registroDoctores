@@ -18,6 +18,7 @@
 						<td>{$row.app}</td>
 						<td>{$row.apm}</td>
 						<td style="text-align: right">
+							<button type="button" class="btn btn-danger btn-circle" action="eliminar" title="Eliminar" usuario="{$row.idUsuario}"><i class="fa fa-times"></i></button>
 						</td>
 					</tr>
 				{/foreach}

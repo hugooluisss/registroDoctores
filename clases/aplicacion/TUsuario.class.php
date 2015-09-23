@@ -308,7 +308,7 @@ class TUsuario{
 	public function addSupervisado($id = ''){
 		if ($id == '') return false;
 		
-		if ($this->getId() == '' or $this->getIdTipo <> 2) return false;
+		if ($this->getId() == '' or $this->getIdTipo() <> 2) return false;
 		
 		$obj = new TUsuario($id);
 		if ($obj->getId() == '') return false;
@@ -328,13 +328,13 @@ class TUsuario{
 	* @return boolean True si se realizó sin problemas
 	*/
 
-	public function addSupervisado($id = ''){
+	public function delSupervisado($id = ''){
 		if ($id == '') return false;
 		
-		if ($this->getId() == '' or $this->getIdTipo <> 2) return false;
+		if ($this->getId() == '' or $this->getIdTipo() <> 2) return false;
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("delete from encargados where idSupervisor = ".$this->getId()." and idUsuario = ".$id.")");
+		$rs = $db->Execute("delete from encargados where idSupervisor = ".$this->getId()." and idUsuario = ".$id);
 		
 		return $rs?true:false;
 	}

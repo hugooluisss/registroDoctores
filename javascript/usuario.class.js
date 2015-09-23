@@ -52,4 +52,38 @@ TUsuario = function(){
 			}
 		}, "json");
 	}
+	
+	this.supervisarA = function(supervisor, doctor, fn){
+		if (fn.before !== undefined)
+			fn.before();
+			
+		$.post('?mod=cusuarios&action=addsup', {
+			"supervisor": supervisor,
+			"doctor": doctor
+		}, function(data){
+			if (fn.after != undefined)
+				fn.after(data);
+				
+			if (data.band == 'false'){
+				console.log("No se agregó la supervisión");
+			}
+		}, "json");
+	}
+	
+	this.sinSupervisarA = function(supervisor, doctor, fn){
+		if (fn.before !== undefined)
+			fn.before();
+			
+		$.post('?mod=cusuarios&action=delsup', {
+			"supervisor": supervisor,
+			"doctor": doctor
+		}, function(data){
+			if (fn.after != undefined)
+				fn.after(data);
+				
+			if (data.band == 'false'){
+				console.log("No se eliminó el registro");
+			}
+		}, "json");
+	}
 };

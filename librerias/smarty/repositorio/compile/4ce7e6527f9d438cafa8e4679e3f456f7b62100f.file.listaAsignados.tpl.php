@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-17 13:29:30
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-18 21:52:17
          compiled from "templates/plantillas/modulos/usuarios/listaAsignados.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:178040228955fb02b809bb27-89644951%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4ce7e6527f9d438cafa8e4679e3f456f7b62100f' => 
     array (
       0 => 'templates/plantillas/modulos/usuarios/listaAsignados.tpl',
-      1 => 1442514566,
+      1 => 1442631129,
       2 => 'file',
     ),
   ),
@@ -52,6 +52,8 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['apm'];?>
 </td>
 						<td style="text-align: right">
+							<button type="button" class="btn btn-danger btn-circle" action="eliminar" title="Eliminar" usuario="<?php echo $_smarty_tpl->tpl_vars['row']->value['idUsuario'];?>
+"><i class="fa fa-times"></i></button>
 						</td>
 					</tr>
 				<?php } ?>

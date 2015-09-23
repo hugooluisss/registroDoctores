@@ -6,14 +6,18 @@
 	<!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<title>.:: {$PAGE.nombreAplicacion} ::.</title>
-	{if $PAGE.debug}
 		<link rel="stylesheet" href="{$PAGE.ruta}bootstrap/css/bootstrap.min.css">
+		
+		{if $PAGE.debug}
 		<link rel="stylesheet/less" type="text/css" href="{$PAGE.ruta}build/less/AdminLTE.less" />
+		<link rel="stylesheet/less" type="text/css" href="{$PAGE.ruta}dist/css/skins/_all-skins.less" />
+		{else}
+		<link rel="stylesheet" href="{$PAGE.ruta}dist/css/AdminLTE.css">
+		<link rel="stylesheet" type="text/css" href="{$PAGE.ruta}dist/css/skins/_all-skins.css" />
+		{/if}
 		
 		<link rel="stylesheet" href="{$PAGE.ruta}dist/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{$PAGE.ruta}dist/css/ionicons.min.css">
-		
-		<link rel="stylesheet/less" type="text/css" href="{$PAGE.ruta}build/less/skins/_all-skins.less" />
 		<link rel="stylesheet" href="{$PAGE.ruta}plugins/iCheck/flat/blue.css">
 		<link rel="stylesheet" href="{$PAGE.ruta}plugins/morris/morris.css">
 		<link rel="stylesheet" href="{$PAGE.ruta}plugins/jvectormap/jquery-jvectormap-1.2.2.css">
@@ -22,8 +26,7 @@
 		<link rel="stylesheet" href="{$PAGE.ruta}plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 		<link rel="stylesheet" href="{$PAGE.ruta}plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 		<link rel="stylesheet" href="{$PAGE.ruta}plugins/upload/css/jquery.fileupload.css">
-	{else}
-	{/if}
+
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>

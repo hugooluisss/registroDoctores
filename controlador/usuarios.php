@@ -99,7 +99,7 @@ switch($objModulo->getId()){
 			break;
 			case 'autocomplete':
 				$db = TBase::conectaDB();
-				$rs = $db->Execute("select idUsuario from usuario a join doctor b using(idUsuario) where nombre like '%".$_GET['term']."%' or app like '%".$_GET['term']."%' or apm like '%".$_GET['term']."%' or concat(nombre, ' ', app, ' ', apm) like '%".$_GET['term']."%' or concat(app, ' ', apm, ' ', nombre) like '%".$_GET['term']."%'");
+				$rs = $db->Execute("select idUsuario from usuario a join doctor b using(idUsuario) where (nombre like '%".$_GET['term']."%' or app like '%".$_GET['term']."%' or apm like '%".$_GET['term']."%' or concat(nombre, ' ', app, ' ', apm) like '%".$_GET['term']."%' or concat(app, ' ', apm, ' ', nombre) like '%".$_GET['term']."%') and idUsuario not in (select idUsuario from encargados where idSupervisor = ".$_GET['sup'].")");
 				
 				$obj = new TDoctor;
 				$datos = array();
@@ -117,7 +117,14 @@ switch($objModulo->getId()){
 				
 				echo json_encode($datos);
 			break;
-
+			case 'addsup':
+				$obj = new TUsuario($_POST['supervisor']);
+				echo json_encode(array("band" => $obj->addSupervisado($_POST['doctor'])));
+			break;
+			case 'delsup':
+				$obj = new TUsuario($_POST['supervisor']);
+				echo json_encode(array("band" => $obj->delSupervisado($_POST['doctor'])));
+			break;
 		}
 	break;
 }

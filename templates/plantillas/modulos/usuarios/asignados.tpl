@@ -1,5 +1,6 @@
+<a href="?mod=admonUsuarios" class="btn btn-danger btn-circle" title="Regresar"><i class="fa fa-chevron-left"></i> Regresar</a>		
 <div class="box">
-	<div class="box-head">			
+	<div class="box-head">
 		<h1>Usuarios asignados al supervisor</h1>
 		<b>Supervisor: </b> {$supervisor->getNombreCompleto()}
 	</div class="box-body">
@@ -19,7 +20,7 @@
 	<div>
 	</div>
 </div>
-
+<input type="hidden" name="id" id="id" value="{$supervisor->getId()}"/>
 <div id="dvLista">
 	
 </div>
