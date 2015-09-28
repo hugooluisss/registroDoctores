@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-21 14:24:34
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-27 14:56:38
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1442863336,
+      1 => 1443383796,
       2 => 'file',
     ),
   ),
@@ -40,7 +40,7 @@ bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet/less" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
 build/less/AdminLTE.less" />
 		<link rel="stylesheet/less" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
-dist/css/skins/_all-skins.less" />
+build/less/skins/_all-skins.less" />
 		<?php }else{ ?>
 		<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
 dist/css/AdminLTE.css">

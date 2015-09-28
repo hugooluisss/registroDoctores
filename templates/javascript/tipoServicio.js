@@ -3,6 +3,7 @@ $(document).ready(function(){
 		
 	$("#panelTabs li a[href=#add]").click(function(){
 		$("#frmAdd").get(0).reset();
+		$("#id").val("");
 		$("form:not(.filter) :input:visible:enabled:first").focus();
 	});
 	

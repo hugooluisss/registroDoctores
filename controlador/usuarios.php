@@ -60,8 +60,8 @@ switch($objModulo->getId()){
 				$db = TBase::conectaDB();
 				$obj = new TUsuario();
 				$rs = $db->Execute("select idUsuario from usuario where email = '".$_POST['email']."'");
-				if ($rs->fields["idUsuario"] <> $_POST['id']){
-
+				
+				if ($rs->fields["idUsuario"] <> $_POST['id'] and $_POST['id'] <> ''){
 					$obj->setId($rs->fields['idUsuario']);
 					echo json_encode(array("band" => false, "mensaje" => "El email ya se encuentra registrado con el usuario ".$obj->getNombreCompleto()));
 					exit(-1);

@@ -19,28 +19,7 @@
 	<div id="add" class="tab-pane fade">
 		<form role="form" id="frmAdd" class="form-horizontal" onsubmit="javascript: return false;">
 			<div class="box">
-				<div class="box-body">			
-					<div class="form-group">
-						<label for="selTurno" class="col-lg-2">Turno</label>
-						<div class="col-lg-2">
-							<select class="form-control" id="selTurno" name="selTurno">
-								{foreach key=key item=item from=$turnos}
-									<option value="{$key}">{$item}
-								{/foreach}
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="selEncargado" class="col-lg-2">Encargado</label>
-						<div class="col-lg-6">
-							<select class="form-control" id="selEncargado" name="selEncargado">
-								{foreach key=key item=item from=$encargados}
-									<option value="{$key}">{$item}
-								{/foreach}
-							</select>
-						</div>
-					</div>
-
+				<div class="box-body">
 					<div class="form-group">
 						<label for="txtClave" class="col-lg-2">Clave</label>
 						<div class="col-lg-2">
@@ -53,6 +32,29 @@
 							<input class="form-control" id="txtNombre" name="txtNombre">
 						</div>
 					</div>
+
+				
+					<div class="form-group">
+						<label for="selEncargado" class="col-lg-2">Supervisor asignado</label>
+						<div class="col-lg-6">
+							<select class="form-control" id="selSupervisor" name="selSupervisor">
+								{foreach key=key item=item from=$supervisor}
+									<option value="{$key}">{$item}
+								{/foreach}
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="selEncargado" class="col-lg-2">Responsable sanitario</label>
+						<div class="col-lg-6">
+							<select class="form-control" id="selResponsable" name="selResponsable">
+								{foreach key=key item=item from=$responsable}
+									<option value="{$key}">{$item}
+								{/foreach}
+							</select>
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label for="txtEstado" class="col-lg-2">Estado</label>
 						<div class="col-lg-3">
@@ -79,9 +81,32 @@
 				<div class="box-footer">
 					<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
 					<button type="submit" class="btn btn-info pull-right">Guardar</button>
-					<input type="hidden" id="id"/>
+					<input type="hidden" id="id" name="id" value=""/>
 				</div>
 			</div>
 		</form>
+	</div>
+</div>
+
+
+<div class="modal fade" id="winTurnos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Turnos</h4>
+			</div>
+			<div class="modal-body">
+				{foreach from=$turnos item=it}
+					<div class="row">
+						<div class="col-lg-12"><label class="checkbox-inline"><input type="checkbox" value="{$it.idTurno}" class="setHorario">{$it.nombre}</label></div>
+					</div>
+				{/foreach}
+			</div>
+			<div class="modal-footer">
+				<input type="hidden" id="consultorio" name="consultorio" value="" />
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
 	</div>
 </div>

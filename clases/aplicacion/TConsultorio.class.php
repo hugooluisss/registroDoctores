@@ -8,8 +8,8 @@
 
 class TConsultorio{
 	private $idConsultorio;
-	private $idTurno;
-	public $encargado;
+	public $supervisor;
+	public $responsable;
 	private $clave;
 	private $nombre;
 	private $estado;
@@ -46,6 +46,7 @@ class TConsultorio{
 		foreach($rs->fields as $field => $val){
 			switch($field){
 				case 'idEncargado': $this->encargado = new TUsuario($val); break;
+				case 'idSupervisor': $this->supervisor = new TUsuario($val); break;
 				default:
 					$this->$field = $val;
 			}
@@ -66,7 +67,7 @@ class TConsultorio{
 	}
 	
 	/**
-	* Establece el turno
+	* Establece el usuario encargado de sanidad
 	*
 	* @autor Hugo
 	* @access public
@@ -74,36 +75,9 @@ class TConsultorio{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setTurno($val = ''){
-		$this->idTurno = $val;
+	public function setResponsable($val = ''){
+		$this->responsable = new TUsuario($val);
 		return true;
-	}
-	
-	/**
-	* Retorna el identificador del turno
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getIdTurno(){
-		return $this->idTurno;
-	}
-	
-	/**
-	* Retorna el nombre del turno
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getTurno(){
-		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from turno where idTurno = ".$val);
-
-		return $rs->fields['nombre'];
 	}
 	
 	/**
@@ -115,8 +89,8 @@ class TConsultorio{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setEncargado($val = ''){
-		$this->encargado = new TUsuario($val);
+	public function setSupervisor($val = ''){
+		$this->supervisor = new TUsuario($val);
 		return true;
 	}
 	
@@ -258,11 +232,11 @@ class TConsultorio{
 	*/
 	
 	public function guardar(){
-		if ($this->encargado->getId() == '' or $this->getIdTurno() == '') return false;
+		if ($this->responsable->getId() == '' or $this->supervisor->getId() == '') return false;
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO consultorio(idTurno, idEncargado)VALUES(".$this->getIdTurno().", ".$this->encargado->getId().");");
+			$rs = $db->Execute("INSERT INTO consultorio(idResponsable, idSupervisor)VALUES(".$this->responsable->getId().", ".$this->supervisor->getId().");");
 			if (!$rs) return false;
 				
 			$this->idConsultorio = $db->Insert_ID();
@@ -273,8 +247,8 @@ class TConsultorio{
 			
 		$rs = $db->Execute("UPDATE consultorio
 			SET
-				idTurno = ".$this->getIdTurno().",
-				idEncargado = ".$this->encargado->getId().",
+				idResponsable = ".$this->responsable->getId().",
+				idSupervisor = ".$this->supervisor->getId().",
 				clave = '".$this->getClave()."',
 				nombre = '".$this->getNombre()."',
 				estado = '".$this->getEstado()."',
@@ -298,6 +272,43 @@ class TConsultorio{
 		
 		$db = TBase::conectaDB();
 		$rs = $db->Execute("delete from consultorio where idConsultorio = ".$this->getId());
+		
+		return $rs?true:false;
+	}
+	
+	/**
+	* Agrega un turno
+	*
+	* @autor Hugo
+	* @access public
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function addTurno($turno = ''){
+		if ($this->getId() == '' or $turno == '') return false;
+		
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("select idTurno from consultorioTurno where idTurno = ".$turno." and idConsultorio = ".$this->getId());
+		if (!$rs->EOF) return false;
+		
+		$rs = $db->Execute("insert into consultorioTurno(idConsultorio, idTurno) values (".$this->getId().", ".$turno.")");
+		
+		return $rs?true:false;
+	}
+	
+	/**
+	* Elimina un turno
+	*
+	* @autor Hugo
+	* @access public
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function delTurno($turno = ''){
+		if ($this->getId() == '' or $turno == '') return false;
+		
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("delete from consultorioTurno where idConsultorio = ".$this->getId()." and idTurno = ".$turno);
 		
 		return $rs?true:false;
 	}

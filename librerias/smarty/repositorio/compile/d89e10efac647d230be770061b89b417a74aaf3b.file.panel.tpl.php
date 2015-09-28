@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-16 22:46:33
+<?php /* Smarty version Smarty-3.1.11, created on 2015-09-27 18:40:50
          compiled from "templates/plantillas/modulos/consultorios/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:121679590155f99d6e72b240-14258796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd89e10efac647d230be770061b89b417a74aaf3b' => 
     array (
       0 => 'templates/plantillas/modulos/consultorios/panel.tpl',
-      1 => 1442461591,
+      1 => 1443397249,
       2 => 'file',
     ),
   ),
@@ -19,10 +19,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'unifunc' => 'content_55f99d6e790e15_45738830',
   'variables' => 
   array (
-    'turnos' => 0,
+    'supervisor' => 0,
     'key' => 0,
     'item' => 0,
-    'encargados' => 0,
+    'responsable' => 0,
+    'turnos' => 0,
+    'it' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -47,44 +49,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<div id="add" class="tab-pane fade">
 		<form role="form" id="frmAdd" class="form-horizontal" onsubmit="javascript: return false;">
 			<div class="box">
-				<div class="box-body">			
-					<div class="form-group">
-						<label for="selTurno" class="col-lg-2">Turno</label>
-						<div class="col-lg-2">
-							<select class="form-control" id="selTurno" name="selTurno">
-								<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
- $_smarty_tpl->tpl_vars['key'] = new Smarty_Variable;
- $_from = $_smarty_tpl->tpl_vars['turnos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
-$_smarty_tpl->tpl_vars['item']->_loop = true;
- $_smarty_tpl->tpl_vars['key']->value = $_smarty_tpl->tpl_vars['item']->key;
-?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['item']->value;?>
-
-								<?php } ?>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="selEncargado" class="col-lg-2">Encargado</label>
-						<div class="col-lg-6">
-							<select class="form-control" id="selEncargado" name="selEncargado">
-								<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
- $_smarty_tpl->tpl_vars['key'] = new Smarty_Variable;
- $_from = $_smarty_tpl->tpl_vars['encargados']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
-$_smarty_tpl->tpl_vars['item']->_loop = true;
- $_smarty_tpl->tpl_vars['key']->value = $_smarty_tpl->tpl_vars['item']->key;
-?>
-									<option value="<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['item']->value;?>
-
-								<?php } ?>
-							</select>
-						</div>
-					</div>
-
+				<div class="box-body">
 					<div class="form-group">
 						<label for="txtClave" class="col-lg-2">Clave</label>
 						<div class="col-lg-2">
@@ -97,6 +62,45 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 							<input class="form-control" id="txtNombre" name="txtNombre">
 						</div>
 					</div>
+
+				
+					<div class="form-group">
+						<label for="selEncargado" class="col-lg-2">Supervisor asignado</label>
+						<div class="col-lg-6">
+							<select class="form-control" id="selSupervisor" name="selSupervisor">
+								<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_smarty_tpl->tpl_vars['key'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['supervisor']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+ $_smarty_tpl->tpl_vars['key']->value = $_smarty_tpl->tpl_vars['item']->key;
+?>
+									<option value="<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['item']->value;?>
+
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="selEncargado" class="col-lg-2">Responsable sanitario</label>
+						<div class="col-lg-6">
+							<select class="form-control" id="selResponsable" name="selResponsable">
+								<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_smarty_tpl->tpl_vars['key'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['responsable']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+ $_smarty_tpl->tpl_vars['key']->value = $_smarty_tpl->tpl_vars['item']->key;
+?>
+									<option value="<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['item']->value;?>
+
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label for="txtEstado" class="col-lg-2">Estado</label>
 						<div class="col-lg-3">
@@ -152,9 +156,38 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['foo']['last']       = ($_sma
 				<div class="box-footer">
 					<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
 					<button type="submit" class="btn btn-info pull-right">Guardar</button>
-					<input type="hidden" id="id"/>
+					<input type="hidden" id="id" name="id" value=""/>
 				</div>
 			</div>
 		</form>
+	</div>
+</div>
+
+
+<div class="modal fade" id="winTurnos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Turnos</h4>
+			</div>
+			<div class="modal-body">
+				<?php  $_smarty_tpl->tpl_vars['it'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['it']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['turnos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['it']->key => $_smarty_tpl->tpl_vars['it']->value){
+$_smarty_tpl->tpl_vars['it']->_loop = true;
+?>
+					<div class="row">
+						<div class="col-lg-12"><label class="checkbox-inline"><input type="checkbox" value="<?php echo $_smarty_tpl->tpl_vars['it']->value['idTurno'];?>
+" class="setHorario"><?php echo $_smarty_tpl->tpl_vars['it']->value['nombre'];?>
+</label></div>
+					</div>
+				<?php } ?>
+			</div>
+			<div class="modal-footer">
+				<input type="hidden" id="consultorio" name="consultorio" value="" />
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
 	</div>
 </div><?php }} ?>
