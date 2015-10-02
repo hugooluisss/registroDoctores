@@ -12,6 +12,7 @@ class TConsulta{
 	private $idReporte;
 	public $servicio;
 	private $hora;
+	public $turno;
 	
 	/**
 	* Constructor de la clase
@@ -80,6 +81,20 @@ class TConsulta{
 	}
 	
 	/**
+	* Establece el servicio
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setServicio($val = ''){
+		$this->servicio = new TServicio($val);
+		return true;
+	}
+	
+	/**
 	* Retorna el idReporte
 	*
 	* @autor Hugo
@@ -89,6 +104,20 @@ class TConsulta{
 	
 	public function getIdReporte(){
 		return $this->idReporte;
+	}
+	
+	/**
+	* Establece el turno
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setTurno($val = ''){
+		$this->turno = new TTurno($val);
+		return true;
 	}
 	
 	/**
@@ -116,7 +145,8 @@ class TConsulta{
 		$rs = $db->Execute("UPDATE consulta
 			SET
 				hora = now(),
-				idServicio = '".$this->consultorio->getId()."'
+				turno = , ".$this->turno->getId()."
+				idServicio = '".$this->servicio->getId()."'
 			WHERE idConsulta = ".$this->getId());
 			
 		return $rs?true:false;

@@ -90,6 +90,7 @@
 												<i class="fa fa-user text-red"></i> You changed your username
 											</a>
 										</li>
+										
 									</ul>
 								</li>
 								<li class="footer"><a href="#">View all</a></li>
@@ -113,6 +114,7 @@
 					<li {if $PAGE.modulo eq 'tipoServicios'}class="active"{/if}><a href="?mod=tipoServicios"><i class="fa fa-sticky-note"></i> Tipo de servicios</a></li>
 					<li {if $PAGE.modulo eq 'servicios'}class="active"{/if}><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 					<li {if $PAGE.modulo eq 'consultorios'}class="active"{/if}><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
+					<li {if $PAGE.modulo eq 'registro'}class="active"{/if}><a href="?mod=consultas"><i class="fa fa-database"></i> Registro de consultas</a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
@@ -186,6 +188,14 @@
     <script src="{$PAGE.ruta}plugins/upload/js/jquery.iframe-transport.js"></script>
     <!-- The basic File Upload plugin -->
     <script src="{$PAGE.ruta}plugins/upload/js/jquery.fileupload.js"></script>
+    
+     <script type="text/javascript" src="{$PAGE.ruta}plugins/datepicker/bootstrap-datepicker.js"></script>
+     <script type="text/javascript" src="{$PAGE.ruta}plugins/datepicker/locales/bootstrap-datepicker.es.js"></script>
+     <link rel="stylesheet" href="{$PAGE.ruta}plugins/datepicker/datepicker3.css" />
+     
+     <script src="{$PAGE.ruta}plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="{$PAGE.ruta}plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="{$PAGE.ruta}plugins/input-mask/jquery.inputmask.extensions.js"></script>
     
     {foreach from=$PAGE.scriptsJS item=script}
 		<script type="text/javascript" src="{$script}"></script>

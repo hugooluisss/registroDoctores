@@ -97,6 +97,32 @@ class TReporte{
 	}
 	
 	/**
+	* Establece la fecha
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val fecha
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setFecha($val = ''){
+		$this->fecha = $val;
+		return true;
+	}
+	
+	/**
+	* retorna la fecha
+	*
+	* @autor Hugo
+	* @access public
+	* @return date fecha
+	*/
+	
+	public function getFecha(){
+		return $this->fecha;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -120,7 +146,7 @@ class TReporte{
 			
 		$rs = $db->Execute("UPDATE reporte
 			SET
-				fecha = now(),
+				fecha = ".($this->getFecha() == ''?'now()':$this->getFecha()).",
 				idConsultorio = '".$this->consultorio->getId()."'
 			WHERE idReporte = ".$this->getId());
 			
@@ -142,5 +168,25 @@ class TReporte{
 		$rs = $db->Execute("delete from reporte where idReporte = ".$this->getId());
 		
 		return $rs?true:false;
+	}
+	
+	/**
+	* Agregar una consulta
+	*
+	* @autor Hugo
+	* @access public
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function addConsulta($servicio = ''){
+		if ($this->getId() == '') return false;
+		
+		if ($servicio == '') return false;
+		
+		$obj = new TConsulta();
+		$obj->setIdReporte($this->getId());
+		$obj->setServicio($servicio);
+		
+		return $obj->guardar();
 	}
 }

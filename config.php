@@ -142,4 +142,33 @@ $conf['listaConsultorios'] = array(
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 
+#Registro de consultas
+$conf['consultas'] = array(
+	'controlador' => 'consultas.php',
+	'vista' => 'consultas/panel.tpl',
+	'descripcion' => 'Registro de consultas',
+	'seguridad' => true,
+	'js' => array('consulta.class.js'),
+	'jsTemplate' => array('consultas.js'),
+	'capa' => LAYOUT_DEFECTO);
+
+$conf['panelConsulta'] = array(
+	'controlador' => 'consultas.php',
+	'vista' => 'consultas/add.tpl',
+	'descripcion' => 'Para el registro de la consulta',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+	
+$conf['cconsultas'] = array(
+	'controlador' => 'consultas.php',
+	'descripcion' => 'Controlador de consultas',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+	
+$conf['listaConsultas'] = array(
+	'controlador' => 'consultas.php',
+	'vista' => 'consultas/lista.tpl',
+	'descripcion' => 'Lista de consultas',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
 ?>

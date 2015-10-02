@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-09-27 14:56:38
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-01 22:39:39
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1443383796,
+      1 => 1443757176,
       2 => 'file',
     ),
   ),
@@ -133,6 +133,7 @@ img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 												<i class="fa fa-user text-red"></i> You changed your username
 											</a>
 										</li>
+										
 									</ul>
 								</li>
 								<li class="footer"><a href="#">View all</a></li>
@@ -156,6 +157,7 @@ img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='tipoServicios'){?>class="active"<?php }?>><a href="?mod=tipoServicios"><i class="fa fa-sticky-note"></i> Tipo de servicios</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='servicios'){?>class="active"<?php }?>><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='consultorios'){?>class="active"<?php }?>><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
+					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='registro'){?>class="active"<?php }?>><a href="?mod=consultas"><i class="fa fa-database"></i> Registro de consultas</a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
@@ -254,6 +256,20 @@ plugins/upload/js/jquery.iframe-transport.js"></script>
     <!-- The basic File Upload plugin -->
     <script src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
 plugins/upload/js/jquery.fileupload.js"></script>
+    
+     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+plugins/datepicker/bootstrap-datepicker.js"></script>
+     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+plugins/datepicker/locales/bootstrap-datepicker.es.js"></script>
+     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+plugins/datepicker/datepicker3.css" />
+     
+     <script src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+plugins/input-mask/jquery.inputmask.extensions.js"></script>
     
     <?php  $_smarty_tpl->tpl_vars['script'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['script']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['PAGE']->value['scriptsJS']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
