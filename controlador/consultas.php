@@ -69,7 +69,7 @@ switch($objModulo->getId()){
 				$db = TBase::conectaDB();
 				$rs = $db->Execute("select idReporte from reporte where idDoctor = ".$sesion['usuario']." and idConsultorio = ".$_POST['consultorio']." and fecha = '".$_POST['fecha']."'");
 				$obj = new TReporte($rs->fields["idReporte"]);
-				
+
 				if ($rs->EOF){
 					$obj->setDoctor($sesion['usuario']);
 					$obj->setConsultorio($_POST['consultorio']);
@@ -78,7 +78,11 @@ switch($objModulo->getId()){
 					$obj->guardar();
 				}
 				
-				echo json_encode(array("band" => $obj->addConsulta($_POST['servicio'])));
+				$band = true;
+				for ($x = 0 ; $x < ($_POST['cantidad'] < 1?1:$_POST['cantidad']) and $band; $x++)
+					$band = $obj->addConsulta($_POST['servicio'], $_POST['turno']);
+				
+				echo json_encode(array("band" => $band));
 			break;
 			case 'del':
 				$obj = new TConsultorio($_POST['id']);

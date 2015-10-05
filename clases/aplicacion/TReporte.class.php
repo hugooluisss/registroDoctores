@@ -36,9 +36,7 @@ class TReporte{
 	
 	public function setId($id = ''){
 		if ($id == '') return false;
-		
-		parent::setId($id);
-		
+				
 		$db = TBase::conectaDB();
 		$rs = $db->Execute("select * from reporte where idReporte = ".$id);
 		
@@ -50,6 +48,8 @@ class TReporte{
 				case 'idConsultorio':
 					$this->setConsultorio($val);
 				break;
+				default:
+					$this->$field = $val;
 			}
 		}
 		
@@ -136,17 +136,18 @@ class TReporte{
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
 			$rs = $db->Execute("INSERT INTO reporte(idDoctor, idConsultorio)VALUES(".$this->doctor->getId().", ".$this->consultorio->getId().");");
+			
 			if (!$rs) return false;
-				
+			
 			$this->idReporte = $db->Insert_ID();
 		}		
-		
+
 		if ($this->getId() == '')
 			return false;
 			
 		$rs = $db->Execute("UPDATE reporte
 			SET
-				fecha = ".($this->getFecha() == ''?'now()':$this->getFecha()).",
+				fecha = ".($this->getFecha() == ''?'now()':("'".$this->getFecha()."'")).",
 				idConsultorio = '".$this->consultorio->getId()."'
 			WHERE idReporte = ".$this->getId());
 			
@@ -178,14 +179,15 @@ class TReporte{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function addConsulta($servicio = ''){
+	public function addConsulta($servicio = '', $turno = ''){
 		if ($this->getId() == '') return false;
-		
+		if ($turno == '') return false;
 		if ($servicio == '') return false;
 		
 		$obj = new TConsulta();
 		$obj->setIdReporte($this->getId());
 		$obj->setServicio($servicio);
+		$obj->setTurno($turno);
 		
 		return $obj->guardar();
 	}

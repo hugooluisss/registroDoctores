@@ -116,8 +116,20 @@ class TConsulta{
 	*/
 	
 	public function setTurno($val = ''){
-		$this->turno = new TTurno($val);
+		$this->turno = $val;
 		return true;
+	}
+	
+	/**
+	* Retorna el turno
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getTurno(){
+		return $this->turno;
 	}
 	
 	/**
@@ -133,10 +145,10 @@ class TConsulta{
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO consulta(idReporte, idServicio)VALUES(".$this->getIdReporte().", ".$this->servicio->getId().");");
+			$rs = $db->Execute("INSERT INTO consulta(idReporte, idServicio, idTurno)VALUES(".$this->getIdReporte().", ".$this->servicio->getId().", ".$this->getTurno().");");
 			if (!$rs) return false;
 				
-			$this->idReporte = $db->Insert_ID();
+			$this->idConsulta = $db->Insert_ID();
 		}		
 		
 		if ($this->getId() == '')
@@ -145,8 +157,8 @@ class TConsulta{
 		$rs = $db->Execute("UPDATE consulta
 			SET
 				hora = now(),
-				turno = , ".$this->turno->getId()."
-				idServicio = '".$this->servicio->getId()."'
+				idTurno = ".$this->getTurno().",
+				idServicio = ".$this->servicio->getId()."
 			WHERE idConsulta = ".$this->getId());
 			
 		return $rs?true:false;

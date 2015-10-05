@@ -21,6 +21,16 @@
 					</select>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="selCantidad" class="col-lg-2">Cantidad</label>
+				<div class="col-lg-1">
+					<select class="form-control" id="selCantidad" name="selCantidad">
+						{for $foo=1 to 10}
+							<option value="{$foo}">{$foo}
+						{/for}
+					</select>
+				</div>
+			</div>
 		</div>
 		<div class="box-footer">
 			<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
