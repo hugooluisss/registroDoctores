@@ -13,6 +13,7 @@ class TConsulta{
 	public $servicio;
 	private $hora;
 	public $turno;
+	private $cantidad;
 	
 	/**
 	* Constructor de la clase
@@ -133,6 +134,32 @@ class TConsulta{
 	}
 	
 	/**
+	* Establece la cantidad
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCantidad($val = ''){
+		$this->cantidad = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna la cantidad
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getCantidad(){
+		return $this->cantidad == ''?0:$this->cantidad;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -158,7 +185,8 @@ class TConsulta{
 			SET
 				hora = now(),
 				idTurno = ".$this->getTurno().",
-				idServicio = ".$this->servicio->getId()."
+				idServicio = ".$this->servicio->getId().",
+				cantidad = ".$this->getCantidad()."
 			WHERE idConsulta = ".$this->getId());
 			
 		return $rs?true:false;

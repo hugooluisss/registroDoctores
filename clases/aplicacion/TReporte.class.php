@@ -179,7 +179,7 @@ class TReporte{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function addConsulta($servicio = '', $turno = ''){
+	public function addConsulta($servicio = '', $turno = '', $cantidad = 0){
 		if ($this->getId() == '') return false;
 		if ($turno == '') return false;
 		if ($servicio == '') return false;
@@ -188,6 +188,7 @@ class TReporte{
 		$obj->setIdReporte($this->getId());
 		$obj->setServicio($servicio);
 		$obj->setTurno($turno);
+		$obj->setCantidad($cantidad);
 		
 		return $obj->guardar();
 	}

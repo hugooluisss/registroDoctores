@@ -152,7 +152,7 @@ $conf['consultas'] = array(
 	'jsTemplate' => array('consultas.js'),
 	'capa' => LAYOUT_DEFECTO);
 
-$conf['panelConsulta'] = array(
+$conf['panelConsultas'] = array(
 	'controlador' => 'consultas.php',
 	'vista' => 'consultas/add.tpl',
 	'descripcion' => 'Para el registro de la consulta',

@@ -1,15 +1,6 @@
 $(document).ready(function(){
 	$("[data-mask]").inputmask();
 	
-	$("#tblConsultorios").DataTable({
-		"responsive": true,
-		"language": espaniol,
-		"paging": true,
-		"lengthChange": false,
-		"ordering": true,
-		"info": true,
-		"autoWidth": false
-	});
 	
 	$("#tblConsultorios tr[consultorio]").click(function(){
 		var el = jQuery.parseJSON($(this).attr("consultorio"));
@@ -19,36 +10,47 @@ $(document).ready(function(){
 		$("#txtConsultorio").val(el.nombre);
 		$("#txtConsultorio").attr("idConsultorio", el.idConsultorio);
 		
+		getServicios(el.idConsultorio);
+	});
+	
+	$("#txtFecha").change(function(){
+		if ($("#txtConsultorio").attr("idConsultorio") != '')
+			getServicios($("#txtConsultorio").attr("idConsultorio"));
+	});
+	
+	function getServicios(consultorio){
 		var obj = new TConsulta;
-		obj.getPanelAdd(el.idConsultorio, "add", {
-			after: function(){
-				$("#frmAdd").validate({
-					debug: true,
-					rules: {
-						selTurno: "required",
-						selServicio: "required"
+		obj.getPanelAdd(consultorio, $("#txtFecha").val(), "panels", {before: function(){
+			$("#panels").html("Actualizando...");
+		},
+		after: function(){
+			$('#panelTabs a:first').tab('show');
+			
+			$(".tblServicios").each(function(){
+				$(this).DataTable({
+					"responsive": true,
+					"language": espaniol,
+					"paging": false,
+					"lengthChange": false,
+					"ordering": true,
+					"info": true,
+					"autoWidth": false
+				});
+			});
+			
+			$(".cantidades").change(function(){
+				var obj = new TConsulta;
+				var el = $(this);
+				obj.add($("#txtConsultorio").attr("idConsultorio"), el.attr("turno"), $("#txtFecha").val(), el.val(), $(this).attr("servicio"), {
+					before: function(){
+						el.disabled = true;
 					},
-					wrapper: 'span', 
-					messages: {
-						selTurno: "Este campos es necesario",
-						selServicio: "Este campos es necesario"
-					},
-					submitHandler: function(form){
-						var obj = new TConsulta;
-						obj.add($("#txtConsultorio").attr("idConsultorio"), $("#selTurno").val(), $("#txtFecha").val(), $("#selCantidad").val(), $("#selServicio").val(), {
-							after: function(datos){
-								if (datos.band){
-									getLista();
-									$("#frmAdd").get(0).reset();
-									$('#panelTabs a[href="#listas"]').tab('show');
-								}else{
-									alert("Upps... " + datos.mensaje);
-								}
-							}
-						});
+					after: function(){
+						el.disabled = false;
 					}
 				});
-			}
-		});
-	});
+			});
+		}});
+	}
+
 });

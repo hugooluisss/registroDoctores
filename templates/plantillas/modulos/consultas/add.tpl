@@ -1,41 +1,37 @@
-<form role="form" id="frmAdd" class="form-horizontal" onsubmit="javascript: return false;">
-	<div class="box">
-		<div class="box-body">			
-			<div class="form-group">
-				<label for="selTurno" class="col-lg-2">Turno</label>
-				<div class="col-lg-4">
-					<select class="form-control" id="selTurno" name="selTurno">
-						{foreach key=key item=item from=$turnos}
-							<option value="{$key}">{$item}
-						{/foreach}
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="selServicio" class="col-lg-2">Servicio</label>
-				<div class="col-lg-8">
-					<select class="form-control" id="selServicio" name="selServicio">
-						{foreach key=key item=item from=$servicios}
-							<option value="{$key}"><b>{$item.nombre}</b> ({$item.descripcion})
-						{/foreach}
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="selCantidad" class="col-lg-2">Cantidad</label>
-				<div class="col-lg-1">
-					<select class="form-control" id="selCantidad" name="selCantidad">
-						{for $foo=1 to 10}
-							<option value="{$foo}">{$foo}
-						{/for}
-					</select>
+<ul id="panelTabs" class="nav nav-tabs">
+	{foreach from=$turnos item="row"}
+		<li><a data-toggle="tab" href="#turno_{$row.idTurno}">{$row.nombre}</a></li>
+	{/foreach}
+</ul>
+
+<div class="tab-content">
+	{foreach from=$turnos item="row"}
+		<div id="turno_{$row.idTurno}" class="tab-pane fade in active">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title">Lista de servicios</h3>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<table class="tblServicios table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Servicio</th>
+								<th>Tipo</th>
+								<th style="width: 20%">Cantidad</th>
+							</tr>
+						</thead>
+						<tbody>
+					{foreach from=$row.servicios item="servicio"}
+							<tr>
+								<td>{$servicio.nombre}</td>
+								<td>{$servicio.descripcion}</td>
+								<td><input class="form-control cantidades" servicio="{$servicio.idServicio}" turno="{$row.idTurno}" type="text" placeholder="cantidad" value="{$servicio.cantidad}"></td>
+							</tr>
+					{/foreach}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		<div class="box-footer">
-			<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
-			<button type="submit" class="btn btn-info pull-right">Guardar</button>
-			<input type="hidden" id="id"/>
-		</div>
-	</div>
-</form>
+	{/foreach}
+</div>

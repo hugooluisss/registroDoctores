@@ -29,22 +29,8 @@
 	</div>
 </div>
 
-<ul id="panelTabs" class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#listas">Lista</a></li>
-  <li><a data-toggle="tab" href="#add">Agregar o Modificar</a></li>
-</ul>
+<div class="row" id="panels"></div>
 
-<div class="tab-content">
-	<div id="listas" class="tab-pane fade in active">
-		<div id="dvLista">
-			
-		</div>
-	</div>
-	
-	<div id="add" class="tab-pane fade">
-		<div class="alert alert-danger"><a href="" data-toggle="modal" data-target="#winConsultorios">Escoge un consultorio para traer el formulario</a></div>
-	</div>
-</div>
 
 <div class="modal fade" id="winConsultorios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">

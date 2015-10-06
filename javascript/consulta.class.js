@@ -1,8 +1,11 @@
 TConsulta = function(){
 	var self = this;
 	
-	this.getPanelAdd = function(consultorio, div, fn){
-		$.get("?mod=panelConsulta&id=" + consultorio, function( data ) {
+	this.getPanelAdd = function(consultorio, fecha, div, fn){
+		if (fn.before !== undefined)
+			fn.before();
+			
+		$.get("?mod=panelConsultas&id=" + consultorio + "&fecha=" + fecha, function( data ) {
 			$("#" + div).html(data);
 			
 			if (fn.after !== undefined)

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-05 12:53:57
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-05 19:33:29
          compiled from "templates/plantillas/modulos/consultas/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1073639752560df267da6e09-13367619%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dec4d765d6f45c6b45965a8bde3d19ff02a6d29a' => 
     array (
       0 => 'templates/plantillas/modulos/consultas/panel.tpl',
-      1 => 1443791612,
+      1 => 1444091594,
       2 => 'file',
     ),
   ),
@@ -57,22 +57,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</div>
 </div>
 
-<ul id="panelTabs" class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#listas">Lista</a></li>
-  <li><a data-toggle="tab" href="#add">Agregar o Modificar</a></li>
-</ul>
+<div class="row" id="panels"></div>
 
-<div class="tab-content">
-	<div id="listas" class="tab-pane fade in active">
-		<div id="dvLista">
-			
-		</div>
-	</div>
-	
-	<div id="add" class="tab-pane fade">
-		<div class="alert alert-danger"><a href="" data-toggle="modal" data-target="#winConsultorios">Escoge un consultorio para traer el formulario</a></div>
-	</div>
-</div>
 
 <div class="modal fade" id="winConsultorios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
@@ -115,4 +101,5 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 			</div>
 		</div>
 	</div>
-</div><?php }} ?>
+</div>
+<?php }} ?>
