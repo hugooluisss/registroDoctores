@@ -28,7 +28,7 @@ $(document).ready(function(){
 			
 			$(".tblServicios").each(function(){
 				$(this).DataTable({
-					"responsive": true,
+					"responsive": false,
 					"language": espaniol,
 					"paging": false,
 					"lengthChange": false,
@@ -41,12 +41,17 @@ $(document).ready(function(){
 			$(".cantidades").change(function(){
 				var obj = new TConsulta;
 				var el = $(this);
-				obj.add($("#txtConsultorio").attr("idConsultorio"), el.attr("turno"), $("#txtFecha").val(), el.val(), $(this).attr("servicio"), {
+				obj.add($("#txtConsultorio").attr("idConsultorio"), el.attr("turno"), $("#txtFecha").val(), el.val(), $(this).attr("servicio"), $(this).attr("cubiculo"), {
 					before: function(){
 						el.disabled = true;
 					},
-					after: function(){
+					after: function(data){
 						el.disabled = false;
+						if (data.band == false){
+							alert("Ocurrió un error al actualizar el campo");
+							el.val("");
+							el.select();
+						}
 					}
 				});
 			});

@@ -13,7 +13,7 @@ TConsulta = function(){
 		});
 	}
 	
-	this.add = function(consultorio, turno, fecha, cantidad, servicio, fn){
+	this.add = function(consultorio, turno, fecha, cantidad, servicio, cubiculo, fn){
 		if (fn.before !== undefined) fn.before();
 		
 		$.post('?mod=cconsultas&action=add', {
@@ -21,7 +21,8 @@ TConsulta = function(){
 				"turno": turno,
 				"fecha": fecha,
 				"cantidad": cantidad,
-				"servicio": servicio
+				"servicio": servicio,
+				"cubiculo": cubiculo
 			}, function(data){
 				if (data.band == 'false')
 					console.log(data.mensaje);

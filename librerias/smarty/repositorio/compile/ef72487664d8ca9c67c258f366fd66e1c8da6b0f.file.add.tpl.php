@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-05 22:36:37
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-07 21:16:04
          compiled from "templates/plantillas/modulos/consultas/add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:719665452560e0d442e4462-93836419%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef72487664d8ca9c67c258f366fd66e1c8da6b0f' => 
     array (
       0 => 'templates/plantillas/modulos/consultas/add.tpl',
-      1 => 1444101392,
+      1 => 1444270560,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'turnos' => 0,
     'row' => 0,
+    'cubiculos' => 0,
+    'cont' => 0,
     'servicio' => 0,
   ),
   'has_nocache_code' => false,
@@ -53,26 +55,92 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 					<table class="tblServicios table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>Servicio</th>
+								<th>#</th>
 								<th>Tipo</th>
-								<th style="width: 20%">Cantidad</th>
+								<th>Servicio</th>
+								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['name'] = 'cubiculos';
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = (int)0;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['cubiculos']->value) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] = ((int)1) == 0 ? 1 : (int)1;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show'] = true;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'];
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] < 0)
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = max($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] > 0 ? 0 : -1, $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start']);
+else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = min($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] > 0 ? $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] : $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop']-1);
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show']) {
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'] = min(ceil(($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] > 0 ? $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] : $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start']+1)/abs($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'])), $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['max']);
+    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'] == 0)
+        $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show'] = false;
+} else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'] = 0;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show']):
+
+            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] = 1;
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'];
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration']++):
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] == 1);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total']);
+?>
+									<th>Cub <?php echo $_smarty_tpl->getVariable('smarty')->value['section']['cubiculos']['index']+1;?>
+</th>
+								<?php endfor; endif; ?>
 							</tr>
 						</thead>
 						<tbody>
+					<?php $_smarty_tpl->tpl_vars["cont"] = new Smarty_variable(0, null, 0);?>
+					
 					<?php  $_smarty_tpl->tpl_vars["servicio"] = new Smarty_Variable; $_smarty_tpl->tpl_vars["servicio"]->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['row']->value['servicios']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars["servicio"]->key => $_smarty_tpl->tpl_vars["servicio"]->value){
 $_smarty_tpl->tpl_vars["servicio"]->_loop = true;
 ?>
+						<?php $_smarty_tpl->tpl_vars["cont"] = new Smarty_variable($_smarty_tpl->tpl_vars['cont']->value+1, null, 0);?>
 							<tr>
-								<td><?php echo $_smarty_tpl->tpl_vars['servicio']->value['nombre'];?>
+								<td><?php echo $_smarty_tpl->tpl_vars['cont']->value;?>
 </td>
 								<td><?php echo $_smarty_tpl->tpl_vars['servicio']->value['descripcion'];?>
 </td>
-								<td><input class="form-control cantidades" servicio="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['idServicio'];?>
+								<td><?php echo $_smarty_tpl->tpl_vars['servicio']->value['nombre'];?>
+</td>
+								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['name'] = 'cubiculos';
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = (int)0;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] = is_array($_loop=$_smarty_tpl->tpl_vars['cubiculos']->value) ? count($_loop) : max(0, (int)$_loop); unset($_loop);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] = ((int)1) == 0 ? 1 : (int)1;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show'] = true;
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['max'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'];
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] < 0)
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = max($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] > 0 ? 0 : -1, $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start']);
+else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = min($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] > 0 ? $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] : $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop']-1);
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show']) {
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'] = min(ceil(($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'] > 0 ? $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['loop'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] : $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start']+1)/abs($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'])), $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['max']);
+    if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'] == 0)
+        $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show'] = false;
+} else
+    $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'] = 0;
+if ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['show']):
+
+            for ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'], $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] = 1;
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] <= $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total'];
+                 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] += $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'], $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration']++):
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['rownum'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index_prev'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] - $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index_next'] = $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index'] + $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['step'];
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] == 1);
+$_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total']);
+?>
+									<td><input class="form-control cantidades" servicio="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['idServicio'];?>
 " turno="<?php echo $_smarty_tpl->tpl_vars['row']->value['idTurno'];?>
-" type="text" placeholder="cantidad" value="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['cantidad'];?>
+" type="text" placeholder="cantidad" value="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['cantidad'][$_smarty_tpl->getVariable('smarty')->value['section']['cubiculos']['index']+1];?>
+" cubiculo="<?php echo $_smarty_tpl->getVariable('smarty')->value['section']['cubiculos']['index']+1;?>
 "></td>
+								<?php endfor; endif; ?>
 							</tr>
 					<?php } ?>
 						</tbody>

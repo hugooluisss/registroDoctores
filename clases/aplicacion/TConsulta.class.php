@@ -14,6 +14,7 @@ class TConsulta{
 	private $hora;
 	public $turno;
 	private $cantidad;
+	private $cubiculo;
 	
 	/**
 	* Constructor de la clase
@@ -160,6 +161,32 @@ class TConsulta{
 	}
 	
 	/**
+	* Establece el cubiculo
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setCubiculo($val = 1){
+		$this->cubiculo = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el cubiculo
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getcubiculo(){
+		return $this->cubiculo == ''?1:$this->cubiculo;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -186,7 +213,8 @@ class TConsulta{
 				hora = now(),
 				idTurno = ".$this->getTurno().",
 				idServicio = ".$this->servicio->getId().",
-				cantidad = ".$this->getCantidad()."
+				cantidad = ".$this->getCantidad().",
+				cubiculo = ".$this->getCubiculo()."
 			WHERE idConsulta = ".$this->getId());
 			
 		return $rs?true:false;

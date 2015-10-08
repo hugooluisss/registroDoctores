@@ -49,7 +49,7 @@ switch($objModulo->getId()){
 	case 'listaConsultorios':
 		$db = TBase::conectaDB();
 		
-		$rs = $db->Execute("select * from consultorio a join usuario c on a.idSupervisor = c.idUsuario");
+		$rs = $db->Execute("select a.*, c.nombre as supervisor from consultorio a join usuario c on a.idSupervisor = c.idUsuario where eliminado = 0");
 		$datos = array();
 		while(!$rs->EOF){
 			$rs->fields['json'] = json_encode($rs->fields);

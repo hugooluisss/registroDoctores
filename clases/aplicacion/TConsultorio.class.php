@@ -273,6 +273,9 @@ class TConsultorio{
 		$db = TBase::conectaDB();
 		$rs = $db->Execute("delete from consultorio where idConsultorio = ".$this->getId());
 		
+		if (!$rs)
+			$rs = $db->Execute("update consultorio set eliminado = 1 where idConsultorio = ".$this->getId());
+		
 		return $rs?true:false;
 	}
 	

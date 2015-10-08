@@ -15,17 +15,26 @@
 					<table class="tblServicios table table-bordered table-hover">
 						<thead>
 							<tr>
-								<th>Servicio</th>
+								<th>#</th>
 								<th>Tipo</th>
-								<th style="width: 20%">Cantidad</th>
+								<th>Servicio</th>
+								{section name=cubiculos start=0 loop=$cubiculos step=1}
+									<th>Cub {$smarty.section.cubiculos.index+1}</th>
+								{/section}
 							</tr>
 						</thead>
 						<tbody>
+					{assign var="cont" value=0}
+					
 					{foreach from=$row.servicios item="servicio"}
+						{assign var="cont" value=$cont+1}
 							<tr>
-								<td>{$servicio.nombre}</td>
+								<td>{$cont}</td>
 								<td>{$servicio.descripcion}</td>
-								<td><input class="form-control cantidades" servicio="{$servicio.idServicio}" turno="{$row.idTurno}" type="text" placeholder="cantidad" value="{$servicio.cantidad}"></td>
+								<td>{$servicio.nombre}</td>
+								{section name=cubiculos start=0 loop=$cubiculos step=1}
+									<td><input class="form-control cantidades" servicio="{$servicio.idServicio}" turno="{$row.idTurno}" type="text" placeholder="cantidad" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}"></td>
+								{/section}
 							</tr>
 					{/foreach}
 						</tbody>

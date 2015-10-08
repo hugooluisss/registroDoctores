@@ -4,7 +4,7 @@ global $objModulo;
 switch($objModulo->getId()){
 	case 'consultas':
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from consultorio where idConsultorio in (select idConsultorio from consultorioTurno)");
+		$rs = $db->Execute("select * from consultorio where idConsultorio in (select idConsultorio from consultorioTurno) and eliminado = 0");
 		
 		$datos = array();
 		while(!$rs->EOF){
@@ -23,6 +23,8 @@ switch($objModulo->getId()){
 		
 		$db = TBase::conectaDB();
 		
+		$rsCubiculos = $db->Execute("select cubiculos from consultorio where idConsultorio = ".$consultorio);
+		
 		$rs = $db->Execute("select * from consultorioTurno a join turno b using(idTurno) where idConsultorio = ".$consultorio);
 		$datos = array();
 		while(!$rs->EOF){
@@ -30,8 +32,12 @@ switch($objModulo->getId()){
 			$rs->fields["servicios"] = array();
 			
 			while(!$rsServicios->EOF){
-				$rsCantidad = $db->Execute("select if (cantidad is null, 0, cantidad) as cantidad from reporte a join consulta b using(idReporte) where idTurno = ".$rs->fields['idTurno']." and idConsultorio = ".$consultorio." and fecha = '".$fecha."' and idServicio = ".$rsServicios->fields['idServicio']);
-				$rsServicios->fields["cantidad"] = $rsCantidad->fields["cantidad"];
+				$rsServicios->fields["cantidad"] = array();
+				for ($cub = 1 ; $cub <= $rsCubiculos->fields['cubiculos'] ; $cub++){
+					$rsCantidad = $db->Execute("select if (cantidad is null, 0, cantidad) as cantidad from reporte a join consulta b using(idReporte) where idTurno = ".$rs->fields['idTurno']." and idConsultorio = ".$consultorio." and fecha = '".$fecha."' and idServicio = ".$rsServicios->fields['idServicio']." and cubiculo = ".$cub);
+					
+					$rsServicios->fields["cantidad"][$cub] = $rsCantidad->fields["cantidad"];
+				}
 				
 				array_push($rs->fields["servicios"], $rsServicios->fields);
 				
@@ -42,6 +48,7 @@ switch($objModulo->getId()){
 		}
 		
 		$smarty->assign("turnos", $datos);
+		$smarty->assign("cubiculos", $rsCubiculos->fields["cubiculos"]);
 	break;
 	case 'listaConsultas':
 		$db = TBase::conectaDB();
@@ -80,7 +87,7 @@ switch($objModulo->getId()){
 					$obj->guardar();
 				}
 				
-				echo json_encode(array("band" => $obj->addConsulta($_POST['servicio'], $_POST['turno'], $_POST['cantidad'])));
+				echo json_encode(array("band" => $obj->addConsulta($_POST['servicio'], $_POST['turno'], $_POST['cantidad'], $_POST['cubiculo'])));
 			break;
 			case 'del':
 				$obj = new TConsultorio($_POST['id']);
