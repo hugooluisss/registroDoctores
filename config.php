@@ -178,7 +178,7 @@ $conf['reporteConsultas'] = array(
 	'vista' => 'reporte/panel.tpl',
 	'descripcion' => 'Reportar consultas',
 	'seguridad' => true,
-	#'js' => array('consulta.class.js'),
+	'js' => array('usuario.class.js'),
 	'jsTemplate' => array('reporteConsultas.js'),
 	'capa' => LAYOUT_DEFECTO);
 	
@@ -186,6 +186,12 @@ $conf['listaReportes'] = array(
 	'controlador' => 'reporte.php',
 	'vista' => 'reporte/lista.tpl',
 	'descripcion' => 'Lista de reportes',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
+
+$conf['creporte'] = array(
+	'controlador' => 'reporte.php',
+	'descripcion' => 'Controlador de reportes',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 ?>

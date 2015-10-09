@@ -31,11 +31,27 @@ switch($objModulo->getId()){
 		
 		$datos = array();
 		while (!$rs->EOF){
+			$rs->fields['json'] = json_encode($rs->fields);
+			
 			array_push($datos, $rs->fields);
 			$rs->moveNext();
 		}
 		
 		$smarty->assign("lista", $datos);
+	break;
+	case 'creporte':
+		switch($objModulo->getAction()){
+			case 'generarExcel':
+				require_once(getcwd()."/repositorio/excel/reporte.php");		
+				$doc = new RReporte();
+				$doc->setCubiculo($_POST['cubiculo']);
+				$doc->setReporte($_POST['reporte']);
+				$doc->setTurno($_POST['turno']);
+					
+				$result = array($doc->output());
+				print $json->encode($result);
+			break;
+		}
 	break;
 }
 ?>

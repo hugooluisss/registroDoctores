@@ -86,4 +86,23 @@ TUsuario = function(){
 			}
 		}, "json");
 	}
+	
+	this.reportar = function(excel, idReporte, turno, cubiculo, fn){
+		if (fn.before !== undefined)
+			fn.before();
+			
+		$.post('?mod=creporte&action=generarExcel', {
+			"excel": excel,
+			"reporte": idReporte,
+			"cubiculo": cubiculo,
+			"turno": turno
+		}, function(data){
+			if (fn.after != undefined)
+				fn.after(data);
+				
+			if (data.band == 'false'){
+				console.log("Error al generar el archivo de excel");
+			}
+		}, "json");
+	}
 };

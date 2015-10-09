@@ -17,6 +17,20 @@ $(document).ready(function(){
 				"autoWidth": false
 			});
 			
+			$("[action=excel]").click(function(){
+				var el = jQuery.parseJSON($(this).attr("datos"));
+				var obj = new TUsuario;
+				
+				obj.reportar("si", el.idReporte, el.idTurno, el.cubiculo, {
+					before: function(){
+					},
+					after: function(data){
+						if (data.band == false)
+							alert("Error al generar el reporte");
+					}
+				});
+			});
+			
 		});
 	}
 });
