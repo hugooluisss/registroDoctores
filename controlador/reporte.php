@@ -27,7 +27,7 @@ switch($objModulo->getId()){
 		$usuario = $sesion['usuario'];
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select distinct a.*, b.cubiculo, c.clave as consultorio, d.nombre as turno from reporte a join consulta b using(idReporte) join consultorio c using(idConsultorio) join turno d using(idTurno) where extract(MONTH from fecha) = ".$mes." and extract(YEAR from fecha) = ".$anio." and idDoctor = ".$usuario);
+		$rs = $db->Execute("select distinct a.*, b.cubiculo, c.clave as consultorio, d.nombre as turno, d.idTurno from reporte a join consulta b using(idReporte) join consultorio c using(idConsultorio) join turno d using(idTurno) where extract(MONTH from fecha) = ".$mes." and extract(YEAR from fecha) = ".$anio." and idDoctor = ".$usuario);
 		
 		$datos = array();
 		while (!$rs->EOF){
@@ -47,9 +47,11 @@ switch($objModulo->getId()){
 				$doc->setCubiculo($_POST['cubiculo']);
 				$doc->setReporte($_POST['reporte']);
 				$doc->setTurno($_POST['turno']);
+				$doc->setMes($_POST['mes']);
+				$doc->setAnio($_POST['anio']);
 					
-				$result = array($doc->output());
-				print $json->encode($result);
+				$result = array("doc" => $doc->output());
+				print json_encode($result);
 			break;
 		}
 	break;

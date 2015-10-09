@@ -87,7 +87,7 @@ TUsuario = function(){
 		}, "json");
 	}
 	
-	this.reportar = function(excel, idReporte, turno, cubiculo, fn){
+	this.reportar = function(excel, idReporte, turno, cubiculo, mes, anio, fn){
 		if (fn.before !== undefined)
 			fn.before();
 			
@@ -95,7 +95,9 @@ TUsuario = function(){
 			"excel": excel,
 			"reporte": idReporte,
 			"cubiculo": cubiculo,
-			"turno": turno
+			"turno": turno,
+			"mes": mes,
+			"anio": anio
 		}, function(data){
 			if (fn.after != undefined)
 				fn.after(data);
