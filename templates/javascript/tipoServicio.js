@@ -15,16 +15,19 @@ $(document).ready(function(){
 		debug: true,
 		rules: {
 			txtNombre: "required",
+			selClasificacion: "required",
 		},
 		wrapper: 'span', 
 		messages: {
 			txtNombre: "Este campo es necesario",
+			selClasificacion: "Este campo es necesario",
 		},
 		submitHandler: function(form){
 			var obj = new TTipoServicio;
 			obj.add(
 				$("#id").val(), 
 				$("#txtNombre").val(), 
+				$("#selClasificacion").val(),
 				{
 					after: function(datos){
 						if (datos.band){
@@ -61,6 +64,7 @@ $(document).ready(function(){
 				
 				$("#id").val(el.idTipo);
 				$("#txtNombre").val(el.descripcion);
+				$("#selClasificacion").val(el.idClasificacion);
 				
 				$('#panelTabs a[href="#add"]').tab('show');
 			});

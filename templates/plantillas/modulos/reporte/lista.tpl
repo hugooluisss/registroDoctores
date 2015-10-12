@@ -3,7 +3,6 @@
 		<table id="tblReportes" class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Fecha</th>
 					<th>Consultorio</th>
 					<th>Turno</th>
 					<th>Cubículo</th>
@@ -13,7 +12,6 @@
 			<tbody>
 				{foreach from=$lista item="row"}
 					<tr>
-						<td>{$row.fecha|date_format}</td>
 						<td>{$row.consultorio}</td>
 						<td>{$row.turno}</td>
 						<td>{$row.cubiculo}</td>

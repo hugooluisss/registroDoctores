@@ -19,7 +19,17 @@
 	<div id="add" class="tab-pane fade">
 		<form role="form" id="frmAdd" class="form-horizontal" onsubmit="javascript: return false;">
 			<div class="box">
-				<div class="box-body">			
+				<div class="box-body">
+					<div class="form-group">
+						<label for="selClasificacion" class="col-lg-2">Clasificación</label>
+						<div class="col-lg-4">
+							<select class="form-control" id="selClasificacion" name="selClasificacion">
+								{foreach key=key item=item from=$clasificacion}
+									<option value="{$key}">{$item}
+								{/foreach}
+							</select>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="txtNombre" class="col-lg-2">Nombre</label>
 						<div class="col-lg-6">

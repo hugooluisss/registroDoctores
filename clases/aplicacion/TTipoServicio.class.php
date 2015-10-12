@@ -9,6 +9,7 @@
 class TTipoServicio{
 	private $idTipo;
 	private $descripcion;
+	private $idClasificacion;
 	
 	/**
 	* Constructor de la clase
@@ -81,6 +82,32 @@ class TTipoServicio{
 	}
 	
 	/**
+	* Establece la clasificacion
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setClasificacion($val = ''){
+		$this->clasificacion = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna la clasificacion
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getIdClasificacion(){
+		return $this->clasificacion;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -88,10 +115,12 @@ class TTipoServicio{
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function guardar(){		
+	public function guardar(){
+		if ($this->clasificacion->getId() == '') return false;
+		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO tipoServicio(descripcion)VALUES('');");
+			$rs = $db->Execute("INSERT INTO tipoServicio(descripcion, idClasificacion)VALUES('', ".$this->getIdClasificacion().");");
 			if (!$rs) return false;
 				
 			$this->idTipo = $db->Insert_ID();
@@ -102,7 +131,8 @@ class TTipoServicio{
 			
 		$rs = $db->Execute("UPDATE tipoServicio
 			SET
-				descripcion = '".$this->getDescripcion()."'
+				descripcion = '".$this->getDescripcion()."',
+				idClasificacion = ".$this->getIdClasificacion()."
 			WHERE idTipo = ".$this->getId());
 			
 		return $rs?true:false;

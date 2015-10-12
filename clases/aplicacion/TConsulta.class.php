@@ -40,8 +40,6 @@ class TConsulta{
 	public function setId($id = ''){
 		if ($id == '') return false;
 		
-		parent::setId($id);
-		
 		$db = TBase::conectaDB();
 		$rs = $db->Execute("select * from consulta where idConsulta = ".$id);
 		
@@ -50,6 +48,8 @@ class TConsulta{
 				case 'idServicio':
 					$this->setServicio($val);
 				break;
+				default:
+					$this->$field = $val;
 			}
 		}
 		

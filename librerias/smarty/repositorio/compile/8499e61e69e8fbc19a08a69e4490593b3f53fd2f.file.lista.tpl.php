@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-09 11:25:17
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-11 10:14:46
          compiled from "templates/plantillas/modulos/reporte/lista.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20973258145615ecbd1737b3-71010471%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8499e61e69e8fbc19a08a69e4490593b3f53fd2f' => 
     array (
       0 => 'templates/plantillas/modulos/reporte/lista.tpl',
-      1 => 1444331548,
+      1 => 1444576484,
       2 => 'file',
     ),
   ),
@@ -24,13 +24,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5615ecbd1e78e4_89339153')) {function content_5615ecbd1e78e4_89339153($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Library/WebServer/Documents/registroDoctores/librerias/smarty/plugins/modifier.date_format.php';
-?><div class="box">
+<?php if ($_valid && !is_callable('content_5615ecbd1e78e4_89339153')) {function content_5615ecbd1e78e4_89339153($_smarty_tpl) {?><div class="box">
 	<div class="box-body">
 		<table id="tblReportes" class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Fecha</th>
 					<th>Consultorio</th>
 					<th>Turno</th>
 					<th>Cubículo</th>
@@ -44,8 +42,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars["row"]->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars["row"]->_loop = true;
 ?>
 					<tr>
-						<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['row']->value['fecha']);?>
-</td>
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['consultorio'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['turno'];?>

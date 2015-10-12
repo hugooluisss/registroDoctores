@@ -77,6 +77,7 @@ $conf['listaAsignados'] = array(
 #Catálogo de servicios
 $conf['tipoServicios'] = array(
 	'vista' => 'tipoServicios/panel.tpl',
+	'controlador' => 'tipoServicios.php',
 	'descripcion' => 'Catálogo de tipo servicios',
 	'seguridad' => true,
 	'js' => array('tipoServicio.class.js'),

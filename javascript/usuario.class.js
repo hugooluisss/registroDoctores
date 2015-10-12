@@ -87,13 +87,14 @@ TUsuario = function(){
 		}, "json");
 	}
 	
-	this.reportar = function(excel, idReporte, turno, cubiculo, mes, anio, fn){
+	this.reportar = function(excel, usuario, consultorio, turno, cubiculo, mes, anio, fn){
 		if (fn.before !== undefined)
 			fn.before();
 			
 		$.post('?mod=creporte&action=generarExcel', {
 			"excel": excel,
-			"reporte": idReporte,
+			"usuario": usuario,
+			"consultorio": consultorio, 
 			"cubiculo": cubiculo,
 			"turno": turno,
 			"mes": mes,

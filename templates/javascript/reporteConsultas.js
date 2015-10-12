@@ -21,7 +21,7 @@ $(document).ready(function(){
 				var el = jQuery.parseJSON($(this).attr("datos"));
 				var obj = new TUsuario;
 				
-				obj.reportar("si", el.idReporte, el.idTurno, el.cubiculo, $("#selMes").val(), $("#selAnio").val(), {
+				obj.reportar("si", el.idDoctor, el.idConsultorio, el.idTurno, el.cubiculo, $("#selMes").val(), $("#selAnio").val(), {
 					before: function(){
 					},
 					after: function(data){
