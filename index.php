@@ -24,7 +24,7 @@ define('ADODB_ERROR_LOG_DEST','errors.log');
 define('ADODB_ERROR_LOG_TYPE',2);
 include('librerias/adodb/adodb-errorhandler.inc.php');
 include('librerias/adodb/adodb.inc.php');
-require_once('librerias/phpMailer/class.phpmailer.php');
+require_once('librerias/phpMailer/PHPMailerAutoload.php');
 include('librerias/funciones.php');
 require('librerias/fpdf/fpdf.php');
 require('librerias/fpdf/tfpdf.php');

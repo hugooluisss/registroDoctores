@@ -50,8 +50,28 @@ switch($objModulo->getId()){
 				$doc->setTurno($_POST['turno']);
 				$doc->setMes($_POST['mes']);
 				$doc->setAnio($_POST['anio']);
+				
+				$documento = $doc->output();
+				if ($documento == '')
+					$result = array("doc" => "", "band" => false);
+				else{
+					global $sesion;
+					$email = new TMail;
+					$email->setTema("Envio de reporte");
+					$consultorio = new TConsultorio($_POST['consultorio']);
+					$email->setDestino($consultorio->supervisor->getEmail(), $consultorio->supervisor->getNombreCompleto());
 					
-				$result = array("doc" => $doc->output());
+					$doctor = new TDoctor($_POST['usuario'] == ''?$sesion['usuario']:$_POST['usuario']);
+					
+					$datos = array();
+					$datos['nombreCompleto'] = $consultorio->supervisor->getNombreCompleto();
+					$datos['nombreDoctor'] = $doctor->getNombreCompleto();
+					
+					$email->setBodyHTML($email->construyeMail(utf8_decode(file_get_contents("repositorio/mail/reporteDoctor.txt")), $datos));
+					$email->adjuntar($documento);
+					
+					$result = array("doc" => $documento, "band" => $email->send(), "emailSupervisor" => $consultorio->supervisor->getEmail());
+				}
 				print json_encode($result);
 			break;
 		}

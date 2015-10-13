@@ -1,0 +1,18 @@
+Estimado(a) /#nombreCompleto#/:
+<br />
+<p>
+Han enviado el reporte que se adjunta en este correo el doctor(a) /#nombreDoctor#/.
+</p>
+
+<br><br><br> 
+<small>
+<b>Información importante</b>
+Este mensaje es generado automáticamente por el Sistema de Registro de Consultas
+<br><br>
+<b>Información confidencial</b><br>
+La información transmitida es para el uso exclusivo de la persona o entidad a quien va dirigida, 
+y puede contener información de caracter confidencial o privilegiado. Se prohíbe a cualquier 
+persona o entidad distinta al destinatario, cualquier revisión, retransmisión, distribución u 
+otro uso de la información. Si recibió este mensaje por equivocación, atentamente le solicitamos 
+eliminar la información de cualquier equipo de cómputo y hacerlo de conocimiento de remitente.
+</small>

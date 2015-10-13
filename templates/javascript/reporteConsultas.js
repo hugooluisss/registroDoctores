@@ -21,7 +21,7 @@ $(document).ready(function(){
 				var el = jQuery.parseJSON($(this).attr("datos"));
 				var obj = new TUsuario;
 				
-				obj.reportar("si", el.idDoctor, el.idConsultorio, el.idTurno, el.cubiculo, $("#selMes").val(), $("#selAnio").val(), {
+				obj.reportar("no", el.idDoctor, el.idConsultorio, el.idTurno, el.cubiculo, $("#selMes").val(), $("#selAnio").val(), {
 					before: function(){
 					},
 					after: function(data){
@@ -32,6 +32,25 @@ $(document).ready(function(){
 						}
 					}
 				});
+			});
+			
+			$("[action=email]").click(function(){
+				if (confirm("El reporte será enviado por correo electrónico al supervisor del consultorio, ¿estás seguro?")){
+					var el = jQuery.parseJSON($(this).attr("datos"));
+					var obj = new TUsuario;
+					
+					obj.reportar("si", el.idDoctor, el.idConsultorio, el.idTurno, el.cubiculo, $("#selMes").val(), $("#selAnio").val(), {
+						before: function(){
+						},
+						after: function(data){
+							if (!data.band)
+								alert("Error al generar el reporte y/o enviarlo por correo electrónico");
+							else{
+								alert("El correo fue enviado con éxito");
+							}
+						}
+					});
+				}
 			});
 			
 		});
