@@ -202,4 +202,12 @@ $conf['creporte'] = array(
 	'descripcion' => 'Controlador de reportes',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
+
+/*Reportes*/
+$conf['reportes'] = array(
+	'controlador' => 'reporte.php',
+	'vista' => 'reportes/panel.tpl',
+	'descripcion' => 'Reportes generales',
+	'seguridad' => true,
+	'capa' => LAYOUT_DEFECTO);
 ?>

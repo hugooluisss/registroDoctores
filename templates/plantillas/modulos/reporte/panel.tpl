@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-xs-8">
 				<div class="form-group">
-					<label for="selMes" class="col-xs-3">Mes</label>
+					<label for="selMes" class="col-xs-1">Mes</label>
 					<div class="col-xs-8">
 						<select id="selMes" name="selMes">
 							{foreach from=$meses item="row" key="id"}

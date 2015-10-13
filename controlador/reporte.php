@@ -2,7 +2,7 @@
 global $objModulo;
 
 switch($objModulo->getId()){
-	case 'reporteConsultas':
+	case 'reporteConsultas': case 'reportes':
 		$smarty->assign("meses", array(
 			1  => "Enero",
 			2  => "Febrero",
@@ -20,6 +20,21 @@ switch($objModulo->getId()){
 		
 		$smarty->assign("mes", date("m"));
 		$smarty->assign("anio", date("Y"));
+		
+		$db = TBase::conectaDB();
+		$datos = array();
+		$rs = $db->Execute("select distinct estado, ciudad from consultorio order by estado, ciudad");
+		while(!$rs->EOF){
+			array_push($datos, $rs->fields);
+			$rs->moveNext();
+		}
+		
+		$smarty->assign("estados", $datos);
+		
+		
+		
+		
+		/*select * from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) where estado = 'Oaxaca';*/
 	break;
 	case 'listaReportes':
 		$mes = $_GET["mes"];
