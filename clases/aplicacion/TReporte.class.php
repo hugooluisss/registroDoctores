@@ -184,7 +184,11 @@ class TReporte{
 		if ($turno == '') return false;
 		if ($servicio == '') return false;
 		
-		$obj = new TConsulta();
+		#buscamos el id de la consulta
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("select idConsulta where idReporte = ".$this->getId()." and idServicio = ".$servicio." and idTurno = ".$turno." and cubiculo = ".$cubiculo);
+		
+		$obj = new TConsulta($rs->fields["idConsulta"]);
 		$obj->setIdReporte($this->getId());
 		$obj->setServicio($servicio);
 		$obj->setTurno($turno);

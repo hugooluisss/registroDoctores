@@ -37,9 +37,7 @@ includeDir("clases/aplicacion/");
 $objModulo = new TModulo($modulo);
 $bandSesion = true;
 if ($objModulo->requiereSeguridad()){
-
 	if (!isset($sesion['usuario']) or $sesion['usuario'] == ''){
-		echo $sesion['usuario'];
 		$bandSesion = false;
 		$modulo = MODULO_DEFECTO;
 		unset($objModulo);
@@ -66,12 +64,15 @@ $smarty->config_dir = CONFIG;
 $smarty->cache_dir = CACHE;
 $smarty->compile_dir = COMPILE;
 
+$tempUsuario = new TUsuario($sesion['usuario']);
+
 $datosPlantilla = array(
 	"ruta" => DIR_PLANTILLAS."/",
 	"css" => DIR_PLANTILLAS."/css/",
 	"sesion" => $_SESSION[SISTEMA],
 	"debug" => strtoupper($ini['sistema']['debug']) == "ON",
 	"sesionIniciada" => $bandSesion?'1':'0',
+	"tipoUsuario" => $tempUsuario->getId(),
 	"vista" => $objModulo->getRutaVista(),
 	"nombreAplicacion" => SISTEMA,
 	"empresa" => $ini['sistema']['nombreEmpresa'],

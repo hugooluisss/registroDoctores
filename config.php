@@ -26,12 +26,19 @@ $conf['logout'] = array(
 	'js' => array(),
 	'capa' => LAYOUT_DEFECTO);
 	
-#Login y su controlador	
+#Login y su controlador
 $conf['clogin'] = array(
 	'controlador' => 'login.php',
 	'descripcion' => 'Inicio de sesion',
 	'seguridad' => false,
 	'capa' => LAYOUT_AJAX);
+	
+$conf['bienvenida'] = array(
+	'controlador' => 'usuarios.php',
+	'vista' => 'usuarios/bienvenida.tpl',
+	'descripcion' => 'Bienvenida al sistema',
+	'seguridad' => true,
+	'capa' => LAYOUT_DEFECTO);
 
 $conf['admonUsuarios'] = array(
 	'controlador' => 'usuarios.php',
