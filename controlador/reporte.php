@@ -30,11 +30,31 @@ switch($objModulo->getId()){
 		}
 		
 		$smarty->assign("estados", $datos);
+	break;
+	case 'reporteCiudad':
+		$db = TBase::conectaDB();
+		$rs = $db->Execute("select d.ciudad, d.estado, c.nombre as servicio, sum(b.cantidad) as cantidad, descripcion as tipoServicio from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) join tipoServicio e using(idTipo) where estado = '".$_GET['estado']."' and ciudad = '".$_GET['ciudad']."' and extract(month from a.fecha) = ".$_GET['mes']." and extract(year from a.fecha) = ".$_GET['anio']." group by idServicio;");
 		
+		$datos = array();
 		
+		while(!$rs->EOF){
+			array_push($datos, $rs->fields);
+			$rs->moveNext();
+		}
 		
+		$smarty->assign("consultas", $datos);
 		
-		/*select * from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) where estado = 'Oaxaca';*/
+		$rs = $db->Execute("select f.idClasificacion, clasificacion, sum(b.cantidad) as cantidad from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) join tipoServicio e using(idTipo) join clasificacion f using(idClasificacion) where estado = '".$_GET['estado']."' and ciudad = '".$_GET['ciudad']."' and extract(month from a.fecha) = ".$_GET['mes']." and extract(year from a.fecha) = ".$_GET['anio']." group by idClasificacion;");
+		
+		$datos = array();
+		
+		while(!$rs->EOF){
+			array_push($datos, $rs->fields);
+			$rs->moveNext();
+		}
+		
+		$smarty->assign("clasificacion", $datos);
+
 	break;
 	case 'listaReportes':
 		$mes = $_GET["mes"];

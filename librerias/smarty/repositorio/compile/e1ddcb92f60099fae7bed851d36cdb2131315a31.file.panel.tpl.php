@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-13 13:30:46
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-14 13:54:09
          compiled from "templates/plantillas/modulos/reportes/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:367569085561d3c4f0f47d8-54983434%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e1ddcb92f60099fae7bed851d36cdb2131315a31' => 
     array (
       0 => 'templates/plantillas/modulos/reportes/panel.tpl',
-      1 => 1444761044,
+      1 => 1444848848,
       2 => 'file',
     ),
   ),
@@ -35,16 +35,65 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	</div>
 </div>
 
-<ul id="panelTabs" class="nav nav-tabs">
-	<li><a data-toggle="tab" href="#ciudad">Por ciudad</a></li>
-</ul>
-
-
-<div class="tab-content">
-	<div id="ciudad" class="tab-pane fade in active">
-		<div class="box">
-			<div class="box-body">
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Exportar a excel</h3>
+				<a class="btn btn-success btn-clickable pull-right" href="#"><i class="fa fa-chevron-down"></i></a>
+			</div>
+			<div class="panel-body">
 				<div class="row">
+					<div class="col-xs-5">
+						<div class="form-group">
+							<label for="selMes" class="col-xs-2">Mes</label>
+							<div class="col-xs-8">
+								<select id="selMesGeneral" name="selMesGeneral">
+									<?php  $_smarty_tpl->tpl_vars["row"] = new Smarty_Variable; $_smarty_tpl->tpl_vars["row"]->_loop = false;
+ $_smarty_tpl->tpl_vars["id"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['meses']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars["row"]->key => $_smarty_tpl->tpl_vars["row"]->value){
+$_smarty_tpl->tpl_vars["row"]->_loop = true;
+ $_smarty_tpl->tpl_vars["id"]->value = $_smarty_tpl->tpl_vars["row"]->key;
+?>
+										<option value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
+" <?php if ($_smarty_tpl->tpl_vars['mes']->value==$_smarty_tpl->tpl_vars['id']->value){?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['row']->value;?>
+</option>
+									<?php } ?>
+								</select>
+								<select id="selAnioGeneral" name="selAnioGeneral">
+									<?php $_smarty_tpl->tpl_vars['var'] = new Smarty_Variable;$_smarty_tpl->tpl_vars['var']->step = 1;$_smarty_tpl->tpl_vars['var']->total = (int)ceil(($_smarty_tpl->tpl_vars['var']->step > 0 ? $_smarty_tpl->tpl_vars['anio']->value+1 - ($_smarty_tpl->tpl_vars['anio']->value-5) : $_smarty_tpl->tpl_vars['anio']->value-5-($_smarty_tpl->tpl_vars['anio']->value)+1)/abs($_smarty_tpl->tpl_vars['var']->step));
+if ($_smarty_tpl->tpl_vars['var']->total > 0){
+for ($_smarty_tpl->tpl_vars['var']->value = $_smarty_tpl->tpl_vars['anio']->value-5, $_smarty_tpl->tpl_vars['var']->iteration = 1;$_smarty_tpl->tpl_vars['var']->iteration <= $_smarty_tpl->tpl_vars['var']->total;$_smarty_tpl->tpl_vars['var']->value += $_smarty_tpl->tpl_vars['var']->step, $_smarty_tpl->tpl_vars['var']->iteration++){
+$_smarty_tpl->tpl_vars['var']->first = $_smarty_tpl->tpl_vars['var']->iteration == 1;$_smarty_tpl->tpl_vars['var']->last = $_smarty_tpl->tpl_vars['var']->iteration == $_smarty_tpl->tpl_vars['var']->total;?>
+									<option value="<?php echo $_smarty_tpl->tpl_vars['var']->value;?>
+" <?php if ($_smarty_tpl->tpl_vars['var']->value==date("Y")){?>selected<?php }?>><?php echo $_smarty_tpl->tpl_vars['var']->value;?>
+</option>
+									<?php }} ?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<input type="button" class="btn btn-success" id="btnExcel" value="Buscar" />
+					</div>
+				</div>
+            </div>
+            
+        </div> 
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">Reporte por ciudad</h3>
+				<a class="btn btn-success btn-clickable pull-right" href="#"><i class="fa fa-chevron-down"></i></a>
+			</div>
+			
+			<div class="panel-body">
+            	<div class="row">
 					<div class="col-xs-5">
 						<div class="form-group">
 							<label for="selMes" class="col-xs-2">Mes</label>
@@ -89,6 +138,8 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 ?>
 									<option value="<?php echo $_smarty_tpl->tpl_vars['row']->value['estado'];?>
 -<?php echo $_smarty_tpl->tpl_vars['row']->value['ciudad'];?>
+" ciudad="<?php echo $_smarty_tpl->tpl_vars['row']->value['ciudad'];?>
+" estado="<?php echo $_smarty_tpl->tpl_vars['row']->value['estado'];?>
 "><?php echo $_smarty_tpl->tpl_vars['row']->value['estado'];?>
  - <?php echo $_smarty_tpl->tpl_vars['row']->value['ciudad'];?>
 
@@ -98,13 +149,13 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 						</div>
 					</div>
 					<div class="col-xs-2">
-						<a href="#" class="btn btn-success" id="btnBuscar">Buscar</a>
+						<input type="button" class="btn btn-success" id="btnBuscarPorCiudad" value="Buscar" />
 					</div>
 				</div>
-
-				<div id="dvLista">
-				</div>
-			</div>
-		</div>
+				<br />
+				<div class="row" id="dvListaPorCiudad"></div>
+            </div>
+            
+        </div> 
 	</div>
 </div><?php }} ?>

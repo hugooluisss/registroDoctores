@@ -199,7 +199,7 @@ class TConsulta{
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO consulta(idReporte, idServicio, idTurno, cubiculo)VALUES(".$this->getIdReporte().", ".$this->servicio->getId().", ".$this->getTurno().", ".$this->getCubiculo().");");
+			$rs = $db->Execute("INSERT INTO consulta(idReporte, idServicio, idTurno, cubiculo, cantidad)VALUES(".$this->getIdReporte().", ".$this->servicio->getId().", ".$this->getTurno().", ".$this->getCubiculo().", ".$this->getCantidad().");");
 			if (!$rs) return false;
 				
 			$this->idConsulta = $db->Insert_ID();

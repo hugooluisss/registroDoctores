@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	$("[data-mask]").inputmask();
 	
-	
 	$("#tblConsultorios tr[consultorio]").click(function(){
 		var el = jQuery.parseJSON($(this).attr("consultorio"));
 		

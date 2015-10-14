@@ -183,6 +183,7 @@ class TReporte{
 		if ($this->getId() == '') return false;
 		if ($turno == '') return false;
 		if ($servicio == '') return false;
+		if (!is_numeric($cantidad)) return false;
 		
 		#buscamos el id de la consulta
 		$db = TBase::conectaDB();

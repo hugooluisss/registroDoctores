@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	
-	<div id="add" class="tab-pane fade">
+	<div id="add" class="tab-panel fade">
 		<form role="form" id="frmAdd" class="form-horizontal" onsubmit="javascript: return false;">
 			<div class="box">
 				<div class="box-body">

@@ -209,5 +209,13 @@ $conf['reportes'] = array(
 	'vista' => 'reportes/panel.tpl',
 	'descripcion' => 'Reportes generales',
 	'seguridad' => true,
+	'jsTemplate' => array('reportes.js'),
 	'capa' => LAYOUT_DEFECTO);
+	
+$conf['reporteCiudad'] = array(
+	'controlador' => 'reporte.php',
+	'vista' => 'reportes/listaCiudad.tpl',
+	'descripcion' => 'Lista de consultas por ciudad',
+	'seguridad' => true,
+	'capa' => LAYOUT_AJAX);
 ?>
