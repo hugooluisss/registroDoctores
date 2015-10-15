@@ -33,7 +33,8 @@ switch($objModulo->getId()){
 	break;
 	case 'reporteCiudad':
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select d.ciudad, d.estado, c.nombre as servicio, sum(b.cantidad) as cantidad, descripcion as tipoServicio from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) join tipoServicio e using(idTipo) where estado = '".$_GET['estado']."' and ciudad = '".$_GET['ciudad']."' and extract(month from a.fecha) = ".$_GET['mes']." and extract(year from a.fecha) = ".$_GET['anio']." group by idServicio;");
+		$supervisor = new TUsuario($sesion['usuario']);
+		$rs = $db->Execute("select d.ciudad, d.estado, c.nombre as servicio, sum(b.cantidad) as cantidad, descripcion as tipoServicio from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) join tipoServicio e using(idTipo) where estado = '".$_GET['estado']."' and ciudad = '".$_GET['ciudad']."' and extract(month from a.fecha) = ".$_GET['mes']." and extract(year from a.fecha) = ".$_GET['anio']." ".($supervisor->getIdTipo() == 2?(" and idSupervisor = ".$supervisor->getId()):"")." group by idServicio;");
 		
 		$datos = array();
 		
@@ -44,7 +45,7 @@ switch($objModulo->getId()){
 		
 		$smarty->assign("consultas", $datos);
 		
-		$rs = $db->Execute("select f.idClasificacion, clasificacion, sum(b.cantidad) as cantidad from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) join tipoServicio e using(idTipo) join clasificacion f using(idClasificacion) where estado = '".$_GET['estado']."' and ciudad = '".$_GET['ciudad']."' and extract(month from a.fecha) = ".$_GET['mes']." and extract(year from a.fecha) = ".$_GET['anio']." group by idClasificacion;");
+		$rs = $db->Execute("select f.idClasificacion, clasificacion, sum(b.cantidad) as cantidad from reporte a join consulta b using(idReporte) join servicio c using(idServicio) join consultorio d using(idConsultorio) join tipoServicio e using(idTipo) join clasificacion f using(idClasificacion) where estado = '".$_GET['estado']."' and ciudad = '".$_GET['ciudad']."' and extract(month from a.fecha) = ".$_GET['mes']." and extract(year from a.fecha) = ".$_GET['anio']." ".($supervisor->getIdTipo() == 2?(" and idSupervisor = ".$supervisor->getId()):"")." group by idClasificacion;");
 		
 		$datos = array();
 		

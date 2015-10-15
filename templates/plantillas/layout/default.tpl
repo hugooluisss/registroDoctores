@@ -67,6 +67,8 @@
 					<li {if $PAGE.modulo eq 'tipoServicios'}class="active"{/if}><a href="?mod=tipoServicios"><i class="fa fa-sticky-note"></i> Tipo de servicios</a></li>
 					<li {if $PAGE.modulo eq 'servicios'}class="active"{/if}><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 					<li {if $PAGE.modulo eq 'consultorios'}class="active"{/if}><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
+					{/if}
+					{if $PAGE.tipoUsuario eq 1 or $PAGE.tipoUsuario eq 2}
 					<li {if $PAGE.modulo eq 'reportes'}class="active"{/if}><a href="?mod=reportes"><i class="fa fa-file"></i> Reportes</a></li>
 					{/if}
 					{if $PAGE.tipoUsuario eq 3}
