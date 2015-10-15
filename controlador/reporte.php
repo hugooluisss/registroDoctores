@@ -109,6 +109,18 @@ switch($objModulo->getId()){
 				}
 				print json_encode($result);
 			break;
+			case 'generalExcel': #Este incluye todas las consultas realizadas en un mes
+				require_once(getcwd()."/repositorio/excel/general.php");		
+				$doc = new RReporte();
+				
+				$doc->setMes($_POST['mes']);
+				$doc->setAnio($_POST['anio']);
+				
+				$documento = $doc->output();
+				$result = array("doc" => $documento, "band" => $documento <> '');
+				
+				print json_encode($result);
+			break;
 		}
 	break;
 }

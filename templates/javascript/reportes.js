@@ -1,11 +1,11 @@
 $(document).ready(function(){
-	$('.panel-heading .btn-clickable').each(function(){
+	$('.panel-heading a').each(function(){
 		$(this).parents('.panel').find('.panel-body').slideUp();
 		$(this).addClass('panel-collapsed');
 		$(this).find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
 	});
 	
-	$('.panel-heading .btn-clickable').click(function(e){
+	$('.panel-heading a').click(function(e){
 		if(!$(this).hasClass('panel-collapsed')) {
 			$(this).parents('.panel').find('.panel-body').slideUp();
 			$(this).addClass('panel-collapsed');
@@ -33,5 +33,18 @@ $(document).ready(function(){
 				"autoWidth": false
 			});
 		});
+	});
+	
+	/*Excel general*/
+	$("#btnExcelGeneral").click(function(){
+		$.post('?mod=creporte&action=generalExcel', {
+				"mes": $("#selMesGeneral").val(),
+				"anio": $("#selAnioGeneral").val()
+			}, function(data){					
+				if (data.band == 'false'){
+					console.log("Error al generar el archivo de excel");
+				}else
+					location.href = data.doc;
+			}, "json");
 	});
 });

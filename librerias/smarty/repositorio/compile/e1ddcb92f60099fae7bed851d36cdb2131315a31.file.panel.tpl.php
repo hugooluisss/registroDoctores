@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-14 13:54:09
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-14 23:30:22
          compiled from "templates/plantillas/modulos/reportes/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:367569085561d3c4f0f47d8-54983434%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e1ddcb92f60099fae7bed851d36cdb2131315a31' => 
     array (
       0 => 'templates/plantillas/modulos/reportes/panel.tpl',
-      1 => 1444848848,
+      1 => 1444882426,
       2 => 'file',
     ),
   ),
@@ -39,8 +39,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<div class="col-xs-12">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Exportar a excel</h3>
-				<a class="btn btn-success btn-clickable pull-right" href="#"><i class="fa fa-chevron-down"></i></a>
+				<h3 class="panel-title"><a href="#">Exportar a excel</a></h3>
 			</div>
 			<div class="panel-body">
 				<div class="row">
@@ -75,7 +74,7 @@ $_smarty_tpl->tpl_vars['var']->first = $_smarty_tpl->tpl_vars['var']->iteration 
 						</div>
 					</div>
 					<div class="col-xs-2">
-						<input type="button" class="btn btn-success" id="btnExcel" value="Buscar" />
+						<input type="button" class="btn btn-success" id="btnExcelGeneral" value="Generar" />
 					</div>
 				</div>
             </div>
@@ -88,8 +87,7 @@ $_smarty_tpl->tpl_vars['var']->first = $_smarty_tpl->tpl_vars['var']->iteration 
 	<div class="col-xs-12">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Reporte por ciudad</h3>
-				<a class="btn btn-success btn-clickable pull-right" href="#"><i class="fa fa-chevron-down"></i></a>
+				<h3 class="panel-title"><a href="#">Por ciudad</a></h3>
 			</div>
 			
 			<div class="panel-body">

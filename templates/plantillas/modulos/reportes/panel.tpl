@@ -8,8 +8,7 @@
 	<div class="col-xs-12">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Exportar a excel</h3>
-				<a class="btn btn-success btn-clickable pull-right" href="#"><i class="fa fa-chevron-down"></i></a>
+				<h3 class="panel-title"><a href="#">Exportar a excel</a></h3>
 			</div>
 			<div class="panel-body">
 				<div class="row">
@@ -31,7 +30,7 @@
 						</div>
 					</div>
 					<div class="col-xs-2">
-						<input type="button" class="btn btn-success" id="btnExcel" value="Buscar" />
+						<input type="button" class="btn btn-success" id="btnExcelGeneral" value="Generar" />
 					</div>
 				</div>
             </div>
@@ -44,8 +43,7 @@
 	<div class="col-xs-12">
 		<div class="panel panel-success">
 			<div class="panel-heading">
-				<h3 class="panel-title">Reporte por ciudad</h3>
-				<a class="btn btn-success btn-clickable pull-right" href="#"><i class="fa fa-chevron-down"></i></a>
+				<h3 class="panel-title"><a href="#">Por ciudad</a></h3>
 			</div>
 			
 			<div class="panel-body">
