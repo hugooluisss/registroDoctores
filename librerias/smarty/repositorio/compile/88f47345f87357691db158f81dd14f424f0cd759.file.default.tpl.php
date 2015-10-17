@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 03:55:15
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 14:56:30
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1444964111,
+      1 => 1445111778,
       2 => 'file',
     ),
   ),
@@ -93,6 +93,26 @@ img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown messages-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-gears"></i> <?php echo $_smarty_tpl->tpl_vars['PAGE']->value['nombreUsuario'];?>
+
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<!-- inner menu: contains the actual data -->
+									<ul class="menu">
+										<li><a href="?mod=usuarioDatosPersonales"><i class="fa fa-edit text-green"></i> Cambiar datos personales</a></li>
+										<li><a href="#" action="changePass"><i class="fa fa-warning text-orange"></i> Cambiar contraseña</a></li>
+										<li><a href="?mod=logout"><i class="fa fa-sign-out text-green"></i> Salir del sistema</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</nav>
 		</header>
 		
@@ -111,14 +131,17 @@ img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='servicios'){?>class="active"<?php }?>><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='consultorios'){?>class="active"<?php }?>><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
 					<?php }?>
+					
 					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['tipoUsuario']==1||$_smarty_tpl->tpl_vars['PAGE']->value['tipoUsuario']==2){?>
+					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='admonUsuarios'){?>class="active"<?php }?>><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
+					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='consultorios'){?>class="active"<?php }?>><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='reportes'){?>class="active"<?php }?>><a href="?mod=reportes"><i class="fa fa-file"></i> Reportes</a></li>
 					<?php }?>
+					
 					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['tipoUsuario']==3){?>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='registro'){?>class="active"<?php }?>><a href="?mod=consultas"><i class="fa fa-database"></i> Registro de consultas</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='reporteConsultas'){?>class="active"<?php }?>><a href="?mod=reporteConsultas"><i class="fa fa-file"></i> Reportar consulas</a></li>
 					<?php }?>
-					<li><a href="?mod=logout"><i class="fa fa-sign-out"></i> Salir</a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
@@ -243,6 +266,10 @@ $_smarty_tpl->tpl_vars['script']->_loop = true;
 		<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['script']->value;?>
 "></script>
 	<?php } ?>
+	
+	<script src="javascript/usuario.class.js"></script>
+	<script src="<?php echo $_smarty_tpl->tpl_vars['PAGE']->value['ruta'];?>
+javascript/cambiarPass.js"></script>
     
     <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['debug']){?>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js" type="text/javascript"></script>

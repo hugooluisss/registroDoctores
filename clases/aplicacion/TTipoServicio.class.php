@@ -116,7 +116,7 @@ class TTipoServicio{
 	*/
 	
 	public function guardar(){
-		if ($this->clasificacion->getId() == '') return false;
+		if ($this->getIdClasificacion() == '') return false;
 		
 		$db = TBase::conectaDB();
 		if ($this->getId() == ''){

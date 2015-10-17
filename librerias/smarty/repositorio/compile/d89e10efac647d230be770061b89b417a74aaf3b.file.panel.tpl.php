@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-13 09:09:11
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 13:41:53
          compiled from "templates/plantillas/modulos/consultorios/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:121679590155f99d6e72b240-14258796%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd89e10efac647d230be770061b89b417a74aaf3b' => 
     array (
       0 => 'templates/plantillas/modulos/consultorios/panel.tpl',
-      1 => 1443467379,
+      1 => 1444881521,
       2 => 'file',
     ),
   ),
@@ -46,7 +46,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 	</div>
 	
-	<div id="add" class="tab-pane fade">
+	<div id="add" class="tab-panel fade">
 		<form role="form" id="frmAdd" class="form-horizontal" onsubmit="javascript: return false;">
 			<div class="box">
 				<div class="box-body">

@@ -25,6 +25,36 @@ TUsuario = function(){
 			}, "json");
 	};
 	
+	this.savePersonales = function(nombre, app, apm, fn){
+		if (fn.before !== undefined) fn.before();
+		
+		$.post('?mod=cusuarios&action=saveDatosPersonales', {
+				"nombre": nombre,
+				"app": app, 
+				"apm": apm
+			}, function(data){
+				if (data.band == 'false')
+					console.log(data.mensaje);
+					
+				if (fn.after !== undefined)
+					fn.after(data);
+			}, "json");
+	}
+	
+	this.savePass = function(pass, fn){
+		if (fn.before !== undefined) fn.before();
+		
+		$.post('?mod=cusuarios&action=savePassword', {
+				"pass": pass
+			}, function(data){
+				if (data.band == 'false')
+					console.log(data.mensaje);
+					
+				if (fn.after !== undefined)
+					fn.after(data);
+			}, "json");
+	}
+	
 	this.del = function(usuario, fn){
 		$.post('?mod=cusuarios&action=del', {
 			"usuario": usuario,

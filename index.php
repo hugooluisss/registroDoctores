@@ -73,6 +73,7 @@ $datosPlantilla = array(
 	"debug" => strtoupper($ini['sistema']['debug']) == "ON",
 	"sesionIniciada" => $bandSesion?'1':'0',
 	"tipoUsuario" => $tempUsuario->getIdTipo(),
+	"nombreUsuario" => $tempUsuario->getNombre(), 
 	"vista" => $objModulo->getRutaVista(),
 	"nombreAplicacion" => SISTEMA,
 	"empresa" => $ini['sistema']['nombreEmpresa'],

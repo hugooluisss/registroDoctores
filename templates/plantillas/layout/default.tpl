@@ -50,6 +50,25 @@
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
 					<span class="sr-only">Toggle navigation</span>
 				</a>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li class="dropdown messages-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-gears"></i> {$PAGE.nombreUsuario}
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<!-- inner menu: contains the actual data -->
+									<ul class="menu">
+										<li><a href="?mod=usuarioDatosPersonales"><i class="fa fa-edit text-green"></i> Cambiar datos personales</a></li>
+										<li><a href="#" action="changePass"><i class="fa fa-warning text-orange"></i> Cambiar contraseña</a></li>
+										<li><a href="?mod=logout"><i class="fa fa-sign-out text-green"></i> Salir del sistema</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</nav>
 		</header>
 		
@@ -68,14 +87,17 @@
 					<li {if $PAGE.modulo eq 'servicios'}class="active"{/if}><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 					<li {if $PAGE.modulo eq 'consultorios'}class="active"{/if}><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
 					{/if}
+					
 					{if $PAGE.tipoUsuario eq 1 or $PAGE.tipoUsuario eq 2}
+					<li {if $PAGE.modulo eq 'admonUsuarios'}class="active"{/if}><a href="?mod=admonUsuarios"><i class="fa fa-user"></i> Usuarios</a></li>
+					<li {if $PAGE.modulo eq 'consultorios'}class="active"{/if}><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
 					<li {if $PAGE.modulo eq 'reportes'}class="active"{/if}><a href="?mod=reportes"><i class="fa fa-file"></i> Reportes</a></li>
 					{/if}
+					
 					{if $PAGE.tipoUsuario eq 3}
 					<li {if $PAGE.modulo eq 'registro'}class="active"{/if}><a href="?mod=consultas"><i class="fa fa-database"></i> Registro de consultas</a></li>
 					<li {if $PAGE.modulo eq 'reporteConsultas'}class="active"{/if}><a href="?mod=reporteConsultas"><i class="fa fa-file"></i> Reportar consulas</a></li>
 					{/if}
-					<li><a href="?mod=logout"><i class="fa fa-sign-out"></i> Salir</a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->
@@ -163,6 +185,9 @@
     {foreach from=$PAGE.scriptsJS item=script}
 		<script type="text/javascript" src="{$script}"></script>
 	{/foreach}
+	
+	<script src="javascript/usuario.class.js"></script>
+	<script src="{$PAGE.ruta}javascript/cambiarPass.js"></script>
     
     {if $PAGE.debug}
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js" type="text/javascript"></script>

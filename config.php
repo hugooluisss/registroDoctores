@@ -218,4 +218,14 @@ $conf['reporteCiudad'] = array(
 	'descripcion' => 'Lista de consultas por ciudad',
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
+	
+/*Datos de usuario desde el panel*/
+$conf['usuarioDatosPersonales'] = array(
+	'controlador' => 'usuarios.php',
+	'vista' => 'usuarios/datosPersonales.tpl',
+	'descripcion' => 'Cambiar datos personales',
+	'seguridad' => true,
+	'js' => array('usuario.class.js'),
+	'jsTemplate' => array('datosUsuario.js'),
+	'capa' => LAYOUT_DEFECTO);
 ?>

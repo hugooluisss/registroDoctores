@@ -3,7 +3,14 @@ global $objModulo;
 switch($objModulo->getId()){
 	case 'admonUsuarios':
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from tipoUsuario");
+		$db = TBase::conectaDB();
+		global $sesion;
+		$usuario = new TUsuario($sesion['usuario']);
+		
+		if ($usuario->getIdTipo() == 2)
+			$rs = $db->Execute("select * from tipoUsuario where idTipoUsuario = 3");
+		else
+			$rs = $db->Execute("select * from tipoUsuario");
 		
 		$datos = array();
 		while(!$rs->EOF){
@@ -29,8 +36,13 @@ switch($objModulo->getId()){
 	break;
 	case 'listaUsuarios':
 		$db = TBase::conectaDB();
+		global $sesion;
+		$usuario = new TUsuario($sesion['usuario']);
 		
-		$rs = $db->Execute("select * from usuario left join doctor using(idUsuario)");
+		if ($usuario->getIdTipo() == 2)
+			$rs = $db->Execute("select * from usuario left join doctor using(idUsuario) where idTipo = 3");
+		else
+			$rs = $db->Execute("select * from usuario left join doctor using(idUsuario)");
 		$datos = array();
 		while(!$rs->EOF){
 			$obj = new TUsuario($rs->fields['idUsuario']);
@@ -52,6 +64,13 @@ switch($objModulo->getId()){
 	case 'doctoresAsignados':
 		$supervisor = new TUsuario($_GET['id']);
 		$smarty->assign("supervisor", $supervisor);
+	break;
+	case 'usuarioDatosPersonales':
+		global $sesion;
+		$usuario = new TUsuario($sesion['usuario']);
+		$smarty->assign("nombre", $usuario->getNombre());
+		$smarty->assign("app", $usuario->getApp());
+		$smarty->assign("apm", $usuario->getApm());
 	break;
 	case 'cusuarios':
 		switch($objModulo->getAction()){
@@ -129,6 +148,26 @@ switch($objModulo->getId()){
 			case 'delsup':
 				$obj = new TUsuario($_POST['supervisor']);
 				echo json_encode(array("band" => $obj->delSupervisado($_POST['doctor'])));
+			break;
+			case 'saveDatosPersonales':
+				global $sesion;
+				
+				$obj = new TUsuario();
+				$obj->setId($sesion['usuario']);
+				$obj->setNombre($_POST['nombre']);
+				$obj->setApp($_POST['app']);
+				$obj->setApm($_POST['apm']);
+				
+				echo json_encode(array("band" => $obj->guardar()));
+			break;
+			case 'savePassword':
+				global $sesion;
+				
+				$obj = new TUsuario();
+				$obj->setId($sesion['usuario']);
+				$obj->setPass($_POST['pass']);
+				
+				echo json_encode(array("band" => $obj->guardar()));
 			break;
 		}
 	break;
