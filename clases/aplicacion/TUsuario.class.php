@@ -14,6 +14,7 @@ class TUsuario{
 	private $nombre;
 	private $email;
 	private $pass;
+	private $estado;
 	
 	/**
 	* Constructor de la clase
@@ -245,6 +246,32 @@ class TUsuario{
 	}
 	
 	/**
+	* Establece el valor del estado
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setEstado($val = ''){
+		$this->estado = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el estado
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getEstado(){
+		return $this->estado;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -256,8 +283,9 @@ class TUsuario{
 		if ($this->getIdTipo() == '') return false;
 		
 		$db = TBase::conectaDB();
+		
 		if ($this->getId() == ''){
-			$rs = $db->Execute("INSERT INTO usuario(idTipo)VALUES(".$this->getIdTipo().");");
+			$rs = $db->Execute("INSERT INTO usuario(idTipo) VALUES(".$this->getIdTipo().");");
 			if (!$rs) return false;
 				
 			$this->idUsuario = $db->Insert_ID();
@@ -273,7 +301,8 @@ class TUsuario{
 				app = '".$this->getApp()."',
 				apm = '".$this->getApm()."',
 				email = '".$this->getEmail()."',
-				pass = '".$this->getPass()."'
+				pass = '".$this->getPass()."',
+				estado = '".$this->getEstado()."'
 			WHERE idUsuario = ".$this->getId());
 			
 		return $rs?true:false;

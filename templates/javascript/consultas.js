@@ -25,17 +25,35 @@ $(document).ready(function(){
 		after: function(){
 			$('#panelTabs a:first').tab('show');
 			
+			$("#panels [data-mask]").inputmask({
+				 mask: '99'
+			});
+			
 			$(".tblServicios").each(function(){
-				$(this).DataTable({
+				var tablaServicios = $(this).DataTable({
 					"responsive": false,
 					"language": espaniol,
 					"paging": false,
 					"lengthChange": false,
-					"ordering": true,
+					"ordering": false,
 					"info": true,
 					"autoWidth": false
 				});
+				
+				for(var cont = 1 ; cont <= 4 ; cont++)
+					tablaServicios.column(cont + 2).visible(false);
+						
+				tablaServicios.column(3).visible(true);
+				
+				$("#selCubiculo[turno=" + $(this).attr("turno") + "]").change(function(){
+					for(var cont = 1 ; cont <= 4 ; cont++)
+						tablaServicios.column(cont + 2).visible(cont == $("#selCubiculo[turno=" + $(this).attr("turno") + "]").val());
+					
+					getTotal();
+				});
 			});
+			
+			getTotal($(this).attr("turno"));
 			
 			$(".cantidades").change(function(){
 				var obj = new TConsulta;
@@ -50,11 +68,36 @@ $(document).ready(function(){
 							alert("Ocurrió un error al actualizar el campo");
 							el.val("");
 							el.select();
-						}
+						}else
+							getTotal();
 					}
 				});
 			});
 		}});
 	}
-
+	
+	function getTotal(){
+		$("#selCubiculo[turno]").each(function(){
+			var selCubiculo = $(this);
+			var total = 0;
+			$(".cantidades[cubiculo=" + selCubiculo.val() + "]").each(function(){
+				if ($(this).val() != '' && $(this).attr("turno") == selCubiculo.attr("turno"))
+					total += parseInt($(this).val());
+			});
+			
+			$("tr[turno="+ selCubiculo.attr("turno") +"] .total[cubiculo=" + selCubiculo.val() + "]").html(total);
+		});
+		
+		$("#totales div[clasificacion]").each(function(){
+			var clasificacion = $(this).attr("clasificacion");
+			
+			total = 0;
+			$("input[clasificacion=" + clasificacion + "]").each(function(){
+				if ($(this).val() != '')
+					total += parseInt($(this).val());
+			});
+			
+			$(this).html(total);
+		});
+	}
 });

@@ -54,6 +54,7 @@ $(document).ready(function(){
 					$("#txtUniversidad").val(),
 					$("#txtEspecialidad").val(),
 					$("#selTipo").val(),
+					$("#txtEstado").val(),
 					{
 						after: function(datos){
 							if (datos.band){
@@ -99,6 +100,7 @@ $(document).ready(function(){
 				$("#txtUniversidad").val(el.universidad);
 				$("#txtEspecialidad").val(el.especialidad);
 				$("#selTipo").val(el.idTipo);
+				$("#txtEstado").val(el.estado);
 				changeTipo();
 				$('#panelTabs a[href="#add"]').tab('show');
 			});

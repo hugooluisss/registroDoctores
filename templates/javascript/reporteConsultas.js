@@ -10,11 +10,11 @@ $(document).ready(function(){
 			$("#tblReportes").DataTable({
 				"responsive": true,
 				"language": espaniol,
-				"paging": true,
+				"paging": false,
 				"lengthChange": false,
-				"ordering": true,
+				"ordering": false,
 				"info": true,
-				"autoWidth": false
+				"autoWidth": true
 			});
 			
 			$("[action=excel]").click(function(){

@@ -1,7 +1,7 @@
 Estimado(a) /#nombreCompleto#/:
 <br />
 <p>
-Han enviado el reporte que se adjunta en este correo el doctor(a) /#nombreDoctor#/.
+El (la) doctor(a) /#nombreDoctor#/ ha enviado el reporte adjunto en este correo electrónico.
 </p>
 
 <br><br><br> 

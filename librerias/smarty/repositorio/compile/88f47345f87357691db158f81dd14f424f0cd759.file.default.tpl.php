@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-14 23:02:46
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 03:55:15
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1444799734,
+      1 => 1444964111,
       2 => 'file',
     ),
   ),
@@ -110,6 +110,8 @@ img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='tipoServicios'){?>class="active"<?php }?>><a href="?mod=tipoServicios"><i class="fa fa-sticky-note"></i> Tipo de servicios</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='servicios'){?>class="active"<?php }?>><a href="?mod=servicios"><i class="fa fa-tasks"></i> Servicios</a></li>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='consultorios'){?>class="active"<?php }?>><a href="?mod=consultorios"><i class="fa fa-institution"></i> Consultorios</a></li>
+					<?php }?>
+					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['tipoUsuario']==1||$_smarty_tpl->tpl_vars['PAGE']->value['tipoUsuario']==2){?>
 					<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='reportes'){?>class="active"<?php }?>><a href="?mod=reportes"><i class="fa fa-file"></i> Reportes</a></li>
 					<?php }?>
 					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['tipoUsuario']==3){?>

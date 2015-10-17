@@ -2,6 +2,7 @@
 	{foreach from=$turnos item="row"}
 		<li><a data-toggle="tab" href="#turno_{$row.idTurno}">{$row.nombre}</a></li>
 	{/foreach}
+		<li><a data-toggle="tab" href="#totales">Totales</a></li>
 </ul>
 
 <div class="tab-content">
@@ -12,14 +13,24 @@
 					<h3 class="box-title">Lista de servicios</h3>
 				</div><!-- /.box-header -->
 				<div class="box-body">
-					<table class="tblServicios table table-bordered table-hover">
+					<div class="row">
+						<label for="selCubiculo" class="col-xs-2">Cubículo</label>
+						<div class="col-xs-10">
+							<select id="selCubiculo" turno="{$row.idTurno}">
+								{section name=cubiculos start=0 loop=$cubiculos step=1}
+								<option value="{$smarty.section.cubiculos.index+1}">{$smarty.section.cubiculos.index+1}
+								{/section}
+							</select>
+						</div>
+					</div>
+					<table class="tblServicios table table-bordered table-hover" turno="{$row.idTurno}">
 						<thead>
 							<tr>
-								<th>#</th>
+								<th class="hidden-xs">#</th>
 								<th>Tipo</th>
 								<th>Servicio</th>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
-									<th>Cub {$smarty.section.cubiculos.index+1}</th>
+									<th cubiculo="{$smarty.section.cubiculos.index+1}">Cub {$smarty.section.cubiculos.index+1}</th>
 								{/section}
 							</tr>
 						</thead>
@@ -29,18 +40,38 @@
 					{foreach from=$row.servicios item="servicio"}
 						{assign var="cont" value=$cont+1}
 							<tr>
-								<td>{$cont}</td>
+								<td class="hidden-xs">{$cont}</td>
 								<td>{$servicio.descripcion}</td>
 								<td>{$servicio.nombre}</td>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
-									<td><input class="form-control cantidades" servicio="{$servicio.idServicio}" turno="{$row.idTurno}" type="text" placeholder="cantidad" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}"></td>
+									<td><input class="form-control cantidades" style="widht: 100%;" servicio="{$servicio.idServicio}" clasificacion="{$servicio.idClasificacion}" turno="{$row.idTurno}" type="text" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}" data-mask></td>
 								{/section}
 							</tr>
 					{/foreach}
 						</tbody>
+						<tfoot>
+							<tr turno="{$row.idTurno}">
+								<th colspan="3" style="text-align: right">Total</td>
+								{section name=cubiculos start=0 loop=$cubiculos step=1}
+								<th class="total" cubiculo="{$smarty.section.cubiculos.index+1}"></th>
+								{/section}
+							</tr>
+						</tfoot>
 					</table>
 				</div>
 			</div>
 		</div>
 	{/foreach}
+	<div id="totales" class="tab-pane fade">
+		<div class="box">
+			<div class="box-body">
+				{foreach from=$clasificacionServicios item="row"}
+				<div class="row">
+					<div class="col-xs-2">{$row.clasificacion}</div>
+					<div class="col-xs-2" clasificacion="{$row.idClasificacion}"></div>
+				</div>
+				{/foreach}
+			</div>
+		</div>
+	</div>
 </div>

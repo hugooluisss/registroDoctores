@@ -1,7 +1,7 @@
 TUsuario = function(){
 	var self = this;
 	
-	this.add = function(id,	nombre, app, apm, email, pass, cedula, universidad, especialidad, tipo, fn){
+	this.add = function(id,	nombre, app, apm, email, pass, cedula, universidad, especialidad, tipo, estado, fn){
 		if (fn.before !== undefined) fn.before();
 		
 		$.post('?mod=cusuarios&action=add', {
@@ -14,7 +14,8 @@ TUsuario = function(){
 				"cedula": cedula, 
 				"universidad": universidad,
 				"especialidad": especialidad, 
-				"tipo": tipo
+				"tipo": tipo, 
+				"estado": estado
 			}, function(data){
 				if (data.band == 'false')
 					console.log(data.mensaje);

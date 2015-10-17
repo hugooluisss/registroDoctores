@@ -130,7 +130,7 @@ class RReporte{
 		$hoja->write(3, 31, utf8_decode("MES A REPORTAR: ".$this->getMesLetra()), $head);
 		$hoja->mergeCells(3, 31, 3, 37);
 		
-		$hoja->write(4, 1, utf8_decode("NOMBRE DEL MÉDICO: ".$this->doctor->getNombre()."   CÉDULA: ".$this->doctor->getCedula()), $head);
+		$hoja->write(4, 1, utf8_decode("NOMBRE DEL MÉDICO: ".$this->doctor->getNombreCompleto()."   CÉDULA: ".$this->doctor->getCedula()), $head);
 		$hoja->mergeCells(4, 1, 4, 18);
 		$hoja->write(4, 19, utf8_decode("CONSULTORIO: ".$this->cubiculo), $head);
 		$hoja->mergeCells(4, 19, 4, 30);

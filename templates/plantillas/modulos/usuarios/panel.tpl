@@ -46,6 +46,12 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="txtEstado" class="col-lg-2">Estado</label>
+						<div class="col-lg-3">
+							<input class="form-control" id="txtEstado" name="txtEstado" type="text">
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="txtEmail" class="col-lg-2">Correo electrónico</label>
 						<div class="col-lg-3">
 							<input class="form-control" id="txtEmail" name="txtEmail" type="email">

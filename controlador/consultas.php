@@ -28,13 +28,13 @@ switch($objModulo->getId()){
 		$rs = $db->Execute("select * from consultorioTurno a join turno b using(idTurno) where idConsultorio = ".$consultorio);
 		$datos = array();
 		while(!$rs->EOF){
-			$rsServicios = $db->Execute("select * from servicio a join tipoServicio b using(idTipo)");
+			$rsServicios = $db->Execute("select * from servicio a join tipoServicio b using(idTipo) join clasificacion c using(idClasificacion)");
 			$rs->fields["servicios"] = array();
 			
 			while(!$rsServicios->EOF){
 				$rsServicios->fields["cantidad"] = array();
 				for ($cub = 1 ; $cub <= $rsCubiculos->fields['cubiculos'] ; $cub++){
-					$rsCantidad = $db->Execute("select if (cantidad is null, 0, cantidad) as cantidad from reporte a join consulta b using(idReporte) where idTurno = ".$rs->fields['idTurno']." and idConsultorio = ".$consultorio." and fecha = '".$fecha."' and idServicio = ".$rsServicios->fields['idServicio']." and cubiculo = ".$cub);
+					$rsCantidad = $db->Execute("select if (cantidad is null, 0, cantidad) as cantidad from reporte a join consulta b using(idReporte) where idTurno = ".$rs->fields['idTurno']." and idConsultorio = ".$consultorio." and fecha = '".$fecha."' and idServicio = ".$rsServicios->fields['idServicio']." and cubiculo = ".$cub." and idDoctor = ".$sesion['usuario']);
 					
 					$rsServicios->fields["cantidad"][$cub] = $rsCantidad->fields["cantidad"];
 				}
@@ -46,9 +46,17 @@ switch($objModulo->getId()){
 			array_push($datos, $rs->fields);
 			$rs->moveNext();
 		}
-		
 		$smarty->assign("turnos", $datos);
 		$smarty->assign("cubiculos", $rsCubiculos->fields["cubiculos"]);
+		
+		$rs = $db->Execute("select * from clasificacion");
+		$datos = array();
+		while(!$rs->EOF){
+			array_push($datos, $rs->fields);
+			$rs->moveNext();
+		}
+		
+		$smarty->assign("clasificacionServicios", $datos);
 	break;
 	case 'listaConsultas':
 		$db = TBase::conectaDB();
@@ -87,7 +95,7 @@ switch($objModulo->getId()){
 					$obj->guardar();
 				}
 				
-				echo json_encode(array("band" => $obj->addConsulta($_POST['servicio'], $_POST['turno'], $_POST['cantidad'], $_POST['cubiculo'])));
+				echo json_encode(array("band" => $obj->addConsulta($_POST['servicio'], $_POST['turno'], str_replace("_", "", $_POST['cantidad']), $_POST['cubiculo'])));
 			break;
 			case 'del':
 				$obj = new TConsultorio($_POST['id']);

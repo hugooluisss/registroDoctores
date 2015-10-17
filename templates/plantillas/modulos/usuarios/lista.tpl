@@ -1,6 +1,6 @@
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">Lista de trabajadores</h3>
+		<h3 class="box-title">Lista de usuarios</h3>
 	</div><!-- /.box-header -->
 	<div class="box-body">
 		<table id="tblUsuarios" class="table table-bordered table-hover">

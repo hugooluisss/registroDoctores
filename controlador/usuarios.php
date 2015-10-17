@@ -1,6 +1,5 @@
 <?php
 global $objModulo;
-
 switch($objModulo->getId()){
 	case 'admonUsuarios':
 		$db = TBase::conectaDB();
@@ -59,24 +58,27 @@ switch($objModulo->getId()){
 			case 'add':
 				$db = TBase::conectaDB();
 				$obj = new TUsuario();
+				
 				$rs = $db->Execute("select idUsuario from usuario where email = '".$_POST['email']."'");
 				
-				if (!$rs->EOF){ #si es que encontró el email
+				if (!$rs->EOF){ #si es que encontrÃ³ el email
 					if ($rs->fields["idUsuario"] <> $_POST['id']){
 						$obj->setId($rs->fields['idUsuario']);
 						echo json_encode(array("band" => false, "mensaje" => "El email ya se encuentra registrado con el usuario ".$obj->getNombreCompleto()));
-						exit(-1);
+						exit(1);
 					}
 				}
 				
 				if ($_POST['tipo'] == 3){#si es doctor
-					$rs = $db->Execute("select idUsuario from doctor where cedula = '".$rs->fields['cedula']."'");
+					$rs = $db->Execute("select idUsuario from doctor where cedula = '".$_POST['cedula']."'");
 					if ($rs->fields['idUsuario'] <> $_POST['id']){
 						$obj->setId($rs->fields['idUsuario']);
-						echo json_encode(array("band" => false, "mensaje" => "El número de cédula se encuentra registrado con el doctor ".$obj->getNombreCompleto()));
+						
+						echo json_encode(array("band" => false, "id" => $rs->fields['idUsuario'], "mensaje" => "El nÃºmero de cÃ©dula se encuentra registrado con el doctor ".$obj->getNombreCompleto()));
+						exit(1);
 					}
 				}
-				
+
 				if ($_POST['tipo'] == 3){
 					$obj = new TDoctor();
 					$obj->setCedula($_POST['cedula']);
@@ -92,7 +94,8 @@ switch($objModulo->getId()){
 				$obj->setEmail($_POST['email']);
 				$obj->setPass($_POST['pass']);
 				$obj->setTipo($_POST['tipo']);
-				
+				$obj->setEstado($_POST['estado']);
+
 				echo json_encode(array("band" => $obj->guardar()));
 			break;
 			case 'del':

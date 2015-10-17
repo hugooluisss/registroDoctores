@@ -6,23 +6,26 @@
 <div class="box">
 	<div class="box-body">
 		<div class="row">
-			<div class="col-xs-8">
-				<div class="form-group">
-					<label for="txtConsultorio" class="col-xs-3">Consultorio</label>
-					<div class="col-xs-8">
-						<input type="text" id="txtConsultorio" name="txtConsultorio" class="form-control" disabled="true"/>
-					</div>
-					<div class="col-xs-1">
-						<a href="#" class="btn btn-success" data-toggle="modal" data-target="#winConsultorios">Buscar</a>
-					</div>
+			<div class="form-group">
+				<label for="txtConsultorio" class="col-md-3">Consultorio</label>
+				<div class="col-md-4">
+					<input type="text" id="txtConsultorio" name="txtConsultorio" class="form-control" disabled="true"/>
+				</div>
+				<div class="col-md-1">
+					<a href="#" class="btn btn-success" data-toggle="modal" data-target="#winConsultorios">Listar consultorios</a>
 				</div>
 			</div>
-			<div class="col-xs-4">
-				<div class="input-group">
-					<span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-					</span>
-					<input type="text" id="txtFecha" name="txtFecha" class="form-control" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{$smarty.now|date_format:"Y-m-d"}"/>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label for="txtFecha" class="col-md-3">Fecha</label>
+				<div class="col-md-4">
+					<div class="input-group">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+						<input type="text" id="txtFecha" name="txtFecha" class="form-control" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{$smarty.now|date_format:"Y-m-d"}"/>
+					</div>
 				</div>
 			</div>
 		</div>

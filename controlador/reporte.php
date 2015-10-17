@@ -93,9 +93,9 @@ switch($objModulo->getId()){
 				else{
 					global $sesion;
 					$email = new TMail;
-					$email->setTema("Envio de reporte");
 					$consultorio = new TConsultorio($_POST['consultorio']);
-					$email->setDestino($consultorio->supervisor->getEmail(), $consultorio->supervisor->getNombreCompleto());
+					$email->setTema("Reporte ".utf8_decode($consultorio->getClave()." ".$consultorio->getNombre()));
+					$email->setDestino($consultorio->supervisor->getEmail(), utf8_decode($consultorio->supervisor->getNombreCompleto()));
 					
 					$doctor = new TDoctor($_POST['usuario'] == ''?$sesion['usuario']:$_POST['usuario']);
 					
@@ -103,7 +103,7 @@ switch($objModulo->getId()){
 					$datos['nombreCompleto'] = $consultorio->supervisor->getNombreCompleto();
 					$datos['nombreDoctor'] = $doctor->getNombreCompleto();
 					
-					$email->setBodyHTML($email->construyeMail(utf8_decode(file_get_contents("repositorio/mail/reporteDoctor.txt")), $datos));
+					$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/reporteDoctor.txt"), $datos)));
 					$email->adjuntar($documento);
 					
 					$result = array("doc" => $documento, "band" => $email->send(), "emailSupervisor" => $consultorio->supervisor->getEmail());
