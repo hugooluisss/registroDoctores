@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 14:56:30
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 15:19:56
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1445111778,
+      1 => 1445112382,
       2 => 'file',
     ),
   ),
@@ -104,9 +104,9 @@ img/logo.png" class="img-rounded"/><b>C</b>onsultas</span></span>
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<li><a href="?mod=usuarioDatosPersonales"><i class="fa fa-edit text-green"></i> Cambiar datos personales</a></li>
-										<li><a href="#" action="changePass"><i class="fa fa-warning text-orange"></i> Cambiar contraseña</a></li>
-										<li><a href="?mod=logout"><i class="fa fa-sign-out text-green"></i> Salir del sistema</a></li>
+										<li><a href="?mod=usuarioDatosPersonales"><i class="fa fa-edit text-green"></i> <span style="color: black">Cambiar datos personales</span></a></li>
+										<li><a href="#" action="changePass"><i class="fa fa-warning text-orange"></i> <span style="color: black">Cambiar contraseña</span></a></li>
+										<li><a href="?mod=logout"><i class="fa fa-sign-out text-green"></i> <span style="color: black">Salir del sistema</span></a></li>
 									</ul>
 								</li>
 							</ul>

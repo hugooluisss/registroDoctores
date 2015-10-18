@@ -67,8 +67,8 @@
 			<div class="box-body">
 				{foreach from=$clasificacionServicios item="row"}
 				<div class="row">
-					<div class="col-xs-2">{$row.clasificacion}</div>
-					<div class="col-xs-2" clasificacion="{$row.idClasificacion}"></div>
+					<div class="col-xs-6 col-md-3">{$row.clasificacion}</div>
+					<div class="col-xs-6 col-md-3" clasificacion="{$row.idClasificacion}"></div>
 				</div>
 				{/foreach}
 			</div>

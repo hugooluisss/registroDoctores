@@ -60,9 +60,9 @@
 								<li>
 									<!-- inner menu: contains the actual data -->
 									<ul class="menu">
-										<li><a href="?mod=usuarioDatosPersonales"><i class="fa fa-edit text-green"></i> Cambiar datos personales</a></li>
-										<li><a href="#" action="changePass"><i class="fa fa-warning text-orange"></i> Cambiar contraseña</a></li>
-										<li><a href="?mod=logout"><i class="fa fa-sign-out text-green"></i> Salir del sistema</a></li>
+										<li><a href="?mod=usuarioDatosPersonales"><i class="fa fa-edit text-green"></i> <span style="color: black">Cambiar datos personales</span></a></li>
+										<li><a href="#" action="changePass"><i class="fa fa-warning text-orange"></i> <span style="color: black">Cambiar contraseña</span></a></li>
+										<li><a href="?mod=logout"><i class="fa fa-sign-out text-green"></i> <span style="color: black">Salir del sistema</span></a></li>
 									</ul>
 								</li>
 							</ul>
