@@ -27,7 +27,7 @@
 						<thead>
 							<tr>
 								<th class="hidden-xs">#</th>
-								<th>Tipo</th>
+								<th class="hidden-xs">Tipo</th>
 								<th>Servicio</th>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
 									<th cubiculo="{$smarty.section.cubiculos.index+1}">Cub {$smarty.section.cubiculos.index+1}</th>
@@ -41,17 +41,18 @@
 						{assign var="cont" value=$cont+1}
 							<tr>
 								<td class="hidden-xs">{$cont}</td>
-								<td>{$servicio.descripcion}</td>
+								<td class="hidden-xs" style="text-align: left">{$servicio.descripcion}</td>
 								<td>{$servicio.nombre}</td>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
-									<td><input class="form-control cantidades" style="widht: 100%;" servicio="{$servicio.idServicio}" clasificacion="{$servicio.idClasificacion}" turno="{$row.idTurno}" type="text" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}" data-mask></td>
+									<td style="text-align: right"><input class="form-control cantidades" style="width: 50px" servicio="{$servicio.idServicio}" clasificacion="{$servicio.idClasificacion}" turno="{$row.idTurno}" type="text" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}" data-mask></td>
 								{/section}
 							</tr>
 					{/foreach}
 						</tbody>
 						<tfoot>
 							<tr turno="{$row.idTurno}">
-								<th colspan="3" style="text-align: right">Total</td>
+								<th class="hidden-xs" colspan="2">
+								<th style="text-align: right">Total</td>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
 								<th class="total" cubiculo="{$smarty.section.cubiculos.index+1}"></th>
 								{/section}
