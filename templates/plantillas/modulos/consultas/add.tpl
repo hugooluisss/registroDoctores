@@ -14,8 +14,8 @@
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="row">
-						<label for="selCubiculo" class="col-xs-2">Cubículo</label>
-						<div class="col-xs-10">
+						<label for="selCubiculo" class="col-xs-3">Cubículo</label>
+						<div class="col-xs-9">
 							<select id="selCubiculo" turno="{$row.idTurno}">
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
 								<option value="{$smarty.section.cubiculos.index+1}">{$smarty.section.cubiculos.index+1}
@@ -42,7 +42,7 @@
 							<tr>
 								<td class="hidden-xs">{$cont}</td>
 								<td class="hidden-xs" style="text-align: left">{$servicio.descripcion}</td>
-								<td>{$servicio.nombre}</td>
+								<td style="text-align: left">{$servicio.nombre}</td>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
 									<td style="text-align: right"><input class="form-control cantidades" style="width: 50px" servicio="{$servicio.idServicio}" clasificacion="{$servicio.idClasificacion}" turno="{$row.idTurno}" type="text" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}" data-mask></td>
 								{/section}

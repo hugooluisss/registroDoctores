@@ -90,8 +90,8 @@ class RReporte{
 			"Align" => "center",
 			"FgColor" => 15));
 			
-		$hoja->write(2, 1, utf8_decode("REPORTE DE CONSULTAS GENERAL"), $encabezado); $hoja->mergeCells(2, 1, 2, 12);
-		$hoja->write(3, 1, utf8_decode("Generado el: ".date("Y-m-d")), $head); $hoja->mergeCells(3, 1, 3, 12);
+		$hoja->write(2, 1, utf8_decode("REPORTE DE CONSULTAS GENERAL"), $encabezado); $hoja->mergeCells(2, 1, 2, 9);
+		$hoja->write(3, 1, utf8_decode("Generado el: ".date("Y-m-d")), $head); $hoja->mergeCells(3, 1, 3, 9);
 			
 		$titulo->setAlign("vcenter");
 		
@@ -99,10 +99,10 @@ class RReporte{
 		
 		switch($supervisor->getIdTipo()){
 			case 1:
-				$rs = $db->Execute("select idReporte, idConsulta, idConsultorio, idDoctor, idServicio, idTurno, c.nombre as turno, cantidad, cubiculo, a.fecha from reporte a join consulta b using(idReporte) join turno c using(idTurno) join consultorio d using(idConsultorio) join servicio e using(idServicio) join tipoServicio f using(idTipo) join clasificacion g using(idClasificacion) where extract(month from fecha) = ".$this->mes." and extract(year from fecha) = ".$this->anio);
+				$rs = $db->Execute("select idConsultorio, idDoctor, idServicio, sum(cantidad) as cantidad from reporte a join consulta b using(idReporte) join consultorio d using(idConsultorio) join servicio e using(idServicio) join tipoServicio f using(idTipo) join clasificacion g using(idClasificacion) where extract(month from fecha) = ".$this->mes." and extract(year from fecha) = ".$this->anio." group by idConsultorio, idDoctor, idServicio");
 			break;
 			case 2:
-				$rs = $db->Execute("select idReporte, idConsulta, idConsultorio, idDoctor, idServicio, idTurno, c.nombre as turno, cantidad, cubiculo, a.fecha from reporte a join consulta b using(idReporte) join turno c using(idTurno) join consultorio d using(idConsultorio) join servicio e using(idServicio) join tipoServicio f using(idTipo) join clasificacion g using(idClasificacion)  where extract(month from fecha) = ".$this->mes." and extract(year from fecha) = ".$this->anio." and idSupervisor = ".$supervisor->getId());
+				$rs = $db->Execute("select idConsultorio, idDoctor, idServicio, sum(cantidad) as cantidad from reporte a join consulta b using(idReporte) join consultorio d using(idConsultorio) join servicio e using(idServicio) join tipoServicio f using(idTipo) join clasificacion g using(idClasificacion) where extract(month from fecha) = ".$this->mes." and extract(year from fecha) = ".$this->anio." and idSupervisor = ".$supervisor->getId()." group by idConsultorio, idDoctor, idServicio");
 			break;
 			default:
 				return false;
@@ -110,29 +110,21 @@ class RReporte{
 		
 		$hoja->write(4, 1, utf8_decode("Estado"), $titulo); $hoja->mergeCells(4, 1, 5, 1);
 		$hoja->write(4, 2, utf8_decode("Ciudad"), $titulo); $hoja->mergeCells(4, 2, 5, 2);
-		$hoja->write(4, 3, utf8_decode("Consultorio"), $titulo); $hoja->mergeCells(4, 3, 4, 5);
+		$hoja->write(4, 3, utf8_decode("Consultorio"), $titulo); $hoja->mergeCells(4, 3, 4, 4);
 		$hoja->write(5, 3, utf8_decode("Clave"), $titulo);
 		$hoja->write(5, 4, utf8_decode("Nombre"), $titulo);
-		$hoja->write(5, 5, utf8_decode("Cubículo"), $titulo);
-		$hoja->write(4, 6, utf8_decode("Doctor"), $titulo); $hoja->mergeCells(4, 6, 4, 7);
-		$hoja->write(5, 6, utf8_decode("Nombre"), $titulo);
-		$hoja->write(5, 7, utf8_decode("EMail"), $titulo);
-		$hoja->write(4, 8, utf8_decode("Servicio"), $titulo); $hoja->mergeCells(4, 8, 4, 9);
-		$hoja->write(5, 8, utf8_decode("Tipo"), $titulo);
-		$hoja->write(5, 9, utf8_decode("Nombre"), $titulo);
-		$hoja->write(4, 10, utf8_decode("Turno"), $titulo); $hoja->mergeCells(4, 10, 5, 10);
-		$hoja->write(4, 11, utf8_decode("Fecha"), $titulo); $hoja->mergeCells(4, 11, 5, 11);
-		$hoja->write(4, 12, utf8_decode("Cantidad"), $titulo); $hoja->mergeCells(4, 12, 5, 12);
+		$hoja->write(4, 5, utf8_decode("Doctor"), $titulo); $hoja->mergeCells(4, 5, 4, 6);
+		$hoja->write(5, 5, utf8_decode("Nombre"), $titulo);
+		$hoja->write(5, 6, utf8_decode("EMail"), $titulo);
+		$hoja->write(4, 7, utf8_decode("Servicio"), $titulo); $hoja->mergeCells(4, 7, 4, 8);
+		$hoja->write(5, 7, utf8_decode("Tipo"), $titulo);
+		$hoja->write(5, 8, utf8_decode("Nombre"), $titulo);
+		$hoja->write(4, 9, utf8_decode("Cantidad"), $titulo); $hoja->mergeCells(4, 9, 5, 9);
 		
 		$datos = &$this->libro->addFormat(array('Size' => 8,
 			"border" => 1));
 		
-		$hoja->setColumn(4, 4, 30);
-		$hoja->setColumn(5, 5, 10);
-		$hoja->setColumn(6, 6, 30);
-		$hoja->setColumn(7, 7, 15);
-		$hoja->setColumn(8, 8, 15);
-		$hoja->setColumn(9, 9, 30);
+		$hoja->setColumn(4, 8, 30);
 		
 		$y = 6;
 		while(!$rs->EOF){
@@ -144,14 +136,11 @@ class RReporte{
 			$hoja->write($y, 2, utf8_decode($consultorio->getCiudad()), $datos);
 			$hoja->write($y, 3, utf8_decode($consultorio->getClave()), $datos);
 			$hoja->write($y, 4, utf8_decode($consultorio->getNombre()), $datos);
-			$hoja->write($y, 5, utf8_decode($rs->fields['cubiculo']), $datos);
-			$hoja->write($y, 6, utf8_decode($doctor->getNombre()), $datos);
-			$hoja->write($y, 7, utf8_decode($doctor->getEmail()), $datos);
-			$hoja->write($y, 8, utf8_decode($servicio->tipo->getDescripcion()), $datos);
-			$hoja->write($y, 9, utf8_decode($servicio->getNombre()), $datos);
-			$hoja->write($y, 10, utf8_decode($rs->fields["turno"]), $datos);
-			$hoja->write($y, 11, utf8_decode($rs->fields["fecha"]), $datos);
-			$hoja->write($y, 12, utf8_decode($rs->fields["cantidad"]), $datos);
+			$hoja->write($y, 5, utf8_decode($doctor->getNombre()), $datos);
+			$hoja->write($y, 6, utf8_decode($doctor->getEmail()), $datos);
+			$hoja->write($y, 7, utf8_decode($servicio->tipo->getDescripcion()), $datos);
+			$hoja->write($y, 8, utf8_decode($servicio->getNombre()), $datos);
+			$hoja->write($y, 9, utf8_decode($rs->fields["cantidad"]), $datos);
 			$rs->moveNext();
 			$y++;
 		}

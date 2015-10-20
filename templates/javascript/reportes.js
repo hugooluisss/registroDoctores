@@ -20,7 +20,7 @@ $(document).ready(function(){
 	$("#btnBuscarPorCiudad").click(function(){
 		var ciudad = $("#selCiudad").children("option:selected");
 		
-		$.get("?mod=reporteCiudad&mes=" + $("#selMes").val() + "&anio=" + $("#selAnio").val() + "&estado=" + ciudad.attr("estado") + "&ciudad=" + ciudad.attr("estado"), function( data ) {
+		$.get("?mod=reporteCiudad&mes=" + $("#selMes").val() + "&anio=" + $("#selAnio").val() + "&estado=" + ciudad.attr("estado") + "&ciudad=" + ciudad.attr("ciudad"), function( data ) {
 			$("#dvListaPorCiudad").html(data);
 						
 			$("#tblRCiudad").DataTable({

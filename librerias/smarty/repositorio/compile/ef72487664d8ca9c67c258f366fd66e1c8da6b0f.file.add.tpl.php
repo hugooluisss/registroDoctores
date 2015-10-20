@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 13:26:45
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-19 20:09:23
          compiled from "templates/plantillas/modulos/consultas/add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:719665452560e0d442e4462-93836419%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef72487664d8ca9c67c258f366fd66e1c8da6b0f' => 
     array (
       0 => 'templates/plantillas/modulos/consultas/add.tpl',
-      1 => 1445106401,
+      1 => 1445303357,
       2 => 'file',
     ),
   ),
@@ -99,7 +99,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['last']       = 
 						<thead>
 							<tr>
 								<th class="hidden-xs">#</th>
-								<th>Tipo</th>
+								<th class="hidden-xs">Tipo</th>
 								<th>Servicio</th>
 								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['name'] = 'cubiculos';
@@ -147,9 +147,9 @@ $_smarty_tpl->tpl_vars["servicio"]->_loop = true;
 							<tr>
 								<td class="hidden-xs"><?php echo $_smarty_tpl->tpl_vars['cont']->value;?>
 </td>
-								<td><?php echo $_smarty_tpl->tpl_vars['servicio']->value['descripcion'];?>
+								<td class="hidden-xs" style="text-align: left"><?php echo $_smarty_tpl->tpl_vars['servicio']->value['descripcion'];?>
 </td>
-								<td><?php echo $_smarty_tpl->tpl_vars['servicio']->value['nombre'];?>
+								<td style="text-align: left"><?php echo $_smarty_tpl->tpl_vars['servicio']->value['nombre'];?>
 </td>
 								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['name'] = 'cubiculos';
@@ -179,7 +179,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['index_next'] = 
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['first']      = ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] == 1);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['total']);
 ?>
-									<td><input class="form-control cantidades" style="widht: 100%;" servicio="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['idServicio'];?>
+									<td style="text-align: right"><input class="form-control cantidades" style="width: 50px" servicio="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['idServicio'];?>
 " clasificacion="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['idClasificacion'];?>
 " turno="<?php echo $_smarty_tpl->tpl_vars['row']->value['idTurno'];?>
 " type="text" value="<?php echo $_smarty_tpl->tpl_vars['servicio']->value['cantidad'][$_smarty_tpl->getVariable('smarty')->value['section']['cubiculos']['index']+1];?>
@@ -192,7 +192,8 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['last']       = 
 						<tfoot>
 							<tr turno="<?php echo $_smarty_tpl->tpl_vars['row']->value['idTurno'];?>
 ">
-								<th colspan="3" style="text-align: right">Total</td>
+								<th class="hidden-xs" colspan="2">
+								<th style="text-align: right">Total</td>
 								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['name'] = 'cubiculos';
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['start'] = (int)0;
@@ -240,9 +241,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars["row"]->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars["row"]->_loop = true;
 ?>
 				<div class="row">
-					<div class="col-xs-2"><?php echo $_smarty_tpl->tpl_vars['row']->value['clasificacion'];?>
+					<div class="col-xs-6 col-md-3"><?php echo $_smarty_tpl->tpl_vars['row']->value['clasificacion'];?>
 </div>
-					<div class="col-xs-2" clasificacion="<?php echo $_smarty_tpl->tpl_vars['row']->value['idClasificacion'];?>
+					<div class="col-xs-6 col-md-3" clasificacion="<?php echo $_smarty_tpl->tpl_vars['row']->value['idClasificacion'];?>
 "></div>
 				</div>
 				<?php } ?>
