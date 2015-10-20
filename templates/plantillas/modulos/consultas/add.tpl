@@ -16,7 +16,7 @@
 					<div class="row">
 						<label for="selCubiculo" class="col-xs-3">Cubículo</label>
 						<div class="col-xs-9">
-							<select id="selCubiculo" turno="{$row.idTurno}">
+							<select id="selCubiculo" class="selCubiculo" turno="{$row.idTurno}">
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
 								<option value="{$smarty.section.cubiculos.index+1}">{$smarty.section.cubiculos.index+1}
 								{/section}

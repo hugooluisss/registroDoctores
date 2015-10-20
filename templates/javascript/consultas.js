@@ -44,12 +44,18 @@ $(document).ready(function(){
 					tablaServicios.column(cont + 2).visible(false);
 						
 				tablaServicios.column(3).visible(true);
+				var turno = $(this).attr("turno");
 				
-				$("#selCubiculo[turno=" + $(this).attr("turno") + "]").change(function(){
-					for(var cont = 1 ; cont <= 4 ; cont++)
-						tablaServicios.column(cont + 2).visible(cont == $("#selCubiculo[turno=" + $(this).attr("turno") + "]").val());
-					
-					getTotal();
+				$(".selCubiculo").each(function(){
+					if ($(this).attr("turno") == turno){
+						var el = $(this);
+						el.change(function(){
+							for(var cont = 1 ; cont <= 4 ; cont++)
+								tablaServicios.column(cont + 2).visible(cont == el.val());
+							
+							getTotal();
+						});
+					}
 				});
 			});
 			
