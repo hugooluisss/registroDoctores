@@ -23,7 +23,12 @@ switch($objModulo->getId()){
 		
 		$db = TBase::conectaDB();
 		$datos = array();
-		$rs = $db->Execute("select distinct estado, ciudad from consultorio order by estado, ciudad");
+		$supervisor = new TUsuario($sesion['usuario']);
+		if ($supervisor->getIdTipo() == 2)
+			$rs = $db->Execute("select distinct estado, ciudad from consultorio where idSupervisor = ".$supervisor->getId()." order by estado, ciudad");
+		else
+			$rs = $db->Execute("select distinct estado, ciudad from consultorio order by estado, ciudad");
+		
 		while(!$rs->EOF){
 			array_push($datos, $rs->fields);
 			$rs->moveNext();
