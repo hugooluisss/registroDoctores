@@ -40,7 +40,7 @@ $(document).ready(function(){
 					"autoWidth": false
 				});
 				
-				for(var cont = 1 ; cont <= 4 ; cont++)
+				for(var cont = 1 ; cont <= 2 ; cont++)
 					tablaServicios.column(cont + 2).visible(false);
 						
 				tablaServicios.column(3).visible(true);
@@ -51,7 +51,7 @@ $(document).ready(function(){
 						var el = $(this);
 						el.change(function(){
 							for(var cont = 1 ; cont <= 4 ; cont++)
-								tablaServicios.column(cont + 2).visible(cont == el.val());
+								tablaServicios.column(cont + 3).visible(cont == el.val());
 							
 							getTotal();
 						});
