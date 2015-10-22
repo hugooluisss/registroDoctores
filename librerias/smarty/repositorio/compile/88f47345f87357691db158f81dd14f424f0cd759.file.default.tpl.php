@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 15:19:56
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-21 19:00:58
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200058433755e4995bd4c484-25432014%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1445112382,
+      1 => 1445468108,
       2 => 'file',
     ),
   ),
@@ -24,7 +24,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55e4995c01eac4_35789668')) {function content_55e4995c01eac4_35789668($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_55e4995c01eac4_35789668')) {function content_55e4995c01eac4_35789668($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/Library/WebServer/Documents/registroDoctores/librerias/smarty/plugins/modifier.date_format.php';
+?><!DOCTYPE html>
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -264,6 +265,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['script']->key => $_smarty_tpl->tpl_va
 $_smarty_tpl->tpl_vars['script']->_loop = true;
 ?>
 		<script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['script']->value;?>
+?<?php echo smarty_modifier_date_format(time(),"%Y%m%d%H%M%S");?>
 "></script>
 	<?php } ?>
 	

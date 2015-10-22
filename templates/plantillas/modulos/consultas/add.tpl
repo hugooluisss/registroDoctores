@@ -23,7 +23,7 @@
 							</select>
 						</div>
 					</div>
-					<table class="tblServicios table table-bordered table-hover" turno="{$row.idTurno}">
+					<table class="tblServicios table table-bordered table-hover" turno="{$row.idTurno}" cubiculos="{$cubiculos}">
 						<thead>
 							<tr>
 								<th class="hidden-xs">#</th>

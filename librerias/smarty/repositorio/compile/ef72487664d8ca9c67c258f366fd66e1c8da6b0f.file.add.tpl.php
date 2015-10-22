@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-19 20:09:23
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-21 19:09:54
          compiled from "templates/plantillas/modulos/consultas/add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:719665452560e0d442e4462-93836419%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef72487664d8ca9c67c258f366fd66e1c8da6b0f' => 
     array (
       0 => 'templates/plantillas/modulos/consultas/add.tpl',
-      1 => 1445303357,
+      1 => 1445472501,
       2 => 'file',
     ),
   ),
@@ -55,9 +55,9 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 				</div><!-- /.box-header -->
 				<div class="box-body">
 					<div class="row">
-						<label for="selCubiculo" class="col-xs-2">Cubículo</label>
-						<div class="col-xs-10">
-							<select id="selCubiculo" turno="<?php echo $_smarty_tpl->tpl_vars['row']->value['idTurno'];?>
+						<label for="selCubiculo" class="col-xs-3">Cubículo</label>
+						<div class="col-xs-9">
+							<select id="selCubiculo" class="selCubiculo" turno="<?php echo $_smarty_tpl->tpl_vars['row']->value['idTurno'];?>
 ">
 								<?php if (isset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos'])) unset($_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']);
 $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['name'] = 'cubiculos';
@@ -95,6 +95,7 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['cubiculos']['last']       = 
 						</div>
 					</div>
 					<table class="tblServicios table table-bordered table-hover" turno="<?php echo $_smarty_tpl->tpl_vars['row']->value['idTurno'];?>
+" cubiculos="<?php echo $_smarty_tpl->tpl_vars['cubiculos']->value;?>
 ">
 						<thead>
 							<tr>

@@ -39,9 +39,11 @@ $(document).ready(function(){
 					"info": true,
 					"autoWidth": false
 				});
+				var tabla = $(this);
 				
-				for(var cont = 1 ; cont <= 2 ; cont++)
+				for(var cont = 1 ; cont <= $(this).attr("cubiculos") ; cont++){
 					tablaServicios.column(cont + 2).visible(false);
+				}
 						
 				tablaServicios.column(3).visible(true);
 				var turno = $(this).attr("turno");
@@ -50,7 +52,7 @@ $(document).ready(function(){
 					if ($(this).attr("turno") == turno){
 						var el = $(this);
 						el.change(function(){
-							for(var cont = 1 ; cont <= 4 ; cont++)
+							for(var cont = 1 ; cont <= tabla.attr("cubiculos") ; cont++)
 								tablaServicios.column(cont + 3).visible(cont == el.val());
 							
 							getTotal();
