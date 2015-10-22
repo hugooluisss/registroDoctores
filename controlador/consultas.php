@@ -4,7 +4,8 @@ global $objModulo;
 switch($objModulo->getId()){
 	case 'consultas':
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select * from consultorio where idConsultorio in (select idConsultorio from consultorioTurno) and eliminado = 0");
+		$usuario = new TUsuario($sesion['usuario']);
+		$rs = $db->Execute("select * from consultorio where idConsultorio in (select idConsultorio from consultorioTurno) and eliminado = 0 and upper(estado) = upper('".$usuario->getEstado()."')");
 		
 		$datos = array();
 		while(!$rs->EOF){

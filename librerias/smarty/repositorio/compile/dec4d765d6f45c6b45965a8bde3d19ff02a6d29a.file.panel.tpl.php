@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2015-10-17 09:17:00
+<?php /* Smarty version Smarty-3.1.11, created on 2015-10-22 13:31:36
          compiled from "templates/plantillas/modulos/consultas/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1073639752560df267da6e09-13367619%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'dec4d765d6f45c6b45965a8bde3d19ff02a6d29a' => 
     array (
       0 => 'templates/plantillas/modulos/consultas/panel.tpl',
-      1 => 1445091409,
+      1 => 1445538693,
       2 => 'file',
     ),
   ),
@@ -77,6 +77,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							<th>#</th>
 							<th>Clave</th>
 							<th>Nombre</th>
+							<th>Ciudad</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -92,6 +93,9 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 							<td><?php echo $_smarty_tpl->tpl_vars['row']->value['clave'];?>
 </td>
 							<td><?php echo $_smarty_tpl->tpl_vars['row']->value['nombre'];?>
+</td>
+							<td><?php echo $_smarty_tpl->tpl_vars['row']->value['estado'];?>
+ - <?php echo $_smarty_tpl->tpl_vars['row']->value['ciudad'];?>
 </td>
 						</tr>
 						<?php } ?>

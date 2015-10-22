@@ -68,7 +68,7 @@ switch($objModulo->getId()){
 		$usuario = $sesion['usuario'];
 		
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select distinct idDoctor, idConsultorio, b.cubiculo, c.clave as consultorio, d.nombre as turno, d.idTurno from reporte a join consulta b using(idReporte) join consultorio c using(idConsultorio) join turno d using(idTurno) where extract(MONTH from fecha) = ".$mes." and extract(YEAR from fecha) = ".$anio." and idDoctor = ".$usuario);
+		$rs = $db->Execute("select distinct idDoctor, idConsultorio, b.cubiculo, c.clave as consultorio, c.nombre as nombreConsultorio, d.nombre as turno, d.idTurno, c.estado, c.ciudad from reporte a join consulta b using(idReporte) join consultorio c using(idConsultorio) join turno d using(idTurno) where extract(MONTH from fecha) = ".$mes." and extract(YEAR from fecha) = ".$anio." and idDoctor = ".$usuario." order by estado, ciudad, c.clave");
 		
 		$datos = array();
 		while (!$rs->EOF){
