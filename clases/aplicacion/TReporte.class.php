@@ -187,7 +187,7 @@ class TReporte{
 		
 		#buscamos el id de la consulta
 		$db = TBase::conectaDB();
-		$rs = $db->Execute("select idConsulta where idReporte = ".$this->getId()." and idServicio = ".$servicio." and idTurno = ".$turno." and cubiculo = ".$cubiculo);
+		$rs = $db->Execute("select idConsulta from consulta where idReporte = ".$this->getId()." and idServicio = ".$servicio." and idTurno = ".$turno." and cubiculo = ".$cubiculo);
 		
 		$obj = new TConsulta($rs->fields["idConsulta"]);
 		$obj->setIdReporte($this->getId());
