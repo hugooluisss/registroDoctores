@@ -49,6 +49,7 @@
 							<th>#</th>
 							<th>Clave</th>
 							<th>Nombre</th>
+							<th>Ciudad</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,6 +58,7 @@
 							<td>{$row.idConsultorio}</td>
 							<td>{$row.clave}</td>
 							<td>{$row.nombre}</td>
+							<td>{$row.estado} - {$row.ciudad}</td>
 						</tr>
 						{/foreach}
 					</tbody>
