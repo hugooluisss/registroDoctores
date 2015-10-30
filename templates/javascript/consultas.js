@@ -29,6 +29,25 @@ $(document).ready(function(){
 				 mask: '99'
 			});
 			
+			$("input[cantidades]").change(function(){
+				var obj = new TConsulta;
+				var el = $(this);
+				obj.add($("#txtConsultorio").attr("idConsultorio"), el.attr("turno"), $("#txtFecha").val(), el.val(), $(this).attr("servicio"), $(this).attr("cubiculo"), {
+					before: function(){
+						el.disabled = true;
+					},
+					after: function(data){
+						el.disabled = false;
+						if (data.band == false){
+							alert("Ocurrió un error al actualizar el campo");
+							el.val("");
+							el.select();
+						}else
+							getTotal();
+					}
+				});
+			});
+			
 			$(".tblServicios").each(function(){
 				var tablaServicios = $(this).DataTable({
 					"responsive": false,
@@ -53,7 +72,7 @@ $(document).ready(function(){
 						var el = $(this);
 						el.change(function(){
 							for(var cont = 1 ; cont <= tabla.attr("cubiculos") ; cont++)
-								tablaServicios.column(cont + 3).visible(cont == el.val());
+								tablaServicios.column(cont + 2).visible(cont == el.val());
 							
 							getTotal();
 						});
@@ -62,25 +81,6 @@ $(document).ready(function(){
 			});
 			
 			getTotal($(this).attr("turno"));
-			
-			$(".cantidades").change(function(){
-				var obj = new TConsulta;
-				var el = $(this);
-				obj.add($("#txtConsultorio").attr("idConsultorio"), el.attr("turno"), $("#txtFecha").val(), el.val(), $(this).attr("servicio"), $(this).attr("cubiculo"), {
-					before: function(){
-						el.disabled = true;
-					},
-					after: function(data){
-						el.disabled = false;
-						if (data.band == false){
-							alert("Ocurrió un error al actualizar el campo");
-							el.val("");
-							el.select();
-						}else
-							getTotal();
-					}
-				});
-			});
 		}});
 	}
 	

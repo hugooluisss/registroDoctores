@@ -96,26 +96,30 @@ switch($objModulo->getId()){
 				if ($documento == '')
 					$result = array("doc" => "", "band" => false);
 				else{
-					global $sesion;
-					$email = new TMail;
-					$consultorio = new TConsultorio($_POST['consultorio']);
-					$email->setTema("Reporte ".utf8_decode($consultorio->getClave()." ".$consultorio->getNombre()));
-					$email->setDestino($consultorio->supervisor->getEmail(), utf8_decode($consultorio->supervisor->getNombreCompleto()));
-					
-					$doctor = new TDoctor($_POST['usuario'] == ''?$sesion['usuario']:$_POST['usuario']);
-					
-					$datos = array();
-					$datos['nombreCompleto'] = $consultorio->supervisor->getNombreCompleto();
-					$datos['nombreDoctor'] = $doctor->getNombreCompleto();
-					
-					$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/reporteDoctor.txt"), $datos)));
-					$email->adjuntar($documento);
-					
-					$result = array("doc" => $documento, "band" => $email->send(), "emailSupervisor" => $consultorio->supervisor->getEmail());
+					if ($_POST['enviar'] == 'no')
+						$result = array("doc" => $documento, "band" => true);
+					else{
+						global $sesion;
+						$email = new TMail;
+						$consultorio = new TConsultorio($_POST['consultorio']);
+						$email->setTema("Reporte ".utf8_decode($consultorio->getClave()." ".$consultorio->getNombre()));
+						$email->setDestino($consultorio->supervisor->getEmail(), utf8_decode($consultorio->supervisor->getNombreCompleto()));
+						
+						$doctor = new TDoctor($_POST['usuario'] == ''?$sesion['usuario']:$_POST['usuario']);
+						
+						$datos = array();
+						$datos['nombreCompleto'] = $consultorio->supervisor->getNombreCompleto();
+						$datos['nombreDoctor'] = $doctor->getNombreCompleto();
+						
+						$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/reporteDoctor.txt"), $datos)));
+						$email->adjuntar($documento);
+						
+						$result = array("doc" => $documento, "band" => $email->send(), "emailSupervisor" => $consultorio->supervisor->getEmail());
+					}
 				}
 				print json_encode($result);
 			break;
-			case 'generalExcel': #Este incluye todas las consultas realizadas en un mes
+			case 'generalExcel2': #Este incluye todas las consultas realizadas en un mes
 				require_once(getcwd()."/repositorio/excel/general.php");		
 				$doc = new RReporte();
 				

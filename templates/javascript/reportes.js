@@ -37,7 +37,7 @@ $(document).ready(function(){
 	
 	/*Excel general*/
 	$("#btnExcelGeneral").click(function(){
-		$.post('?mod=creporte&action=generalExcel', {
+		$.post('?mod=creporte&action=generalExcel2', {
 				"mes": $("#selMesGeneral").val(),
 				"anio": $("#selAnioGeneral").val()
 			}, function(data){					

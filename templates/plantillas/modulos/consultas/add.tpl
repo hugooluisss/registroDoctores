@@ -44,7 +44,7 @@
 								<td class="hidden-xs" style="text-align: left">{$servicio.descripcion}</td>
 								<td style="text-align: left">{$servicio.nombre}</td>
 								{section name=cubiculos start=0 loop=$cubiculos step=1}
-									<td style="text-align: right"><input class="form-control cantidades" style="width: 50px" servicio="{$servicio.idServicio}" clasificacion="{$servicio.idClasificacion}" turno="{$row.idTurno}" type="text" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}" data-mask></td>
+									<td style="text-align: right"><input class="form-control" cantidades style="width: 50px" servicio="{$servicio.idServicio}" clasificacion="{$servicio.idClasificacion}" turno="{$row.idTurno}" type="text" value="{$servicio.cantidad[$smarty.section.cubiculos.index+1]}" cubiculo="{$smarty.section.cubiculos.index+1}" data-mask></td>
 								{/section}
 							</tr>
 					{/foreach}
